@@ -11,7 +11,8 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { Card, Container } from '@mui/material';
 import { Grid } from '@material-ui/core';
-import Playground from './playground.js';
+import Park from './park.js';
+import { BasicPlayground } from './playgrounds/basicPlayground';
 
 const theme = createTheme({
   palette: {
@@ -56,8 +57,12 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
   const name = 'John Doe';
   const companyName = 'Acme Company Inc.';
-  
-  const [selectedToy, setSelectedToy] = useState("Basic");
+
+  const playgrounds = [
+    BasicPlayground(),
+  ]
+
+  const [selectedPlayground, setSelectedPlayground] = useState(playgrounds[0]);
 
   const sayHello = (name) => {
     return `hello ${name}!`;
@@ -73,14 +78,14 @@ function App() {
   ];
 
   const renderHeader = () => (
-    <AppBar position="static" sx={{ backgroundColor: "", height: "8vh" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#7A65FF", height: "8vh" }}>
       <Toolbar>
         <div style={{ padding: "6px", paddingRight: "10px" }}>
           <img src={LayerLogo} alt="Layer Logo" style={{ padding: "4px", borderRadius: "10px", backgroundColor: "white" }} />
         </div>
 
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-          Layer Playground
+          Layer Park
         </Typography>
       </Toolbar>
     </AppBar>
@@ -121,12 +126,14 @@ function App() {
 
         <Stack direction="col" sx={{ height: "100%" }}>
           <Box p={4} sx={{ display: 'flex', flexGrow: 6, justifyContent: "center", alignItems: "center" }}>
-            <Playground selectedToy={selectedToy} setSelectedToy={setSelectedToy} toys={["Basic", "Form"]} />
+            <Park
+              selectedPlayground={selectedPlayground}
+              setSelectedPlayground={setSelectedPlayground}
+              playgrounds={playgrounds} />
           </Box>
-          <Box sx={{ display: 'flex', flexGrow: 4 }}>
-
+          <Box sx={{ border: "3px solid blue", display: 'flex', flexGrow: 3 }}>
           </Box>
-          <Box sx={{ display: 'flex', flexGrow: 2 }}>
+          <Box sx={{ display: 'flex', flexGrow: 3 }}>
 
           </Box>
         </Stack>
