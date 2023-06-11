@@ -125,10 +125,7 @@ function App() {
               setSelectedPlayground={setSelectedPlayground}
               playgrounds={playgrounds} />
           </Box>
-          <Box sx={{ border: "3px solid blue", display: 'flex', flexGrow: 3 }}>
-            <button onClick={
-                console.log("Open AI API Key", process.env.REACT_APP_OPEN_AI_API_KEY)
-            }>Print Key</button>
+          <Box sx={{ display: 'flex', flexGrow: 3 }}>
           </Box>
           <Box sx={{ display: 'flex', flexGrow: 3 }}>
         
