@@ -17,8 +17,8 @@ jobs:
 
     - name: Build
       run: |
-        npm install
-        npm run-script build
+        yarn
+        npm run build
       env:
         REACT_APP_OPEN_AI_API_KEY: ${{ secrets.REACT_APP_OPEN_AI_API_KEY }}
 
