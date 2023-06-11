@@ -1,5 +1,5 @@
 import { Widget, Invokable } from '@buildwithlayer/sdk';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -55,6 +55,13 @@ function App() {
   const sayHello = (name) => {
     return `hello ${name}!`;
   };
+
+  // a use effect that prints the value of the process.env.REACT_APP_OPEN_AI_API_KEY
+  useEffect(() => {
+    console.log("Open AI API Key", process.env.REACT_APP_OPEN_AI_API_KEY);
+    console.log("Layer API Key", process.env.REACT_APP_LAYER_API_KEY);
+  }, []);
+
 
 
   const invokables = [
