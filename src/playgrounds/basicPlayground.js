@@ -1,7 +1,7 @@
 
 import * as React from 'react';
-import { useState, useImperativeHandle } from 'react';
-import { Grid, Box, styled, Paper } from '@mui/material';
+import { useState } from 'react';
+import { Grid, Box } from '@mui/material';
 import { Invokable } from '@buildwithlayer/sdk';
 import { Typography } from '@material-ui/core';
 
@@ -17,6 +17,7 @@ export function BasicPlayground() {
     const testFunc = () => {
         console.log("testFunc");
         setColor("red");
+        setBoxTextColor("black");
         return "success";
     }
 

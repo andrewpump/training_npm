@@ -6,11 +6,8 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import LayerLogo from './LayerLogo.svg';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import { Card, Container } from '@mui/material';
-import { Grid } from '@material-ui/core';
 import Park from './park.js';
 import { BasicPlayground } from './playgrounds/basicPlayground';
 

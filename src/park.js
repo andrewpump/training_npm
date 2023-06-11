@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { Card, Container, Stack, Typography, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { Stack, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
 export default function Park({selectedPlayground, setSelectedPlayground, playgrounds}) {
 
