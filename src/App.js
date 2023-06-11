@@ -58,8 +58,7 @@ function App() {
 
   // a use effect that prints the value of the process.env.REACT_APP_OPEN_AI_API_KEY
   useEffect(() => {
-    console.log("Open AI API Key", process.env.REACT_APP_OPEN_AI_API_KEY);
-    console.log("Layer API Key", process.env.REACT_APP_LAYER_API_KEY);
+
   }, []);
 
 
@@ -127,9 +126,12 @@ function App() {
               playgrounds={playgrounds} />
           </Box>
           <Box sx={{ border: "3px solid blue", display: 'flex', flexGrow: 3 }}>
+            <button onClick={
+                console.log("Open AI API Key", process.env.REACT_APP_OPEN_AI_API_KEY)
+            }>Print Key</button>
           </Box>
           <Box sx={{ display: 'flex', flexGrow: 3 }}>
-
+        
           </Box>
         </Stack>
 
