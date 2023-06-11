@@ -45,15 +45,6 @@ const theme = createTheme({
   },
 });
 
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
 function App() {
   const name = 'John Doe';
   const companyName = 'Acme Company Inc.';
