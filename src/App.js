@@ -8,6 +8,7 @@ import { Box } from '@mui/material';
 import { Button } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleTheme, selectTheme } from './features/global/globalSlice';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
@@ -16,7 +17,39 @@ function App() {
   const companyName = 'Acme Company Inc.';
 
   const dispatch = useDispatch()
-  const theme = useSelector(selectTheme)
+  const themeMode = useSelector(selectTheme)
+  const theme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#7b65ff',
+        dark: '#4e38d7',
+        contrastText: '#f2f2f2',
+        light: '#e9dfff',
+      },
+      secondary: {
+        main: '#df85ff',
+        dark: '#c243ee',
+        contrastText: '#333333',
+        light: '#eebeff',
+      },
+      background: {
+        default: '#ffffff',
+        light: '#f2f2f2',
+        contrastText: '#333333',
+      },
+    },
+    typography: {
+      htmlFontSize: 16,
+      fontFamily: ['Manrope'],
+      fontSize: 14,
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
+      fontWeightBold: 700,
+    },
+  });
+
 
   const playgrounds = [
     "Box Layout",
@@ -38,16 +71,15 @@ function App() {
   ];
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <AppBar position='static'>
         <Toolbar>
-
-          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h1" component="div" sx={{ flexGrow: 1 }}>
             Layer Park
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box sx={{ border: "2px solid green", display: "flex", flexDirection: "column", backgroundColor:"background.light" }}>
+      <Box sx={{ border: "2px solid green", display: "flex", flexDirection: "column", backgroundColor: "background.light" }}>
         <Typography variant="h5" component="div" sx={{ flexGrow: 12 }}>
           Layer Park
         </Typography>
@@ -55,7 +87,7 @@ function App() {
           Change Theme
         </Button>
       </Box>
-    </>
+    </ThemeProvider >
 
   );
 }
