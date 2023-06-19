@@ -125,16 +125,12 @@ function App() {
           </AppBar>
         </Container>
 
-        <Container
-          maxWidth="xl"
-          sx={{
-            display: "flex",
-            flexFlow: "column",
-            flex: "1 1 auto",
-            border: "2px solid red",
-          }}
-        >
-          <Park playgrounds={playgrounds} />
+        <Container maxWidth="xl" sx={{
+          display: "flex",
+          flexFlow: "column",
+          flex: "1 1 auto",
+        }}>
+          <Park playgrounds={playgrounds}/>
         </Container>
       </Box>
     </ThemeProvider>

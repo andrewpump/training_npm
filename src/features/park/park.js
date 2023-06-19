@@ -25,9 +25,13 @@ function ParkView({ playgrounds }) {
         display: "grid",
         gridTemplateColumns: "repeat(5, 20%)",
         gridTemplateRows: "repeat(10, 10%)",
+            borderRadius: "16px",
+            borderColor: "#7b65ff",
+            borderWidth: "5px",
+            borderStyle: "dashed",
       }}
       spacing={1}
-      p={3}
+      p={3} mb={2}
     >
       <Box sx={{ gridArea: "1 / 1 / 2 / 5" }} xs={9} pr={1}>
         <FormControl sx={{ width: "100%" }}>
@@ -74,12 +78,16 @@ function ParkView({ playgrounds }) {
 }
 
 export default function Park({ playgrounds }) {
-  return (
-    <Stack flex direction="row" spacing={2} pt={2} sx={{ height: "100%" }}>
-      <ParkView playgrounds={playgrounds} />
-      <Box
-        sx={{ flexGrow: 6, display: "flex", border: "2px solid blue" }}
-      ></Box>
-    </Stack>
-  );
+
+
+    return (
+        <Stack flex direction="row" spacing={2} pt={2} sx={{ height: "100%" }}>
+
+
+            <ParkView playgrounds={playgrounds} />
+            <Box sx={{ flexGrow: 6, display: "flex"}}>
+            </Box>
+
+        </Stack>
+    );
 }
