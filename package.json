@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@buildwithlayer/sdk": "^0.4.1",
+    "@buildwithlayer/sdk": "latest",
     "@material-ui/core": "^4.12.4",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.14.1",
