@@ -137,7 +137,7 @@ export function BasicPlayground() {
 
     useEffect(() => {
         getUnsplashImage("batman");
-    }, []);
+    });
 
     return (
         <>

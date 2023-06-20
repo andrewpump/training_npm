@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
-import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 
 function ParkView({ playgrounds }) {
