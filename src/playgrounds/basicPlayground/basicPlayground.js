@@ -70,11 +70,13 @@ const Box1 = () => {
   }, []);
 
   return (
-    <Box sx={{ ...BoxStyle, backgroundColor }}>
-      <Typography variant="h3" textAlign="center" mb={2}>
-        Box 1
-      </Typography>
-      <Typography textAlign="center">{heightPercentage}%</Typography>
+    <Box sx={{ height: `${heightPercentage}%`, transition }}>
+      <Box sx={{ ...BoxStyle, backgroundColor }}>
+        <Typography variant="h3" textAlign="center" mb={2}>
+          Box 1
+        </Typography>
+        <Typography textAlign="center">{heightPercentage}%</Typography>
+      </Box>
     </Box>
   );
 };
@@ -106,11 +108,13 @@ const Box2 = () => {
   }, []);
 
   return (
-    <Box sx={{ ...BoxStyle, backgroundColor }}>
-      <Typography variant="h3" textAlign="center" mb={2}>
-        Box 2
-      </Typography>
-      <Typography textAlign="center">{heightPercentage}%</Typography>
+    <Box sx={{ height: `${heightPercentage}%`, transition }}>
+      <Box sx={{ ...BoxStyle, backgroundColor }}>
+        <Typography variant="h3" textAlign="center" mb={2}>
+          Box 2
+        </Typography>
+        <Typography textAlign="center">{heightPercentage}%</Typography>
+      </Box>
     </Box>
   );
 };
@@ -132,31 +136,33 @@ const ProgressBox = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        p: 2,
-        borderRadius: 5,
-        backgroundColor: "#E0E0E0",
-      }}
-    >
-      <Typography variant="h3" mb={2}>
-        Progress Bar
-      </Typography>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Box sx={{ width: "100%", mr: 1 }}>
-          <LinearProgress
-            variant="determinate"
-            value={progressValue}
-            sx={{ height: 25, borderRadius: 5 }}
-          />
-        </Box>
-        <Box sx={{ minWidth: 35 }}>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            textAlign="center"
-            color="text.secondary"
-          >{`${Math.round(progressValue)}%`}</Typography>
+    <Box>
+      <Box
+        sx={{
+          p: 2,
+          borderRadius: 5,
+          backgroundColor: "#E0E0E0",
+        }}
+      >
+        <Typography variant="h3" mb={2}>
+          Progress Bar
+        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ width: "100%", mr: 1 }}>
+            <LinearProgress
+              variant="determinate"
+              value={progressValue}
+              sx={{ height: 25, borderRadius: 5 }}
+            />
+          </Box>
+          <Box sx={{ minWidth: 35 }}>
+            <Typography
+              variant="body2"
+              fontWeight="bold"
+              textAlign="center"
+              color="text.secondary"
+            >{`${Math.round(progressValue)}%`}</Typography>
+          </Box>
         </Box>
       </Box>
     </Box>
@@ -183,28 +189,30 @@ const UnsplashBox = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        height: "100%",
-        borderRadius: 5,
-        overflow: "hidden",
-        backgroundColor: "#E0E0E0",
-      }}
-    >
-      <Box sx={{ p: 2, height: "calc(100% - 20%)" }}>
-        <Typography variant="h3" mb={2}>
-          Unsplash Image
-        </Typography>
-        <Typography variant="body1" mb={2}>
-          {response?.alt_description}
-        </Typography>
-        <Image
-          src={
-            response?.urls?.regular ||
-            "https://marketplace.canva.com/EAFJd1mhO-c/1/0/900w/canva-colorful-watercolor-painting-phone-wallpaper-qq02VzvX2Nc.jpg"
-          }
-          alt={response?.alt_description}
-        />
+    <Box sx={{ height: "100%", overflow: "hidden" }}>
+      <Box
+        sx={{
+          height: "100%",
+          borderRadius: 5,
+          overflow: "hidden",
+          backgroundColor: "#E0E0E0",
+        }}
+      >
+        <Box sx={{ p: 2, height: "calc(100% - 20%)" }}>
+          <Typography variant="h3" mb={2}>
+            Unsplash Image
+          </Typography>
+          <Typography variant="body1" mb={2}>
+            {response?.alt_description}
+          </Typography>
+          <Image
+            src={
+              response?.urls?.regular ||
+              "https://marketplace.canva.com/EAFJd1mhO-c/1/0/900w/canva-colorful-watercolor-painting-phone-wallpaper-qq02VzvX2Nc.jpg"
+            }
+            alt={response?.alt_description}
+          />
+        </Box>
       </Box>
     </Box>
   );
@@ -212,9 +220,6 @@ const UnsplashBox = () => {
 
 // create a react component called BasicToy that has a square and field image
 export function BasicPlayground() {
-  const box1HeightPercentage = useSelector(selectBox1Height);
-  const box2HeightPercentage = useSelector(selectBox2Height);
-
   return (
     <Box
       sx={{
@@ -224,20 +229,12 @@ export function BasicPlayground() {
     >
       <Box sx={{ display: "flex", height: "100%", gap }}>
         <Box sx={ContainerSx}>
-          <Box sx={{ height: `${box1HeightPercentage}%`, transition }}>
-            <Box1 />
-          </Box>
-          <Box sx={{ height: `${box2HeightPercentage}%`, transition }}>
-            <Box2 />
-          </Box>
+          <Box1 />
+          <Box2 />
         </Box>
         <Box sx={ContainerSx}>
-          <Box>
-            <ProgressBox />
-          </Box>
-          <Box sx={{ height: "100%", overflow: "hidden" }}>
-            <UnsplashBox />
-          </Box>
+          <ProgressBox />
+          <UnsplashBox />
         </Box>
       </Box>
     </Box>
