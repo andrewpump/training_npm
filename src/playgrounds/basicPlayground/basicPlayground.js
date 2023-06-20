@@ -1,10 +1,9 @@
 // @ts-check
 import z from "zod";
-import { Invokable, Widget, useInvokables } from "@buildwithlayer/sdk";
+import { Invokable, useInvokables } from "@buildwithlayer/sdk";
 import * as React from "react";
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { Box, Typography, LinearProgress, styled } from "@mui/material";
-import { createApi } from "unsplash-js";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectBox1Height,
@@ -17,7 +16,6 @@ import {
   setBox2BackgroundColor,
   setProgressValue,
   selectUnsplashResponse,
-  setUnsplashResponse,
   getUnsplashImage,
 } from "./basicPlaygroundSlice";
 
