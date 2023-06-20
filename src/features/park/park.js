@@ -76,7 +76,12 @@ function ParkView({ playgrounds }) {
           borderRadius: "8px",
         }}
       >
-        <BasicPlayground />
+        {activePlayground === "Box Layout" && <BasicPlayground />}
+        {activePlayground === "Basic Playground" && <h1>Basic Playground</h1>}
+        {activePlayground === "Fun Playground" && <h1>Fun Playground</h1>}
+        {activePlayground === "Advanced Playground" && (
+          <h1>Advanced Playground</h1>
+        )}
       </Box>
     </Box>
   );
