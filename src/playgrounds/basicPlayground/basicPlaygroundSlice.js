@@ -2,15 +2,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createApi } from "unsplash-js";
 
+import { resetPlayground } from "../../features/global/globalSlice";
+
+export const initialState = {
+  progressValue: 50,
+  heightPercentage: 50,
+  box1BackgroundColor: "primary.light",
+  box2BackgroundColor: "secondary.light",
+  unsplashResponse: {},
+};
+
 export const BasicPlaygroundSlice = createSlice({
   name: "basicPlayground",
-  initialState: {
-    progressValue: 50,
-    heightPercentage: 50,
-    box1BackgroundColor: "primary.light",
-    box2BackgroundColor: "secondary.light",
-    unsplashResponse: {},
-  },
+  initialState,
   reducers: {
     setHeightPercentage: (state, action) => {
       state.heightPercentage = action.payload;
@@ -27,6 +31,9 @@ export const BasicPlaygroundSlice = createSlice({
     setUnsplashResponse: (state, action) => {
       state.unsplashResponse = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(resetPlayground, () => initialState);
   },
 });
 

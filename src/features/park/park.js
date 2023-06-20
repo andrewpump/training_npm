@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
+import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 
 function ParkView({ playgrounds }) {
@@ -24,13 +25,14 @@ function ParkView({ playgrounds }) {
         display: "grid",
         gridTemplateColumns: "repeat(5, 20%)",
         gridTemplateRows: "repeat(10, 10%)",
-            borderRadius: "16px",
-            borderColor: "#7b65ff",
-            borderWidth: "5px",
-            borderStyle: "dashed",
+        borderRadius: "16px",
+        borderColor: "#7b65ff",
+        borderWidth: "5px",
+        borderStyle: "dashed",
       }}
       spacing={1}
-      p={3} mb={2}
+      p={3}
+      mb={2}
     >
       <Box sx={{ gridArea: "1 / 1 / 2 / 5" }} xs={9} pr={1}>
         <FormControl sx={{ width: "100%" }}>
@@ -56,7 +58,11 @@ function ParkView({ playgrounds }) {
         </FormControl>
       </Box>
       <Box xs={3} sx={{ gridArea: "1 / 5 / 2 / 6" }}>
-        <Button variant="contained" sx={{ height: "55px" }}>
+        <Button
+          variant="contained"
+          sx={{ height: "55px" }}
+          onClick={() => dispatch({ type: RESET_PLAYGROUND })}
+        >
           Reset Playground
         </Button>
       </Box>
@@ -77,16 +83,16 @@ function ParkView({ playgrounds }) {
 }
 
 export default function Park({ playgrounds }) {
-
-
-    return (
-        <Stack flex direction="row" spacing={2} pt={2} sx={{ height: "100%", maxWidth:"60vw" }}>
-
-
-            <ParkView playgrounds={playgrounds} />
-            <Box sx={{ flexGrow: 6, display: "flex"}}>
-            </Box>
-
-        </Stack>
-    );
+  return (
+    <Stack
+      flex
+      direction="row"
+      spacing={2}
+      pt={2}
+      sx={{ height: "100%", maxWidth: "60vw" }}
+    >
+      <ParkView playgrounds={playgrounds} />
+      <Box sx={{ flexGrow: 6, display: "flex" }}></Box>
+    </Stack>
+  );
 }

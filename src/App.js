@@ -7,7 +7,11 @@ import Typography from "@mui/material/Typography";
 import LayerLogo from "./LayerLogo.svg";
 import { Box, Icon, Container } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleTheme, selectTheme } from "./features/global/globalSlice";
+import {
+  toggleTheme,
+  selectTheme,
+  RESET_PLAYGROUND,
+} from "./features/global/globalSlice";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CustomSwitch } from "./components/CustomSwitch";
 import Park from "./features/park/park";
@@ -88,7 +92,7 @@ function App() {
         new Invokable({
           name: "resetPlayground",
           description: "Resets the playground user is currently viewing",
-          func: async ({}) => "something",
+          func: async ({}) => dispatch({ type: RESET_PLAYGROUND }),
           schema: z.object({}),
         }),
       ]}
