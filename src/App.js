@@ -129,6 +129,7 @@ function App() {
           display: "flex",
           flexFlow: "column",
           flex: "1 1 auto",
+          maxHeight:"90vh",
         }}>
           <Park playgrounds={playgrounds}/>
         </Container>

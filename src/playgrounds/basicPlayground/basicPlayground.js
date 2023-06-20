@@ -189,7 +189,7 @@ export function BasicPlayground() {
                 // Unsplash invokables
                 new Invokable({
                     name: "changeUnsplashQuery",
-                    description: "Change the unsplash image query value",
+                    description: "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it",
                     func: async ({ query }) => getUnsplashImage(query),
                     schema: z.object({ query: z.string() }),
                 }),
