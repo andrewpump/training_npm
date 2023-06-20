@@ -1,10 +1,25 @@
 // @ts-check
 import z from "zod";
-import { Invokable, Widget } from "@buildwithlayer/sdk";
+import { Invokable, Widget, useInvokables } from "@buildwithlayer/sdk";
 import * as React from "react";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Box, Typography, LinearProgress, styled } from "@mui/material";
 import { createApi } from "unsplash-js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectBox1Height,
+  selectBox2Height,
+  setHeightPercentage,
+  selectBox1BackgroundColor,
+  selectBox2BackgroundColor,
+  selectProgressValue,
+  setBox1BackgroundColor,
+  setBox2BackgroundColor,
+  setProgressValue,
+  selectUnsplashResponse,
+  setUnsplashResponse,
+  getUnsplashImage,
+} from "./basicPlaygroundSlice";
 
 const transition = "all 0.5s ease";
 const gap = 1;
@@ -19,21 +34,43 @@ const Image = styled("img")({
   width: "100%",
   objectFit: "cover",
 });
+const BoxStyle = {
+  height: "100%",
+  borderRadius: 5,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alightItems: "center",
+  transition,
+};
 
-const HeightBox = ({ heightPercentage, backgroundColor }) => {
+const Box1 = () => {
+  const dispatch = useDispatch();
+  const { addInvokable } = useInvokables();
+  const heightPercentage = useSelector(selectBox1Height);
+  const backgroundColor = useSelector(selectBox1BackgroundColor);
+
+  useEffect(() => {
+    addInvokable(
+      new Invokable({
+        name: "changeBox1HeightPercentage",
+        description: "Change the height percentage of Box1 also known as Box 1",
+        func: async ({ height }) => dispatch(setHeightPercentage(height)),
+        schema: z.object({ height: z.number().min(0).max(100) }),
+      })
+    );
+    addInvokable(
+      new Invokable({
+        name: "changeBox1BackgroundColor",
+        description: "Change the background color of Box1 also known as Box 1",
+        func: async ({ color }) => dispatch(setBox1BackgroundColor(color)),
+        schema: z.object({ color: z.string() }),
+      })
+    );
+  }, []);
+
   return (
-    <Box
-      sx={{
-        height: "100%",
-        borderRadius: 5,
-        backgroundColor,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alightItems: "center",
-        transition,
-      }}
-    >
+    <Box sx={{ ...BoxStyle, backgroundColor }}>
       <Typography variant="h3" textAlign="center" mb={2}>
         Box 1
       </Typography>
@@ -42,7 +79,58 @@ const HeightBox = ({ heightPercentage, backgroundColor }) => {
   );
 };
 
-const ProgressBox = ({ value }) => {
+const Box2 = () => {
+  const dispatch = useDispatch();
+  const { addInvokable } = useInvokables();
+  const heightPercentage = useSelector(selectBox2Height);
+  const backgroundColor = useSelector(selectBox2BackgroundColor);
+
+  useEffect(() => {
+    addInvokable(
+      new Invokable({
+        name: "changeBox2HeightPercentage",
+        description: "Change the height percentage of Box2 also known as Box 2",
+        func: async ({ height }) =>
+          dispatch(setHeightPercentage((1 - height / 100) * 100)),
+        schema: z.object({ height: z.number().min(0).max(100) }),
+      })
+    );
+    addInvokable(
+      new Invokable({
+        name: "changeBox2BackgroundColor",
+        description: "Change the background color of Box2 also known as Box 2",
+        func: async ({ color }) => dispatch(setBox2BackgroundColor(color)),
+        schema: z.object({ color: z.string() }),
+      })
+    );
+  }, []);
+
+  return (
+    <Box sx={{ ...BoxStyle, backgroundColor }}>
+      <Typography variant="h3" textAlign="center" mb={2}>
+        Box 2
+      </Typography>
+      <Typography textAlign="center">{heightPercentage}%</Typography>
+    </Box>
+  );
+};
+
+const ProgressBox = () => {
+  const dispatch = useDispatch();
+  const { addInvokable } = useInvokables();
+  const progressValue = useSelector(selectProgressValue);
+
+  useEffect(() => {
+    addInvokable(
+      new Invokable({
+        name: "changeProgressValue",
+        description: "Change the progress bar completion value",
+        func: async ({ value }) => dispatch(setProgressValue(value)),
+        schema: z.object({ value: z.number().min(0).max(100) }),
+      })
+    );
+  }, []);
+
   return (
     <Box
       sx={{
@@ -58,7 +146,7 @@ const ProgressBox = ({ value }) => {
         <Box sx={{ width: "100%", mr: 1 }}>
           <LinearProgress
             variant="determinate"
-            value={value}
+            value={progressValue}
             sx={{ height: 25, borderRadius: 5 }}
           />
         </Box>
@@ -68,14 +156,32 @@ const ProgressBox = ({ value }) => {
             fontWeight="bold"
             textAlign="center"
             color="text.secondary"
-          >{`${Math.round(value)}%`}</Typography>
+          >{`${Math.round(progressValue)}%`}</Typography>
         </Box>
       </Box>
     </Box>
   );
 };
 
-const UnsplashBox = ({ response }) => {
+const UnsplashBox = () => {
+  const dispatch = useDispatch();
+  const { addInvokable } = useInvokables();
+  const response = useSelector(selectUnsplashResponse);
+
+  useEffect(() => {
+    addInvokable(
+      new Invokable({
+        name: "changeUnsplashQuery",
+        description:
+          "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it",
+        func: async ({ query }) => dispatch(getUnsplashImage(query)),
+        schema: z.object({ query: z.string() }),
+      })
+    );
+
+    dispatch(getUnsplashImage("batman"));
+  }, []);
+
   return (
     <Box
       sx={{
@@ -106,129 +212,34 @@ const UnsplashBox = ({ response }) => {
 
 // create a react component called BasicToy that has a square and field image
 export function BasicPlayground() {
-  const [heightPercentage, setHeightPercentage] = useState(50);
-  const [box1BackgroundColor, setBox1BackgroundColor] =
-    useState("primary.light");
-  const [box2BackgroundColor, setBox2BackgroundColor] =
-    useState("secondary.light");
-  const [progressValue, setProgressValue] = useState(50);
-  const [unsplashResponse, setUnsplashResponse] = useState();
-  const box2Height = useMemo(
-    () => (1 - heightPercentage / 100) * 100,
-    [heightPercentage]
-  );
-  const unsplash = useMemo(
-    () =>
-      createApi({
-        accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY || "",
-      }),
-    []
-  );
-
-  const getUnsplashImage = useCallback(
-    async (query) => {
-      try {
-        const response = await unsplash.photos.getRandom({ query });
-        setUnsplashResponse(response.response);
-      } catch (ex) {
-        console.error(ex);
-      }
-    },
-    [unsplash]
-  );
-
-  useEffect(() => {
-    getUnsplashImage("batman");
-  }, [getUnsplashImage]);
+  const box1HeightPercentage = useSelector(selectBox1Height);
+  const box2HeightPercentage = useSelector(selectBox2Height);
 
   return (
-    <>
-      <Widget
-        openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
-        invokables={[
-          // Box 1 invokables
-          new Invokable({
-            name: "changeBox1HeightPercentage",
-            description:
-              "Change the height percentage of Box1 also known as Box 1",
-            func: async ({ height }) => setHeightPercentage(height),
-            schema: z.object({ height: z.number().min(0).max(100) }),
-          }),
-          new Invokable({
-            name: "changeBox1BackgroundColor",
-            description:
-              "Change the background color of Box1 also known as Box 1",
-            func: async ({ color }) => setBox1BackgroundColor(color),
-            schema: z.object({ color: z.string() }),
-          }),
-
-          // Box 2 invokables
-          new Invokable({
-            name: "changeBox2HeightPercentage",
-            description:
-              "Change the height percentage of Box2 also known as Box 2",
-            func: async ({ height }) =>
-              setHeightPercentage((1 - height / 100) * 100),
-            schema: z.object({ height: z.number().min(0).max(100) }),
-          }),
-          new Invokable({
-            name: "changeBox2BackgroundColor",
-            description:
-              "Change the background color of Box2 also known as Box 2",
-            func: async ({ color }) => setBox2BackgroundColor(color),
-            schema: z.object({ color: z.string() }),
-          }),
-
-          // Progress bar invokables
-          new Invokable({
-            name: "changeProgressValue",
-            description: "Change the progress bar completion value",
-            func: async ({ value }) => setProgressValue(value),
-            schema: z.object({ value: z.number().min(0).max(100) }),
-          }),
-
-          // Unsplash invokables
-          new Invokable({
-            name: "changeUnsplashQuery",
-            description:
-              "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it",
-            func: async ({ query }) => getUnsplashImage(query),
-            schema: z.object({ query: z.string() }),
-          }),
-        ]}
-        layerApiKey={""}
-      ></Widget>
-      <Box
-        sx={{
-          m: gap,
-          height: `calc(100% - ${gap * 8 * 2}px)`,
-        }}
-      >
-        <Box sx={{ display: "flex", height: "100%", gap }}>
-          <Box sx={ContainerSx}>
-            <Box sx={{ height: `${heightPercentage}%`, transition }}>
-              <HeightBox
-                heightPercentage={heightPercentage}
-                backgroundColor={box1BackgroundColor}
-              />
-            </Box>
-            <Box sx={{ height: `${box2Height}%`, transition }}>
-              <HeightBox
-                heightPercentage={box2Height}
-                backgroundColor={box2BackgroundColor}
-              />
-            </Box>
+    <Box
+      sx={{
+        m: gap,
+        height: `calc(100% - ${gap * 8 * 2}px)`,
+      }}
+    >
+      <Box sx={{ display: "flex", height: "100%", gap }}>
+        <Box sx={ContainerSx}>
+          <Box sx={{ height: `${box1HeightPercentage}%`, transition }}>
+            <Box1 />
           </Box>
-          <Box sx={ContainerSx}>
-            <Box>
-              <ProgressBox value={progressValue} />
-            </Box>
-            <Box sx={{ height: "100%", overflow: "hidden" }}>
-              <UnsplashBox response={unsplashResponse} />
-            </Box>
+          <Box sx={{ height: `${box2HeightPercentage}%`, transition }}>
+            <Box2 />
+          </Box>
+        </Box>
+        <Box sx={ContainerSx}>
+          <Box>
+            <ProgressBox />
+          </Box>
+          <Box sx={{ height: "100%", overflow: "hidden" }}>
+            <UnsplashBox />
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }

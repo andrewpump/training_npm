@@ -1,5 +1,5 @@
-
 // @ts-check
+import z from "zod";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CustomSwitch } from "./components/CustomSwitch";
 import Park from "./features/park/park";
 import "./App.css";
+import { Widget, Invokable } from "@buildwithlayer/sdk";
 
 const sharedPalette = {
   primary: {
@@ -69,9 +70,6 @@ const darkTheme = createTheme({
   typography: typeography,
 });
 
-
-
-
 function App() {
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
@@ -83,64 +81,81 @@ function App() {
     "Advanced Playground",
   ];
 
-
   return (
-    <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
-      <Box
-        sx={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: "background.default",
-        }}
-      >
-        <Container maxWidth="xl" sx={{ backgroundColor: "background.default" }}>
-          <AppBar
-            position="static"
+    <Widget
+      openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
+      invokables={[
+        new Invokable({
+          name: "resetPlayground",
+          description: "Resets the playground user is currently viewing",
+          func: async ({}) => "something",
+          schema: z.object({}),
+        }),
+      ]}
+      layerApiKey={""}
+    >
+      <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
+        <Box
+          sx={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "background.default",
+          }}
+        >
+          <Container
+            maxWidth="xl"
+            sx={{ backgroundColor: "background.default" }}
+          >
+            <AppBar
+              position="static"
+              sx={{
+                backgroundColor: "background.default",
+                boxShadow: 0,
+                padding: "16px",
+              }}
+            >
+              <Toolbar disableGutters>
+                <Icon
+                  sx={{ height: "60px", width: "60px", paddingRight: "16px" }}
+                >
+                  <img src={LayerLogo} alt="Layer Logo" />
+                </Icon>
+                <Typography
+                  component="div"
+                  variant="h1"
+                  color={"background.contrastText"}
+                  sx={{ flexGrow: 1 }}
+                >
+                  <Box fontWeight="700" display="inline">
+                    Layer
+                  </Box>{" "}
+                  Park
+                </Typography>
+
+                <CustomSwitch
+                  onChange={() => {
+                    dispatch(toggleTheme());
+                  }}
+                />
+              </Toolbar>
+            </AppBar>
+          </Container>
+
+          <Container
+            maxWidth="xl"
             sx={{
-              backgroundColor: "background.default",
-              boxShadow: 0,
-              padding: "16px",
+              display: "flex",
+              flexFlow: "column",
+              flex: "1 1 auto",
+              maxHeight: "90vh",
             }}
           >
-            <Toolbar disableGutters>
-              <Icon
-                sx={{ height: "60px", width: "60px", paddingRight: "16px" }}
-              >
-                <img src={LayerLogo} alt="Layer Logo" />
-              </Icon>
-              <Typography
-                component="div"
-                variant="h1"
-                color={"background.contrastText"}
-                sx={{ flexGrow: 1 }}
-              >
-                <Box fontWeight="700" display="inline">
-                  Layer
-                </Box>{" "}
-                Park
-              </Typography>
-
-              <CustomSwitch
-                onChange={() => {
-                  dispatch(toggleTheme());
-                }}
-              />
-            </Toolbar>
-          </AppBar>
-        </Container>
-
-        <Container maxWidth="xl" sx={{
-          display: "flex",
-          flexFlow: "column",
-          flex: "1 1 auto",
-          maxHeight:"90vh",
-        }}>
-          <Park playgrounds={playgrounds}/>
-        </Container>
-      </Box>
-    </ThemeProvider>
-
+            <Park playgrounds={playgrounds} />
+          </Container>
+        </Box>
+      </ThemeProvider>
+    </Widget>
   );
 }
 

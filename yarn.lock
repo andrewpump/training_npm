@@ -1185,10 +1185,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@buildwithlayer/sdk@nightly":
-  version "0.6.0-nightly.0"
-  resolved "https://registry.yarnpkg.com/@buildwithlayer/sdk/-/sdk-0.6.0-nightly.0.tgz#e445ad6d7f57bb7efd0df9db727e0d30235928e5"
-  integrity sha512-nh5/LcqFPqNtejT2Jkbz5RFyvTpDUAp1jr3ALNMzq5kwQzmjCuKlxi5U7NCYuLGlul9059Ljoi2pwaRMBhyUkg==
+"@buildwithlayer/sdk@latest":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@buildwithlayer/sdk/-/sdk-0.6.1.tgz#f62b859784e4421bf430b0dc81a1815c415d34dd"
+  integrity sha512-x8NNq/g8EzIXF0JOYgqszLU0/oqZRqAemIZX50uZMam9ginWk/NpyN2uArS6epQYlpCfEllkmunUk99JmZLYnA==
   dependencies:
     "@emotion/react" "11.11.0"
     "@emotion/styled" "11.11.0"
