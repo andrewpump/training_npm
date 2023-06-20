@@ -87,6 +87,7 @@ function App() {
 
   return (
     <Widget
+      theme={themeMode}
       openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
       invokables={[
         new Invokable({
