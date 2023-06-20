@@ -48,7 +48,7 @@ const ProgressBox = ({ value }) => {
             sx={{
                 p: 2,
                 borderRadius: 5,
-                backgroundColor: "pink",
+                backgroundColor: "#E0E0E0",
             }}
         >
             <Typography variant="h3" mb={2}>
@@ -82,7 +82,7 @@ const UnsplashBox = ({ response }) => {
                 height: "100%",
                 borderRadius: 5,
                 overflow: "hidden",
-                backgroundColor: "pink",
+                backgroundColor: "#E0E0E0",
             }}
         >
             <Box sx={{ p: 2, height: "calc(100% - 20%)" }}>
@@ -107,10 +107,8 @@ const UnsplashBox = ({ response }) => {
 // create a react component called BasicToy that has a square and field image
 export function BasicPlayground() {
     const [heightPercentage, setHeightPercentage] = useState(50);
-    const [box1BackgroundColor, setBox1BackgroundColor] =
-        useState("primary.light");
-    const [box2BackgroundColor, setBox2BackgroundColor] =
-        useState("secondary.light");
+    const [box1BackgroundColor, setBox1BackgroundColor] = useState("primary.light");
+    const [box2BackgroundColor, setBox2BackgroundColor] = useState("secondary.light");
     const [progressValue, setProgressValue] = useState(50);
     const [unsplashResponse, setUnsplashResponse] = useState();
     const box2Height = useMemo(
@@ -142,60 +140,62 @@ export function BasicPlayground() {
     }, []);
 
     return (
-        <Widget
-            openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
-            invokables={[
-                // Box 1 invokables
-                new Invokable({
-                    name: "changeBox1HeightPercentage",
-                    description:
-                        "Change the height percentage of Box1 also known as Box 1",
-                    func: async ({ height }) => setHeightPercentage(height),
-                    schema: z.object({ height: z.number().min(0).max(100) }),
-                }),
-                new Invokable({
-                    name: "changeBox1BackgroundColor",
-                    description:
-                        "Change the background color of Box1 also known as Box 1",
-                    func: async ({ color }) => setBox1BackgroundColor(color),
-                    schema: z.object({ color: z.string() }),
-                }),
+        <>
+            <Widget
+                openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
+                invokables={[
+                    // Box 1 invokables
+                    new Invokable({
+                        name: "changeBox1HeightPercentage",
+                        description:
+                            "Change the height percentage of Box1 also known as Box 1",
+                        func: async ({ height }) => setHeightPercentage(height),
+                        schema: z.object({ height: z.number().min(0).max(100) }),
+                    }),
+                    new Invokable({
+                        name: "changeBox1BackgroundColor",
+                        description:
+                            "Change the background color of Box1 also known as Box 1",
+                        func: async ({ color }) => setBox1BackgroundColor(color),
+                        schema: z.object({ color: z.string() }),
+                    }),
 
-                // Box 2 invokables
-                new Invokable({
-                    name: "changeBox2HeightPercentage",
-                    description:
-                        "Change the height percentage of Box2 also known as Box 2",
-                    func: async ({ height }) =>
-                        setHeightPercentage((1 - height / 100) * 100),
-                    schema: z.object({ height: z.number().min(0).max(100) }),
-                }),
-                new Invokable({
-                    name: "changeBox2BackgroundColor",
-                    description:
-                        "Change the background color of Box2 also known as Box 2",
-                    func: async ({ color }) => setBox2BackgroundColor(color),
-                    schema: z.object({ color: z.string() }),
-                }),
+                    // Box 2 invokables
+                    new Invokable({
+                        name: "changeBox2HeightPercentage",
+                        description:
+                            "Change the height percentage of Box2 also known as Box 2",
+                        func: async ({ height }) =>
+                            setHeightPercentage((1 - height / 100) * 100),
+                        schema: z.object({ height: z.number().min(0).max(100) }),
+                    }),
+                    new Invokable({
+                        name: "changeBox2BackgroundColor",
+                        description:
+                            "Change the background color of Box2 also known as Box 2",
+                        func: async ({ color }) => setBox2BackgroundColor(color),
+                        schema: z.object({ color: z.string() }),
+                    }),
 
-                // Progress bar invokables
-                new Invokable({
-                    name: "changeProgressValue",
-                    description: "Change the progress bar completion value",
-                    func: async ({ value }) => setProgressValue(value),
-                    schema: z.object({ value: z.number().min(0).max(100) }),
-                }),
+                    // Progress bar invokables
+                    new Invokable({
+                        name: "changeProgressValue",
+                        description: "Change the progress bar completion value",
+                        func: async ({ value }) => setProgressValue(value),
+                        schema: z.object({ value: z.number().min(0).max(100) }),
+                    }),
 
-                // Unsplash invokables
-                new Invokable({
-                    name: "changeUnsplashQuery",
-                    description: "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it",
-                    func: async ({ query }) => getUnsplashImage(query),
-                    schema: z.object({ query: z.string() }),
-                }),
-            ]}
-            layerApiKey={""}
-        >
+                    // Unsplash invokables
+                    new Invokable({
+                        name: "changeUnsplashQuery",
+                        description: "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it",
+                        func: async ({ query }) => getUnsplashImage(query),
+                        schema: z.object({ query: z.string() }),
+                    }),
+                ]}
+                layerApiKey={""}
+            >
+            </Widget>
             <Box
                 sx={{
                     m: gap,
@@ -227,37 +227,9 @@ export function BasicPlayground() {
                     </Box>
                 </Box>
             </Box>
-        </Widget>
+        </>
+
+
     );
 }
 
-
-{/*         <Box sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(6, 16.666%)",
-            gridTemplateRows: "repeat(6, 16.666%)",
-            height: "100%",
-        }}>
-            <Item sx={{ gridArea: "1 / 1 / 4 / 4", backgroundColor: "primary.light" }}>
-                <BoxText boxNum={1} />
-            </Item>
-            <Item sx={{ gridArea: "1 / 4 / 2 / 7" }}>
-                
-            </Item>
-            <Box m={1} sx={{
-                gridArea: "2 / 4 / 7 / 7", 
-                backgroundColor: "#E0E0E0",
-                borderRadius: "8px",
-            }} p={2}>
-                <Stack spacing={2}>
-                    <Typography variant='h3'>
-                        Unsplash Image
-                    </Typography>
-                    <Typography variant='body1'>
-                        Photo By: Todo
-                    </Typography>
-                </Stack>
-            </Box>
-            <Item sx={{ gridArea: "4 / 1 / 7 / 4", backgroundColor: "secondary.light" }} ><BoxText boxNum={2} height={"50%"} /></Item>
-        </Box>
-      </Box> */}

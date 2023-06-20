@@ -81,7 +81,7 @@ export default function Park({ playgrounds }) {
 
 
     return (
-        <Stack flex direction="row" spacing={2} pt={2} sx={{ height: "100%", maxWidth:"65vw" }}>
+        <Stack flex direction="row" spacing={2} pt={2} sx={{ height: "100%", maxWidth:"60vw" }}>
 
 
             <ParkView playgrounds={playgrounds} />
