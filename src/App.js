@@ -1,3 +1,4 @@
+
 // @ts-check
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
@@ -68,6 +69,9 @@ const darkTheme = createTheme({
   typography: typeography,
 });
 
+
+
+
 function App() {
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
@@ -78,6 +82,7 @@ function App() {
     "Fun Playground",
     "Advanced Playground",
   ];
+
 
   return (
     <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
@@ -135,6 +140,7 @@ function App() {
         </Container>
       </Box>
     </ThemeProvider>
+
   );
 }
 
