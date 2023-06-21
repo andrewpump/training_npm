@@ -12,6 +12,7 @@ import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
 import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 import { CustomSelect } from "../../components/CustomSelect";
+import { Container } from "@material-ui/core";
 
 function ParkView({ playgrounds }) {
     const dispatch = useDispatch();
@@ -32,7 +33,6 @@ function ParkView({ playgrounds }) {
             }}
             spacing={1}
             p={3}
-            mb={2}
         >
             <Box sx={{ gridArea: "1 / 1 / 2 / 5" }} xs={9} pr={1}>
                 <FormControl sx={{ width: "100%" }}>
@@ -83,6 +83,14 @@ function ParkView({ playgrounds }) {
     );
 }
 
+function ToysBar() {
+    return (
+        <Box sx={{}}>
+
+        </Box>
+    );
+}
+
 export default function Park({ playgrounds }) {
     return (
         <Stack
@@ -90,10 +98,13 @@ export default function Park({ playgrounds }) {
             direction="row"
             spacing={2}
             pt={2}
-            sx={{ height: "100%", maxWidth: "60vw" }}
+            sx={{ height: "100%",  }}
+            mb={2}
         >
-            <ParkView playgrounds={playgrounds} />
-            <Box sx={{ flexGrow: 6, display: "flex" }}></Box>
+            <ParkView playgrounds={playgrounds} sx={{width: "65%"}} />
+            <Box sx={{ flexGrow: 6, display: "flex", width:"35%", border: "solid red 2px" }}>
+                <ToysBar />
+            </Box>
         </Stack>
     );
 }

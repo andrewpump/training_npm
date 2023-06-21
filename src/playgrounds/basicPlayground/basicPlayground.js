@@ -20,7 +20,7 @@ import {
 } from "./basicPlaygroundSlice";
 
 const transition = "all 0.5s ease";
-const gap = 1;
+const gap = 2;
 const ContainerSx = {
   display: "flex",
   flexDirection: "column",
@@ -204,20 +204,20 @@ const UnsplashBox = () => {
           backgroundColor: "#E0E0E0",
         }}
       >
-        <Box sx={{ p: 2, height: "calc(100% - 20%)" }}>
+        <Box sx={{ display: "flex", flexDirection:"column", p: 2, height: "calc(100% - 20%)" }}>
           <Typography variant="h3" mb={2}>
             Unsplash Image
           </Typography>
 
           <Typography variant="body1" mb={2} sx={{ color: "error.main" }}>
-            {response?.error || null}
+            {response?.error}
           </Typography>
           <Typography variant="body1" mb={2}>
             {response?.alt_description}
           </Typography>
 
           <Image
-            sx={{ borderRadius: 3 }}
+            sx={{ borderRadius: 3, maxHeight: "90%" }}
             src={
               response?.urls?.regular ||
               "https://marketplace.canva.com/EAFJd1mhO-c/1/0/900w/canva-colorful-watercolor-painting-phone-wallpaper-qq02VzvX2Nc.jpg"
@@ -237,6 +237,7 @@ export function BasicPlayground() {
       sx={{
         m: gap,
         height: `calc(100% - ${gap * 8 * 2}px)`,
+        maxHeight: "100%",
       }}
     >
       <Box sx={{ display: "flex", height: "100%", gap }}>
