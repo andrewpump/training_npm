@@ -208,7 +208,7 @@ const UnsplashBox = () => {
           <Typography variant="h3" mb={2}>
             Unsplash Image
           </Typography>
-          {response.error === "Unsplash Currently Unavailable" ? 
+          {(response.error || "") === "Unsplash Currently Unavailable" ? 
           (<Typography variant="body1" mb={2} sx={{color: "error.main"}}>
               **{response.error}**
             </Typography>):
