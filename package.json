@@ -1,10 +1,10 @@
 {
   "homepage": "https://buildwithlayer.github.io/training_npm/",
   "name": "training_npm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
-    "@buildwithlayer/sdk": "nightly",
+    "@buildwithlayer/sdk": "latest",
     "@material-ui/core": "^4.12.4",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.14.1",
@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.0",
     "react-scripts": "5.0.1",
+    "redux-thunk": "^2.4.2",
     "unsplash-js": "^7.0.18",
     "web-vitals": "^2.1.0"
   },
