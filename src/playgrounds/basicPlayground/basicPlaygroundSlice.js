@@ -69,7 +69,7 @@ export function getUnsplashImage(query) {
       const response = await unsplash.photos.getRandom({ query });
       dispatch(setUnsplashResponse(response.response));
     } catch (ex) {
-      console.error(ex);
+      dispatch(setUnsplashResponse({error: "Unsplash Currently Unavailable"}));
     }
   };
 }
