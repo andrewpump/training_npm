@@ -67,12 +67,7 @@ export function getUnsplashImage(query) {
         accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY || "",
       });
       const response = await unsplash.photos.getRandom({ query });
-      dispatch(setUnsplashResponse(
-        {
-          ...response.response,
-          error:"none"
-        }
-        ));
+      dispatch(setUnsplashResponse(response.response));
     } catch (ex) {
       dispatch(setUnsplashResponse({error: "Unsplash Currently Unavailable"}));
     }
