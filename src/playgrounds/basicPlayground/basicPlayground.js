@@ -42,6 +42,7 @@ const BoxStyle = {
   transition,
 };
 
+
 const Box1 = () => {
   const dispatch = useDispatch();
   const { addInvokable } = useInvokables();
@@ -65,6 +66,7 @@ const Box1 = () => {
         schema: z.object({ color: z.string() }),
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -103,6 +105,7 @@ const Box2 = () => {
         schema: z.object({ color: z.string() }),
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -131,6 +134,7 @@ const ProgressBox = () => {
         schema: z.object({ value: z.number().min(0).max(100) }),
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -184,6 +188,7 @@ const UnsplashBox = () => {
     );
 
     dispatch(getUnsplashImage("batman"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -60,7 +60,7 @@ function App() {
         new Invokable({
           name: "resetPlayground",
           description: "Resets the playground user is currently viewing",
-          func: async ({ }) => dispatch({ type: RESET_PLAYGROUND }),
+          func: async () => dispatch({ type: RESET_PLAYGROUND }),
           schema: z.object({}),
         }),
       ]}
