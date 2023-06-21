@@ -204,6 +204,7 @@ const UnsplashBox = () => {
             {response?.alt_description}
           </Typography>
           <Image
+            sx={{borderRadius: 3}}
             src={
               response?.urls?.regular ||
               "https://marketplace.canva.com/EAFJd1mhO-c/1/0/900w/canva-colorful-watercolor-painting-phone-wallpaper-qq02VzvX2Nc.jpg"
