@@ -210,12 +210,12 @@ const UnsplashBox = () => {
           </Typography>
 
           <Typography variant="body1" mb={2} sx={{ color: "error.main" }}>
-            **{response?.error}**
+            {response?.error || null}
           </Typography>
           <Typography variant="body1" mb={2}>
             {response?.alt_description}
           </Typography>
-          
+
           <Image
             sx={{ borderRadius: 3 }}
             src={
