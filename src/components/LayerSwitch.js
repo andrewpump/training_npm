@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 
-const CustomSwitch = styled(Switch)(({ theme }) => ({
+const LayerSwitch = styled(Switch)(({ theme }) => ({
     width: 62,
     height: 34,
     padding: 7,
@@ -48,4 +48,4 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-export { CustomSwitch }
+export { LayerSwitch }

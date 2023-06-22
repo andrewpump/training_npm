@@ -6,13 +6,16 @@ import {
     FormControl,
     Box,
     Button,
+    AccordionDetails,
+    Typography,
 } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
 import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
-import { CustomSelect } from "../../components/CustomSelect";
-import { Container } from "@material-ui/core";
+import { LayerSelect } from "../../components/LayerSelect";
+import { LayerAccordianPrimary, LayerAccordianSummaryPrimary, LayerAccordianSecondary, LayerAccordianSummarySecondary } from "../../components/LayerAccordians";
 
 function ParkView({ playgrounds }) {
     const dispatch = useDispatch();
@@ -39,11 +42,11 @@ function ParkView({ playgrounds }) {
                     <InputLabel sx={{
                         backgroundColor: "background.default",
                         color: "background.contrastText",
-                        paddingLeft:"2px", 
-                        paddingRight:"2px",
-                        borderRadius:"4px"
-                        }} id="playground-select-label">Playground</InputLabel>
-                    <CustomSelect
+                        paddingLeft: "2px",
+                        paddingRight: "2px",
+                        borderRadius: "4px"
+                    }} id="playground-select-label">Playground</InputLabel>
+                    <LayerSelect
                         labelId="playground-select-label"
                         id="playground-select"
                         value={activePlayground}
@@ -55,7 +58,7 @@ function ParkView({ playgrounds }) {
                         {playgrounds.map((name) => {
                             return <MenuItem value={name}>{name}</MenuItem>;
                         })}
-                    </CustomSelect>
+                    </LayerSelect>
                 </FormControl>
             </Box>
             <Box xs={3} sx={{ gridArea: "1 / 5 / 2 / 6" }}>
@@ -85,8 +88,31 @@ function ParkView({ playgrounds }) {
 
 function ToysBar() {
     return (
-        <Box sx={{}}>
-
+        <Box sx={{ height: "100%", width: "100%", border: "solid purple 2px", borderRadius: "8px" }}>
+            <LayerAccordianPrimary>
+                <LayerAccordianSummaryPrimary
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    <Typography>Accordion 1</Typography>
+                </LayerAccordianSummaryPrimary>
+                <AccordionDetails>
+                    <LayerAccordianSecondary>
+                        <LayerAccordianSummarySecondary
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography>Accordion 1</Typography>
+                        </LayerAccordianSummarySecondary>
+                        <AccordionDetails>
+                            <Typography>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                            </Typography>
+                        </AccordionDetails>
+                    </LayerAccordianSecondary>
+                </AccordionDetails>
+            </LayerAccordianPrimary>
         </Box>
     );
 }
@@ -98,11 +124,11 @@ export default function Park({ playgrounds }) {
             direction="row"
             spacing={2}
             pt={2}
-            sx={{ height: "100%",  }}
+            sx={{ height: "100%", }}
             mb={2}
         >
-            <ParkView playgrounds={playgrounds} sx={{width: "65%"}} />
-            <Box sx={{ flexGrow: 6, display: "flex", width:"35%", border: "solid red 2px" }}>
+            <ParkView playgrounds={playgrounds} sx={{ width: "65%" }} />
+            <Box sx={{ flexGrow: 6, display: "flex", width: "35%" }}>
                 <ToysBar />
             </Box>
         </Stack>

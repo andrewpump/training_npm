@@ -217,7 +217,7 @@ const UnsplashBox = () => {
           </Typography>
 
           <Image
-            sx={{ borderRadius: 3, maxHeight: "90%" }}
+            sx={{ borderRadius: 3, flexGrow: 1 }}
             src={
               response?.urls?.regular ||
               "https://marketplace.canva.com/EAFJd1mhO-c/1/0/900w/canva-colorful-watercolor-painting-phone-wallpaper-qq02VzvX2Nc.jpg"
