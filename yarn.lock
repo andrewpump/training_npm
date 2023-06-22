@@ -1186,9 +1186,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@buildwithlayer/sdk@latest":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@buildwithlayer/sdk/-/sdk-0.6.1.tgz#f62b859784e4421bf430b0dc81a1815c415d34dd"
-  integrity sha512-x8NNq/g8EzIXF0JOYgqszLU0/oqZRqAemIZX50uZMam9ginWk/NpyN2uArS6epQYlpCfEllkmunUk99JmZLYnA==
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@buildwithlayer/sdk/-/sdk-0.6.2.tgz#02f394664a463a7794bb9bee32d0b8da1b72300c"
+  integrity sha512-bX6fVDO5GwYf1TNRZI0367jDYdC80fcSCdNolFQzLmN25qoayql499w2igLeX1I4qmqVdH6v2jiaR2AroBJYhw==
   dependencies:
     "@emotion/react" "11.11.0"
     "@emotion/styled" "11.11.0"
@@ -1196,7 +1196,7 @@
     "@mui/lab" "5.0.0-alpha.132"
     "@mui/material" "5.13.3"
     axios "1.4.0"
-    langchain "0.0.93"
+    langchain "0.0.96"
     lodash "4.17.21"
     moment "2.29.4"
     react-hook-form "7.44.3"
@@ -6743,10 +6743,10 @@ jiti@^1.18.2:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.18.2.tgz#80c3ef3d486ebf2450d9335122b32d121f2a83cd"
   integrity sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==
 
-js-tiktoken@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/js-tiktoken/-/js-tiktoken-1.0.6.tgz#f32f4b9b3c33d11f12b5cf016b3c729370817ee9"
-  integrity sha512-lxHntEupgjWvSh37WxpAW4XN6UBXBtFJOpZZq5HN5oNjDfN7L/iJhHOKjyL/DFtuYXUwn5jfTciLtOWpgQmHjQ==
+js-tiktoken@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/js-tiktoken/-/js-tiktoken-1.0.7.tgz#56933fcd2093e8304060dfde3071bda91812e6f5"
+  integrity sha512-biba8u/clw7iesNEWLOLwrNGoBP2lA+hTaBLs/D45pJdUPFXyxD6nhcDVtADChghv4GgyAiMKYMiRx7x6h7Biw==
   dependencies:
     base64-js "^1.5.1"
 
@@ -6976,10 +6976,10 @@ klona@^2.0.4, klona@^2.0.5:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.6.tgz#85bffbf819c03b2f53270412420a4555ef882e22"
   integrity sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==
 
-langchain@0.0.93:
-  version "0.0.93"
-  resolved "https://registry.yarnpkg.com/langchain/-/langchain-0.0.93.tgz#1859790ca47630756a7d57b5311e21d3f659a527"
-  integrity sha512-ThpbT8vk9aQAMZkgqZwDm1je5CkIjwaQdy+dhwXimgGWUj0cxF/7sl0vLjwMqdG7BZBWXrC7vLhORomRUTPNFA==
+langchain@0.0.96:
+  version "0.0.96"
+  resolved "https://registry.yarnpkg.com/langchain/-/langchain-0.0.96.tgz#13ebdc76397a473b054e091e061de6f531bdaf57"
+  integrity sha512-m1d0IWjwZK+D19uBfgmfp5sUTxJXcjJb/YuIyn2cGNmXGqOH2r2cl0TUnhuFKxTXpMTXgTywd7MYF5U5/qkNTQ==
   dependencies:
     "@anthropic-ai/sdk" "^0.4.3"
     ansi-styles "^5.0.0"
@@ -6988,12 +6988,12 @@ langchain@0.0.93:
     decamelize "5"
     expr-eval "^2.0.2"
     flat "^5.0.2"
-    js-tiktoken "^1.0.6"
+    js-tiktoken "^1.0.7"
     jsonpointer "^5.0.1"
     langchainplus-sdk "^0.0.11"
     ml-distance "^4.0.0"
     object-hash "^3.0.0"
-    openai "^3.2.0"
+    openai "^3.3.0"
     p-queue "^6.6.2"
     p-retry "4"
     uuid "^9.0.0"
@@ -8036,10 +8036,10 @@ open@^8.0.9, open@^8.4.0:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
-openai@^3.2.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/openai/-/openai-3.2.1.tgz#1fa35bdf979cbde8453b43f2dd3a7d401ee40866"
-  integrity sha512-762C9BNlJPbjjlWZi4WYK9iM2tAVAv0uUp1UmI34vb0CN5T2mjB/qM6RYBmNKMh/dN9fC+bxqPwWJZUTWW052A==
+openai@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/openai/-/openai-3.3.0.tgz#a6408016ad0945738e1febf43f2fccca83a3f532"
+  integrity sha512-uqxI/Au+aPRnsaQRe8CojU0eCR7I0mBiKjD3sNMzY6DaC1ZVrc85u98mtJW6voDug8fgGN+DIZmTDxTthxb7dQ==
   dependencies:
     axios "^0.26.0"
     form-data "^4.0.0"

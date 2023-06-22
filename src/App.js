@@ -20,7 +20,6 @@ import "./App.css";
 import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
 
-
 const welcomeMessage = `# Welcome to the Layer Park!
 **Version 0.1.1:** 
 Our park is used as a testing bed for new features we are prototyping.  In this
@@ -47,9 +46,7 @@ function App() {
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
 
-  const playgrounds = [
-    "Box Layout",
-  ];
+  const playgrounds = ["Box Layout", "Kona Playground"];
 
   return (
     <Widget
@@ -91,7 +88,10 @@ function App() {
                 <Icon
                   sx={{ height: "60px", width: "60px", paddingRight: "16px" }}
                 >
-                  <img src={themeMode === "light" ? LayerLogo : LayerLogoWhite} alt="Layer Logo" />
+                  <img
+                    src={themeMode === "light" ? LayerLogo : LayerLogoWhite}
+                    alt="Layer Logo"
+                  />
                 </Icon>
                 <Typography
                   component="div"
@@ -103,9 +103,7 @@ function App() {
                     Layer
                   </Box>{" "}
                   Park
-                  <Box fontSize={"20px"}>
-                    0.1.1
-                  </Box>{" "}
+                  <Box fontSize={"20px"}>0.1.1</Box>{" "}
                 </Typography>
 
                 <CustomSwitch
