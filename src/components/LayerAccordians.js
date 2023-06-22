@@ -15,7 +15,7 @@ export const LayerAccordianPrimary = styled(Accordion)(({ theme }) => ({
 export const LayerAccordianSummaryPrimary = styled(AccordionSummary)(({ theme }) => ({
     "& .MuiAccordionSummary-root": {
         backgroundColor: theme.palette.mode === "light" ? theme.palette.primary.light : theme.palette.background.light,
-    }
+    },
 }));
 
 export const LayerAccordianSecondary = styled(Accordion)(({ theme }) => ({
@@ -41,6 +41,6 @@ export const LayerAccordianSummarySecondary = styled(AccordionSummary)(({ theme 
     },
     "& .MuiAccordionSummary-expandIconWrapper": {
         color: theme.palette.mode === "light" ? theme.palette.background.contrastText : theme.palette.background.default,
-    }
+    },
     
 }));

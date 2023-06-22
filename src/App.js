@@ -105,7 +105,7 @@ function App() {
                   </Box>{" "}
                   Park
                   <Box fontSize={"20px"}>
-                    0.1.1
+                    0.2.0
                   </Box>{" "}
                 </Typography>
 
