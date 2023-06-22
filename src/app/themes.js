@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import AccordianIcon from "../components/Icons/AccordianIcon";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const sharedPalette = {
     primary: {
@@ -19,7 +19,12 @@ const sharedPalette = {
 const componentThemes = {
     MuiAccordionSummary: {
         defaultProps: {
-            expandIcon: <AccordianIcon />,
+            expandIcon: <ExpandMoreIcon />,
+        }
+    },
+    MuiAccordion: {
+        defaultProps: {
+            disableGutters: true,
         }
     }
 }

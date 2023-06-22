@@ -7,9 +7,8 @@ export const LayerAccordianPrimary = styled(Accordion)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "light" ? theme.palette.primary.light : theme.palette.background.light,
     boxShadow: "none",
     "& .MuiTypography-root": {
-        paddingTop: "5px",
-        fontWeight: "700",
-        paddingBottom: "5px",
+        paddingTop: "10px",
+        paddingBottom: "10px",
     },
 }));
 
@@ -22,20 +21,26 @@ export const LayerAccordianSummaryPrimary = styled(AccordionSummary)(({ theme })
 export const LayerAccordianSecondary = styled(Accordion)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "light" ? theme.palette.background.light : theme.palette.background.contrastText,
     boxShadow: "none",
-    borderRadius: "8px",
+    borderRadius: "4px",
+    border: "none",
+    
     color: theme.palette.mode === "light" ? theme.palette.background.contrastText : theme.palette.background.default,
     "& .MuiTypography-root": {
-        paddingTop: "5px",
-        fontWeight: "700",
-        paddingBottom: "5px",
+        paddingTop: "10px",
+        paddingBottom: "10px",
     },
+    '&:before': {
+        display: 'none',
+    }
 }));
 
 export const LayerAccordianSummarySecondary = styled(AccordionSummary)(({ theme }) => ({
     "& .MuiAccordionSummary-root": {
         backgroundColor: theme.palette.mode === "light" ? theme.palette.primary.light : theme.palette.background.light,
+        borderRadius: "8px",
     },
-    "& MuiBox-root": {
-        display: "none",
+    "& .MuiAccordionSummary-expandIconWrapper": {
+        color: theme.palette.mode === "light" ? theme.palette.background.contrastText : theme.palette.background.default,
     }
+    
 }));

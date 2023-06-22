@@ -9,13 +9,14 @@ import {
     AccordionDetails,
     Typography,
 } from "@mui/material";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
 import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 import { LayerSelect } from "../../components/LayerSelect";
 import { LayerAccordianPrimary, LayerAccordianSummaryPrimary, LayerAccordianSecondary, LayerAccordianSummarySecondary } from "../../components/LayerAccordians";
+import { selectTheme } from "../global/globalSlice";
+import ToysIcon from '@mui/icons-material/Toys';
 
 function ParkView({ playgrounds }) {
     const dispatch = useDispatch();
@@ -87,32 +88,96 @@ function ParkView({ playgrounds }) {
 }
 
 function ToysBar() {
+    const themeMode = useSelector(selectTheme);
+
+
+    const toys = [
+        {
+            name: "Box",
+            actions: [
+                {
+                    name: "Change Height",
+                    description: "Change the height of the box",
+                },
+                {
+                    name: "Change Width",
+                    description: "Change the width of the box",
+                },
+            ]
+        },
+        {
+            name: "Box",
+            actions: [
+                {
+                    name: "Change Height",
+                    description: "Change the height of the box",
+                },
+                {
+                    name: "Change Width",
+                    description: "Change the width of the box",
+                },
+            ]
+        },
+        {
+            name: "Box",
+            actions: [
+                {
+                    name: "Change Height",
+                    description: "Change the height of the box",
+                },
+                {
+                    name: "Change Width",
+                    description: "Change the width of the box",
+                },
+            ]
+        },
+    ]
     return (
-        <Box sx={{ height: "100%", width: "100%", border: "solid purple 2px", borderRadius: "8px" }}>
-            <LayerAccordianPrimary>
-                <LayerAccordianSummaryPrimary
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <Typography>Accordion 1</Typography>
-                </LayerAccordianSummaryPrimary>
-                <AccordionDetails>
-                    <LayerAccordianSecondary>
-                        <LayerAccordianSummarySecondary
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <Typography>Accordion 1</Typography>
-                        </LayerAccordianSummarySecondary>
-                        <AccordionDetails>
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </LayerAccordianSecondary>
-                </AccordionDetails>
-            </LayerAccordianPrimary>
+
+        <Box sx={{ 
+            height: "100%", 
+        width: "100%", 
+        backgroundColor: themeMode === "light" ? "primary.light" : "background.light", 
+        color: "background.contrastText", 
+        borderRadius: "8px" }}>
+            <Box pl={2} sx={{
+                display: "flex",
+                height: "60px",
+                alignItems: "center",
+                backgroundColor: themeMode === "light" ? "background.light" : "background.light",
+                borderRadius: "8px 8px 0px 0px"
+            }}>
+                <ToysIcon />
+                <Typography pl={1} variant="h3">Toys</Typography>
+            </Box>
+            <Box pl={1} pr={1} sx={{ overflow: "auto" }}>
+                {toys.map((toy) => {
+                    return (
+                        <LayerAccordianPrimary>
+                            <LayerAccordianSummaryPrimary>
+                                <Typography variant="h3">{toy.name}</Typography>
+                            </LayerAccordianSummaryPrimary>
+                            <AccordionDetails>
+                                <Stack spacing={1}>
+                                    {toy.actions.map((action) => {
+                                        return (
+                                            <LayerAccordianSecondary>
+                                                <LayerAccordianSummarySecondary>
+                                                    <Typography variant="h3">{action.name}</Typography>
+                                                </LayerAccordianSummarySecondary>
+                                                <AccordionDetails>
+                                                    <Typography variant="body1">{action.description}</Typography>
+                                                </AccordionDetails>
+                                            </LayerAccordianSecondary>
+                                        )
+                                    })}
+                                </Stack>
+                            </AccordionDetails>
+                        </LayerAccordianPrimary>
+                    )
+                })}
+            </Box>
+
         </Box>
     );
 }
