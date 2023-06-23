@@ -12,8 +12,8 @@ import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
 import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground";
+import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
 import { CustomSelect } from "../../components/CustomSelect";
-import { Container } from "@material-ui/core";
 
 function ParkView({ playgrounds }) {
   const dispatch = useDispatch();
@@ -88,6 +88,9 @@ function ParkView({ playgrounds }) {
       >
         {activePlayground === "Box Layout" && <BasicPlayground />}
         {activePlayground === "Kona Playground" && <KonaPlayground />}
+        {activePlayground === "Form Filling Playground" && (
+          <FormFillingPlayground />
+        )}
       </Box>
     </Box>
   );

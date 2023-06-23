@@ -3,6 +3,7 @@ import parkReducer from "../features/park/parkSlice";
 import globalReducer from "../features/global/globalSlice";
 import basicPlaygroundSlice from "../playgrounds/basicPlayground/basicPlaygroundSlice";
 import konaPlaygroundSlice from "../playgrounds/konaPlayground/konaPlaygroundSlice";
+import formFillingPlaygroundSlice from "../playgrounds/formFillingPlayground/formFillingPlaygroundSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     global: globalReducer,
     basicPlayground: basicPlaygroundSlice,
     konaPlayground: konaPlaygroundSlice,
+    formFillingPlayground: formFillingPlaygroundSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

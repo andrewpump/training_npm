@@ -46,7 +46,11 @@ function App() {
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
 
-  const playgrounds = ["Box Layout", "Kona Playground"];
+  const playgrounds = [
+    "Box Layout",
+    "Kona Playground",
+    "Form Filling Playground",
+  ];
 
   return (
     <Widget
