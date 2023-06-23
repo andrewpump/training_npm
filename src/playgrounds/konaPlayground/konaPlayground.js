@@ -3,7 +3,7 @@ import z from "zod";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Invokable, useInvokables } from "@buildwithlayer/sdk";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Tab, Tabs } from "@mui/material";
 
 import {
   selectFilters,
@@ -11,7 +11,6 @@ import {
   setFilters,
   setTabIndex,
 } from "./konaPlaygroundSlice";
-import { Tab, Tabs } from "@material-ui/core";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
