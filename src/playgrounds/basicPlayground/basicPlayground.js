@@ -34,7 +34,7 @@ const Image = styled("img")({
 });
 const BoxStyle = {
   height: "100%",
-  borderRadius: 5,
+  borderRadius: "8px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -142,7 +142,7 @@ const ProgressBox = () => {
       <Box
         sx={{
           p: 2,
-          borderRadius: 5,
+          borderRadius: "8px",
           backgroundColor: "#E0E0E0",
         }}
       >
@@ -154,7 +154,7 @@ const ProgressBox = () => {
             <LinearProgress
               variant="determinate"
               value={progressValue}
-              sx={{ height: 25, borderRadius: 5 }}
+              sx={{ height: 25, borderRadius: "8px" }}
             />
           </Box>
           <Box sx={{ minWidth: 35 }}>
@@ -199,25 +199,27 @@ const UnsplashBox = () => {
       <Box
         sx={{
           height: "100%",
-          borderRadius: 5,
+          borderRadius: "8px",
           overflow: "hidden",
           backgroundColor: "#E0E0E0",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection:"column", p: 2, height: "calc(100% - 20%)" }}>
-          <Typography variant="h3" mb={2}>
+        <Box sx={{ display: "flex", flexDirection:"column", p: 2, height: "calc(100% - 20%)", alignSelf: "stretch", flexGrow: "1" }}>
+          <Typography variant="h3" mb={2} sx={{marginBottom: "8px"}}>
             Unsplash Image
           </Typography>
 
           <Typography variant="body1" mb={2} sx={{ color: "error.main" }}>
             {response?.error}
           </Typography>
-          <Typography variant="body1" mb={2}>
+          <Typography variant="body1" mb={2} sx={{ lineHeight: "1.2rem" }}>
             {response?.alt_description}
           </Typography>
 
           <Image
-            sx={{ borderRadius: 3, maxHeight: "90%" }}
+            sx={{ borderRadius: "4px", minHeight: "0", alignSelf: "stretch" }}
             src={
               response?.urls?.regular ||
               "https://marketplace.canva.com/EAFJd1mhO-c/1/0/900w/canva-colorful-watercolor-painting-phone-wallpaper-qq02VzvX2Nc.jpg"
