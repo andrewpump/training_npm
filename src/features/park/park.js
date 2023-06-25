@@ -12,7 +12,6 @@ import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
 import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 import { CustomSelect } from "../../components/CustomSelect";
-import { Container } from "@material-ui/core";
 
 function ParkView({ playgrounds }) {
     const dispatch = useDispatch();
