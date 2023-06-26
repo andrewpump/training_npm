@@ -70,7 +70,7 @@ const screens = {
 
 // create a react component called BasicToy that has a square and field image
 export function KonaPlayground() {
-  const { addInvokable } = useInvokables();
+  const { addInvokable, removeInvokable } = useInvokables();
   const dispatch = useDispatch();
   const value = useSelector(selectTabIndex);
   const updateFilters = useCallback(
@@ -87,7 +87,7 @@ export function KonaPlayground() {
   };
 
   useEffect(() => {
-    addInvokable(
+    addInvokable([
       new Invokable({
         name: "changeScreen",
         description:
@@ -97,9 +97,7 @@ export function KonaPlayground() {
           return "Changed screen successfully.";
         },
         schema: z.object({ name: z.string().optional() }),
-      })
-    );
-    addInvokable(
+      }),
       new Invokable({
         name: "filterTransactions",
         description:
@@ -114,8 +112,13 @@ export function KonaPlayground() {
           category: z.any().optional(),
           amount: z.any().optional(),
         }),
-      })
-    );
+      }),
+    ]);
+
+    return () => {
+      removeInvokable(["changeScreen", "filterTransactions"]);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -50,6 +50,7 @@ function App() {
     "Box Layout",
     "Kona Playground",
     "Form Filling Playground",
+    "Form Filling Manually Playground",
   ];
 
   return (

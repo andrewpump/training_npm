@@ -13,6 +13,7 @@ import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground";
 import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
+import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
 import { CustomSelect } from "../../components/CustomSelect";
 
 function ParkView({ playgrounds }) {
@@ -91,6 +92,9 @@ function ParkView({ playgrounds }) {
         {activePlayground === "Form Filling Playground" && (
           <FormFillingPlayground />
         )}
+        {activePlayground === "Form Filling Manually Playground" && (
+          <FormFillingManuallyPlayground />
+        )}
       </Box>
     </Box>
   );
@@ -116,7 +120,6 @@ export default function Park({ playgrounds }) {
           flexGrow: 6,
           display: "flex",
           width: "35%",
-          border: "solid red 2px",
         }}
       >
         <ToysBar />

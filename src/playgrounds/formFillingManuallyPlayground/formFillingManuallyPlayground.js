@@ -1,7 +1,8 @@
 // @ts-check
+import z from "zod";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useInvokables, FormFillingInvokable } from "@buildwithlayer/sdk";
+import { Invokable, useInvokables } from "@buildwithlayer/sdk";
 import {
   Box,
   TextField,
@@ -16,11 +17,11 @@ import {
   MenuItem,
 } from "@mui/material";
 
-import { selectForm, setForm } from "./formFillingPlaygroundSlice";
+import { selectForm, setForm } from "./formFillingManuallyPlaygroundSlice";
 
 // create a react component called BasicToy that has a square and field image
-export function FormFillingPlayground() {
-  const { invokables, addInvokable, reset } = useInvokables();
+export function FormFillingManuallyPlayground() {
+  const { addInvokable, removeInvokable } = useInvokables();
   const dispatch = useDispatch();
   const state = useSelector(selectForm);
   const setValues = useCallback(
@@ -30,21 +31,27 @@ export function FormFillingPlayground() {
 
   useEffect(() => {
     addInvokable(
-      new FormFillingInvokable({
-        onValues: async (values) => {
-          console.log(values);
+      new Invokable({
+        name: "fillForm",
+        description:
+          "Fill out the form on the page with the given values. Values should be an object with keys corresponding to the id of the input and values corresponding to the value to fill in such as firstName, lastName, email, consented, status, age.",
+        func: async (values) => {
           setValues(values);
           return "Changed form values successfully.";
         },
+        schema: z.object({
+          firstName: z.string().optional(),
+          lastName: z.string().optional(),
+          email: z.string().optional(),
+          consented: z.boolean().optional(),
+          status: z.enum(["available", "busy", "other"]).optional(),
+          age: z.string().optional(),
+        }),
       })
     );
 
     return () => {
-      reset(
-        invokables.filter(
-          (invokable) => !(invokable instanceof FormFillingInvokable)
-        )
-      );
+      removeInvokable("fillForm");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -104,22 +111,6 @@ export function FormFillingPlayground() {
           <FormControlLabel value="other" control={<Radio />} label="Other" />
         </RadioGroup>
       </FormControl>
-      <input
-        type="radio"
-        id="status-available"
-        name="status"
-        value="available"
-        hidden
-      />
-      <input type="radio" id="status-busy" name="status" value="busy" hidden />
-      <input
-        type="radio"
-        id="status-other"
-        name="status"
-        value="other"
-        hidden
-      />
-
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
@@ -133,16 +124,6 @@ export function FormFillingPlayground() {
           <MenuItem value={"20"}>Twenty</MenuItem>
         </Select>
       </FormControl>
-      <select
-        id="age"
-        value={state.age}
-        onChange={(e) => setValues({ ...state, age: e.target.value })}
-        hidden
-      >
-        <option value="18"></option>
-        <option value="19"></option>
-        <option value="20"></option>
-      </select>
     </Box>
   );
 }

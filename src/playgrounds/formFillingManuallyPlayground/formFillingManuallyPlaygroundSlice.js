@@ -15,7 +15,7 @@ export const initialState = {
 };
 
 export const FormFillingPlaygroundSlice = createSlice({
-  name: "formFillingPlayground",
+  name: "formFillingManuallyPlaygroundSlice",
   initialState,
   reducers: {
     setForm: (state, action) => {
@@ -31,6 +31,7 @@ export const FormFillingPlaygroundSlice = createSlice({
 export const { setForm } = FormFillingPlaygroundSlice.actions;
 
 // Selectors
-export const selectForm = (state) => state.formFillingPlayground.form;
+export const selectForm = (state) =>
+  state.formFillingManuallyPlaygroundSlice.form;
 
 export default FormFillingPlaygroundSlice.reducer;
