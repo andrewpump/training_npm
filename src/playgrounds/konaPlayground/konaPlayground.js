@@ -106,7 +106,7 @@ export function KonaPlayground() {
           "Filter transactions by start date, end date, category, and amount.",
         func: async ({ startDate, endDate, category, amount }) => {
           updateFilters({ startDate, endDate, category, amount });
-          return "Filtered transactions successfully.";
+          return "Filtered transactions successfully. Don't forget to navigate to the transactions screen.";
         },
         schema: z.object({
           startDate: z.any().optional(),
