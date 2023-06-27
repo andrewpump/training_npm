@@ -24,10 +24,9 @@ function ParkView({ playgrounds }) {
     <Box
       container
       sx={{
+        display: "flex",
+        flexDirection: "column",
         flexGrow: 6,
-        display: "grid",
-        gridTemplateColumns: "repeat(5, 20%)",
-        gridTemplateRows: "repeat(10, 10%)",
         borderRadius: "16px",
         borderColor: "#7b65ff",
         borderWidth: "5px",
@@ -35,118 +34,82 @@ function ParkView({ playgrounds }) {
       }}
       spacing={1}
       p={3}
-      mb={2}
     >
-      <Box sx={{ gridArea: "1 / 1 / 2 / 5" }} xs={9} pr={1}>
-        <FormControl sx={{ width: "100%" }}>
-          <InputLabel
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexGrow: 6,
-              borderRadius: "16px",
-              borderColor: "#7b65ff",
-              borderWidth: "5px",
-              borderStyle: "dashed",
-            }}
-            id="playground-select-label"
-            spacing={1}
-            p={3}
-          >
-            Playground
-          </InputLabel>
-          <CustomSelect
-            labelId="playground-select-label"
-            id="playground-select"
-            value={activePlayground}
-            label="Playground"
-            onChange={(v) => {
-              dispatch(setSelectedPlayground(v.target.value));
-            }}
-          >
-            {playgrounds.map((name) => {
-              return <MenuItem value={name}>{name}</MenuItem>;
-            })}
-          </CustomSelect>
-        </FormControl>
-      </Box>
-      <Box xs={3} sx={{ gridArea: "1 / 5 / 2 / 6" }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "stretch",
-            minWidth: "100%",
-            minHeight: "64px",
-            height: "10%",
-          }}
-        >
-          <Box sx={{ width: "100%", marginRight: "16px" }}>
-            <FormControl sx={{ width: "100%" }}>
-              <InputLabel
-                sx={{
-                  backgroundColor: "background.default",
-                  color: "background.contrastText",
-                  paddingLeft: "2px",
-                  paddingRight: "2px",
-                  borderRadius: "4px",
-                }}
-                id="playground-select-label"
-              >
-                Playground
-              </InputLabel>
-              <CustomSelect
-                labelId="playground-select-label"
-                id="playground-select"
-                value={activePlayground}
-                label="Playground"
-                onChange={(v) => {
-                  dispatch(setSelectedPlayground(v.target.value));
-                }}
-              >
-                {playgrounds.map((name) => {
-                  return <MenuItem value={name}>{name}</MenuItem>;
-                })}
-              </CustomSelect>
-            </FormControl>
-          </Box>
-          <Box>
-            <Button
-              variant="contained"
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "stretch",
+          minWidth: "100%",
+          minHeight: "64px",
+          height: "10%",
+        }}
+      >
+        <Box sx={{ width: "100%", marginRight: "16px" }}>
+          <FormControl sx={{ width: "100%" }}>
+            <InputLabel
               sx={{
-                padding: "16px",
-                fontWeight: "600",
-                textTransform: "none",
-                letterSpacing: "1px",
-                whiteSpace: "nowrap",
+                backgroundColor: "background.default",
+                color: "background.contrastText",
+                paddingLeft: "2px",
+                paddingRight: "2px",
+                borderRadius: "4px",
               }}
-              onClick={() => dispatch({ type: RESET_PLAYGROUND })}
+              id="playground-select-label"
             >
-              Reset Playground
-            </Button>
-          </Box>
+              Playground
+            </InputLabel>
+            <CustomSelect
+              labelId="playground-select-label"
+              id="playground-select"
+              value={activePlayground}
+              label="Playground"
+              onChange={(v) => {
+                dispatch(setSelectedPlayground(v.target.value));
+              }}
+            >
+              {playgrounds.map((name) => {
+                return <MenuItem value={name}>{name}</MenuItem>;
+              })}
+            </CustomSelect>
+          </FormControl>
         </Box>
+        <Box>
+          <Button
+            variant="contained"
+            sx={{
+              padding: "16px",
+              fontWeight: "600",
+              textTransform: "none",
+              letterSpacing: "1px",
+              whiteSpace: "nowrap",
+            }}
+            onClick={() => dispatch({ type: RESET_PLAYGROUND })}
+          >
+            Reset Playground
+          </Button>
+        </Box>
+      </Box>
 
-        <Box
-          xs={12}
-          sx={{
-            height: "100%",
-            maxHeight: "85%",
-            minHeight: "0",
-            marginTop: "16px",
-            backgroundColor: "background.light",
-            borderRadius: "8px",
-          }}
-        >
-          {activePlayground === "Box Layout" && <BasicPlayground />}
-          {activePlayground === "Kona Playground" && <KonaPlayground />}
-          {activePlayground === "Form Filling Playground" && (
-            <FormFillingPlayground />
-          )}
-          {activePlayground === "Form Filling Manually Playground" && (
-            <FormFillingManuallyPlayground />
-          )}
-        </Box>
+      <Box
+        xs={12}
+        sx={{
+          height: "100%",
+          maxHeight: "85%",
+          minHeight: "0",
+          marginTop: "16px",
+          backgroundColor: "background.light",
+          borderRadius: "8px",
+        }}
+      >
+        {activePlayground === "Box Layout" && <BasicPlayground />}
+        {activePlayground === "Kona Playground" && <KonaPlayground />}
+        {activePlayground === "Form Filling Playground" && (
+          <FormFillingPlayground />
+        )}
+        {activePlayground === "Form Filling Manually Playground" && (
+          <FormFillingManuallyPlayground />
+        )}
       </Box>
     </Box>
   );

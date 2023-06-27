@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const parkSlice = createSlice({
   name: "park",
   initialState: {
-    playgroundName: "Form Filling Playground",
+    playgroundName: "Box Layout",
   },
   reducers: {
     setSelectedPlayground: (state, action) => {
