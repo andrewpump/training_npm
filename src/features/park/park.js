@@ -30,10 +30,9 @@ function ParkView({ playgrounds }) {
     <Box
       container
       sx={{
+        display: "flex",
+        flexDirection: "column",
         flexGrow: 6,
-        display: "grid",
-        gridTemplateColumns: "repeat(5, 20%)",
-        gridTemplateRows: "repeat(10, 10%)",
         borderRadius: "16px",
         borderColor: "#7b65ff",
         borderWidth: "5px",
@@ -42,45 +41,58 @@ function ParkView({ playgrounds }) {
       spacing={1}
       p={3}
     >
-      <Box sx={{ gridArea: "1 / 1 / 2 / 5" }} xs={9} pr={1}>
-        <FormControl sx={{ width: "100%" }}>
-          <InputLabel sx={{
-            backgroundColor: "background.default",
-            color: "background.contrastText",
-            paddingLeft: "2px",
-            paddingRight: "2px",
-            borderRadius: "4px"
-          }} id="playground-select-label">Playground</InputLabel>
-          <LayerSelect
-            labelId="playground-select-label"
-            id="playground-select"
-            value={activePlayground}
-            label="Playground"
-            onChange={(v) => {
-              dispatch(setSelectedPlayground(v.target.value));
-            }}
+      <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "stretch",
+                    minWidth: "100%",
+                    minHeight: "64px",
+                    height: "10%",
+                }}
+            >
+        <Box sx={{ width: "100%", }} xs={9} pr={1}>
+          <FormControl sx={{ width: "100%" }}>
+            <InputLabel sx={{
+              backgroundColor: "background.default",
+              color: "background.contrastText",
+              paddingLeft: "2px",
+              paddingRight: "2px",
+              borderRadius: "4px"
+            }} id="playground-select-label">Playground</InputLabel>
+            <LayerSelect
+              labelId="playground-select-label"
+              id="playground-select"
+              value={activePlayground}
+              label="Playground"
+              onChange={(v) => {
+                dispatch(setSelectedPlayground(v.target.value));
+              }}
+            >
+              {playgrounds.map((name) => {
+                return <MenuItem value={name}>{name}</MenuItem>;
+              })}
+            </LayerSelect>
+          </FormControl>
+        </Box>
+        <Box xs={3} sx={{ gridArea: "1 / 5 / 2 / 6" }}>
+          <Button
+            variant="contained"
+            sx={{ padding: "16px", fontWeight: "600", textTransform: "none", letterSpacing: "1px", whiteSpace: "nowrap" }}
+            onClick={() => dispatch({ type: RESET_PLAYGROUND })}
           >
-            {playgrounds.map((name) => {
-              return <MenuItem value={name}>{name}</MenuItem>;
-            })}
-          </LayerSelect>
-        </FormControl>
-      </Box>
-      <Box xs={3} sx={{ gridArea: "1 / 5 / 2 / 6" }}>
-        <Button
-          variant="contained"
-          sx={{ height: "55px" }}
-          onClick={() => dispatch({ type: RESET_PLAYGROUND })}
-        >
-          Reset Playground
-        </Button>
+            Reset Playground
+          </Button>
+        </Box>
       </Box>
 
       <Box
         xs={12}
         sx={{
           height: "100%",
-          gridArea: "2 / 1 / 11 / 6",
+          maxHeight: "85%",
+          minHeight: "0",
+          marginTop: "16px",
           backgroundColor: "background.light",
           borderRadius: "8px",
         }}
