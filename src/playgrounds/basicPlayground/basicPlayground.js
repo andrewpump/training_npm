@@ -42,30 +42,34 @@ const BoxStyle = {
   transition,
 };
 
-
 const Box1 = () => {
   const dispatch = useDispatch();
-  const { addInvokable } = useInvokables();
+  const { addInvokable, removeInvokable } = useInvokables();
   const heightPercentage = useSelector(selectBox1Height);
   const backgroundColor = useSelector(selectBox1BackgroundColor);
 
   useEffect(() => {
-    addInvokable(
+    addInvokable([
       new Invokable({
         name: "changeBox1HeightPercentage",
         description: "Change the height percentage of Box1 also known as Box 1",
         func: async ({ height }) => dispatch(setHeightPercentage(height)),
         schema: z.object({ height: z.number().min(0).max(100) }),
-      })
-    );
-    addInvokable(
+      }),
       new Invokable({
         name: "changeBox1BackgroundColor",
         description: "Change the background color of Box1 also known as Box 1",
         func: async ({ color }) => dispatch(setBox1BackgroundColor(color)),
         schema: z.object({ color: z.string() }),
-      })
-    );
+      }),
+    ]);
+
+    return () => {
+      removeInvokable([
+        "changeBox1HeightPercentage",
+        "changeBox1BackgroundColor",
+      ]);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -83,28 +87,33 @@ const Box1 = () => {
 
 const Box2 = () => {
   const dispatch = useDispatch();
-  const { addInvokable } = useInvokables();
+  const { addInvokable, removeInvokable } = useInvokables();
   const heightPercentage = useSelector(selectBox2Height);
   const backgroundColor = useSelector(selectBox2BackgroundColor);
 
   useEffect(() => {
-    addInvokable(
+    addInvokable([
       new Invokable({
         name: "changeBox2HeightPercentage",
         description: "Change the height percentage of Box2 also known as Box 2",
         func: async ({ height }) =>
           dispatch(setHeightPercentage((1 - height / 100) * 100)),
         schema: z.object({ height: z.number().min(0).max(100) }),
-      })
-    );
-    addInvokable(
+      }),
       new Invokable({
         name: "changeBox2BackgroundColor",
         description: "Change the background color of Box2 also known as Box 2",
         func: async ({ color }) => dispatch(setBox2BackgroundColor(color)),
         schema: z.object({ color: z.string() }),
-      })
-    );
+      }),
+    ]);
+
+    return () => {
+      removeInvokable([
+        "changeBox2HeightPercentage",
+        "changeBox2BackgroundColor",
+      ]);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -122,7 +131,7 @@ const Box2 = () => {
 
 const ProgressBox = () => {
   const dispatch = useDispatch();
-  const { addInvokable } = useInvokables();
+  const { addInvokable, removeInvokable } = useInvokables();
   const progressValue = useSelector(selectProgressValue);
 
   useEffect(() => {
@@ -134,6 +143,10 @@ const ProgressBox = () => {
         schema: z.object({ value: z.number().min(0).max(100) }),
       })
     );
+
+    return () => {
+      removeInvokable("changeProgressValue");
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -171,13 +184,10 @@ const ProgressBox = () => {
   );
 };
 
-
-
 const UnsplashBox = () => {
   const dispatch = useDispatch();
-  const { addInvokable } = useInvokables();
+  const { addInvokable, removeInvokable } = useInvokables();
   const response = useSelector(selectUnsplashResponse);
-
 
   useEffect(() => {
     addInvokable(
@@ -191,6 +201,10 @@ const UnsplashBox = () => {
     );
 
     dispatch(getUnsplashImage("batman"));
+
+    return () => {
+      removeInvokable("changeUnsplashQuery");
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -206,8 +220,17 @@ const UnsplashBox = () => {
           flexDirection: "column",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection:"column", p: 2, height: "calc(100% - 20%)", alignSelf: "stretch", flexGrow: "1" }}>
-          <Typography variant="h3" mb={2} sx={{marginBottom: "8px"}}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            p: 2,
+            height: "calc(100% - 20%)",
+            alignSelf: "stretch",
+            flexGrow: "1",
+          }}
+        >
+          <Typography variant="h3" mb={2} sx={{ marginBottom: "8px" }}>
             Unsplash Image
           </Typography>
 
