@@ -72,6 +72,7 @@ function App() {
         <Box
           sx={{
             height: "100%",
+            maxHeight: "100vh",
             display: "flex",
             flexDirection: "column",
             backgroundColor: "background.default",
@@ -79,7 +80,10 @@ function App() {
         >
           <Container
             maxWidth="xl"
-            sx={{ backgroundColor: "background.default" }}
+            sx={{
+              maxHeight: "84px",
+              backgroundColor: "background.default",
+            }}
           >
             <AppBar
               position="static"
@@ -102,13 +106,14 @@ function App() {
                   component="div"
                   variant="h1"
                   color={"background.contrastText"}
+                  fontSize={"24px"}
                   sx={{ flexGrow: 1 }}
                 >
                   <Box fontWeight="700" display="inline">
                     Layer
                   </Box>{" "}
                   Park
-                  <Box fontSize={"20px"}>0.1.1</Box>{" "}
+                  <Box fontSize={"20px"}>0.1.2</Box>{" "}
                 </Typography>
 
                 <CustomSwitch
@@ -126,7 +131,7 @@ function App() {
               display: "flex",
               flexFlow: "column",
               flex: "1 1 auto",
-              maxHeight: "88vh",
+              maxHeight: "85vh",
             }}
           >
             <Park playgrounds={playgrounds} />

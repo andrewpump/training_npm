@@ -41,11 +41,13 @@ function ParkView({ playgrounds }) {
         <FormControl sx={{ width: "100%" }}>
           <InputLabel
             sx={{
-              backgroundColor: "background.default",
-              color: "background.contrastText",
-              paddingLeft: "2px",
-              paddingRight: "2px",
-              borderRadius: "4px",
+              display: "flex",
+              flexDirection: "column",
+              flexGrow: 6,
+              borderRadius: "16px",
+              borderColor: "#7b65ff",
+              borderWidth: "5px",
+              borderStyle: "dashed",
             }}
             id="playground-select-label"
             spacing={1}
@@ -69,32 +71,82 @@ function ParkView({ playgrounds }) {
         </FormControl>
       </Box>
       <Box xs={3} sx={{ gridArea: "1 / 5 / 2 / 6" }}>
-        <Button
-          variant="contained"
-          sx={{ height: "55px" }}
-          onClick={() => dispatch({ type: RESET_PLAYGROUND })}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "stretch",
+            minWidth: "100%",
+            minHeight: "64px",
+            height: "10%",
+          }}
         >
-          Reset Playground
-        </Button>
-      </Box>
+          <Box sx={{ width: "100%", marginRight: "16px" }}>
+            <FormControl sx={{ width: "100%" }}>
+              <InputLabel
+                sx={{
+                  backgroundColor: "background.default",
+                  color: "background.contrastText",
+                  paddingLeft: "2px",
+                  paddingRight: "2px",
+                  borderRadius: "4px",
+                }}
+                id="playground-select-label"
+              >
+                Playground
+              </InputLabel>
+              <CustomSelect
+                labelId="playground-select-label"
+                id="playground-select"
+                value={activePlayground}
+                label="Playground"
+                onChange={(v) => {
+                  dispatch(setSelectedPlayground(v.target.value));
+                }}
+              >
+                {playgrounds.map((name) => {
+                  return <MenuItem value={name}>{name}</MenuItem>;
+                })}
+              </CustomSelect>
+            </FormControl>
+          </Box>
+          <Box>
+            <Button
+              variant="contained"
+              sx={{
+                padding: "16px",
+                fontWeight: "600",
+                textTransform: "none",
+                letterSpacing: "1px",
+                whiteSpace: "nowrap",
+              }}
+              onClick={() => dispatch({ type: RESET_PLAYGROUND })}
+            >
+              Reset Playground
+            </Button>
+          </Box>
+        </Box>
 
-      <Box
-        xs={12}
-        sx={{
-          height: "100%",
-          gridArea: "2 / 1 / 11 / 6",
-          backgroundColor: "background.light",
-          borderRadius: "8px",
-        }}
-      >
-        {activePlayground === "Box Layout" && <BasicPlayground />}
-        {activePlayground === "Kona Playground" && <KonaPlayground />}
-        {activePlayground === "Form Filling Playground" && (
-          <FormFillingPlayground />
-        )}
-        {activePlayground === "Form Filling Manually Playground" && (
-          <FormFillingManuallyPlayground />
-        )}
+        <Box
+          xs={12}
+          sx={{
+            height: "100%",
+            maxHeight: "85%",
+            minHeight: "0",
+            marginTop: "16px",
+            backgroundColor: "background.light",
+            borderRadius: "8px",
+          }}
+        >
+          {activePlayground === "Box Layout" && <BasicPlayground />}
+          {activePlayground === "Kona Playground" && <KonaPlayground />}
+          {activePlayground === "Form Filling Playground" && (
+            <FormFillingPlayground />
+          )}
+          {activePlayground === "Form Filling Manually Playground" && (
+            <FormFillingManuallyPlayground />
+          )}
+        </Box>
       </Box>
     </Box>
   );
@@ -111,7 +163,7 @@ export default function Park({ playgrounds }) {
       direction="row"
       spacing={2}
       pt={2}
-      sx={{ height: "100%" }}
+      sx={{ height: "100%", minHeight: "476px" }}
       mb={2}
     >
       <ParkView playgrounds={playgrounds} sx={{ width: "65%" }} />
