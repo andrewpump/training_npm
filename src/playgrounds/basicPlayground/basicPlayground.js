@@ -175,7 +175,7 @@ const ProgressBox = () => {
               variant="body2"
               fontWeight="bold"
               textAlign="center"
-              color="text.secondary"
+              color="secondary.contrastText"
             >{`${Math.round(progressValue)}%`}</Typography>
           </Box>
         </Box>
