@@ -52,13 +52,13 @@ const Box1 = () => {
     addInvokable([
       new Invokable({
         name: "changeBox1HeightPercentage",
-        description: "Change the height percentage of Box1 also known as Box 1",
+        description: "Change the height percentage of Box1 also known as Box 1 [changeBox1Height(),Box 1]",
         func: async ({ height }) => dispatch(setHeightPercentage(height)),
         schema: z.object({ height: z.number().min(0).max(100) }),
       }),
       new Invokable({
         name: "changeBox1BackgroundColor",
-        description: "Change the background color of Box1 also known as Box 1",
+        description: "Change the background color of Box1 also known as Box 1 [changeBox1Color(),Box 1]",
         func: async ({ color }) => dispatch(setBox1BackgroundColor(color)),
         schema: z.object({ color: z.string() }),
       }),
@@ -95,14 +95,14 @@ const Box2 = () => {
     addInvokable([
       new Invokable({
         name: "changeBox2HeightPercentage",
-        description: "Change the height percentage of Box2 also known as Box 2",
+        description: "Change the height percentage of Box2 also known as Box 2 [changeBox2Height(),Box 2]",
         func: async ({ height }) =>
           dispatch(setHeightPercentage((1 - height / 100) * 100)),
         schema: z.object({ height: z.number().min(0).max(100) }),
       }),
       new Invokable({
         name: "changeBox2BackgroundColor",
-        description: "Change the background color of Box2 also known as Box 2",
+        description: "Change the background color of Box2 also known as Box 2 [changeBox2Color(),Box 2]",
         func: async ({ color }) => dispatch(setBox2BackgroundColor(color)),
         schema: z.object({ color: z.string() }),
       }),
@@ -138,7 +138,7 @@ const ProgressBox = () => {
     addInvokable(
       new Invokable({
         name: "changeProgressValue",
-        description: "Change the progress bar completion value",
+        description: "Change the progress bar completion value [changeProgressValue(),Progress Bar]",
         func: async ({ value }) => dispatch(setProgressValue(value)),
         schema: z.object({ value: z.number().min(0).max(100) }),
       })
@@ -194,7 +194,7 @@ const UnsplashBox = () => {
       new Invokable({
         name: "changeUnsplashQuery",
         description:
-          "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it",
+          "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it [changeUnsplashQuery(),Unsplash Image]",
         func: async ({ query }) => dispatch(getUnsplashImage(query)),
         schema: z.object({ query: z.string() }),
       })

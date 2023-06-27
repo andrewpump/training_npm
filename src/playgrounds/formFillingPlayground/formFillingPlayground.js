@@ -24,7 +24,9 @@ export function FormFillingPlayground() {
   const dispatch = useDispatch();
   const state = useSelector(selectForm);
   const setValues = useCallback(
-    (val) => dispatch(setForm({ ...state, ...val })),
+
+    
+    (val) => {console.log({ ...state, ...val }); dispatch(setForm({ ...state, ...val }))},
     [dispatch, state]
   );
 
@@ -32,7 +34,7 @@ export function FormFillingPlayground() {
     addInvokable(
       new FormFillingInvokable({
         onValues: async (values) => {
-          console.log(values);
+          console.log("values", values);
           setValues(values);
           return "Changed form values successfully.";
         },
@@ -46,7 +48,7 @@ export function FormFillingPlayground() {
         )
       );
     };
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -55,7 +57,7 @@ export function FormFillingPlayground() {
       component="form"
       noValidate
       autoComplete="off"
-      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2 }}
+      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, color:"background.contrastText" }}
     >
       <TextField
         id="firstName"

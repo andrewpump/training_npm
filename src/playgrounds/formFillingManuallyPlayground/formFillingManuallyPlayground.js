@@ -34,7 +34,7 @@ export function FormFillingManuallyPlayground() {
       new Invokable({
         name: "fillForm",
         description:
-          "Fill out the form on the page with the given values. Values should be an object with keys corresponding to the id of the input and values corresponding to the value to fill in such as firstName, lastName, email, consented, status, age.",
+          "Fill out the form on the page with the given values. Values should be an object with keys corresponding to the id of the input and values corresponding to the value to fill in such as firstName, lastName, email, consented, status, age. [fillFormManual,global]",
         func: async (values) => {
           setValues(values);
           return "Changed form values successfully.";

@@ -48,9 +48,9 @@ function App() {
 
   const playgrounds = [
     "Box Layout",
-    "Kona Playground",
-    "Form Filling Playground",
-    "Form Filling Manually Playground",
+    // "Kona Playground",
+    "Form Filler",
+    // "Form Filling Manually Playground",
   ];
 
   return (

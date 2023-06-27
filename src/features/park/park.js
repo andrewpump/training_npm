@@ -18,6 +18,7 @@ import { LayerAccordianPrimary, LayerAccordianSummaryPrimary, LayerAccordianSeco
 import { selectTheme } from "../global/globalSlice";
 import ToysIcon from '@mui/icons-material/Toys';
 import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground";
+import { useInvokables } from "@buildwithlayer/sdk";
 import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
 import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
 
@@ -85,13 +86,13 @@ function ParkView({ playgrounds }) {
         }}
       >
         {activePlayground === "Box Layout" && <BasicPlayground />}
-        {activePlayground === "Kona Playground" && <KonaPlayground />}
-        {activePlayground === "Form Filling Playground" && (
+        {/* {activePlayground === "Kona Playground" && <KonaPlayground />} */}
+        {activePlayground === "Form Filler" && (
           <FormFillingPlayground />
         )}
-        {activePlayground === "Form Filling Manually Playground" && (
+        {/* {activePlayground === "Form Filling Manually Playground" && (
           <FormFillingManuallyPlayground />
-        )}
+        )} */}
       </Box>
     </Box>
   );
@@ -100,49 +101,85 @@ function ParkView({ playgrounds }) {
 
 function ToysBar() {
   const themeMode = useSelector(selectTheme);
+  const { invokables } = useInvokables();
+  const activePlayground = useSelector(selectPlaygroundName);
 
+  const [toys, setToys] = React.useState({})
 
-  const toys = [
-    {
-      name: "Box",
-      actions: [
-        {
-          name: "Change Height",
-          description: "Change the height of the box",
-        },
-        {
-          name: "Change Width",
-          description: "Change the width of the box",
-        },
-      ]
-    },
-    {
-      name: "Box",
-      actions: [
-        {
-          name: "Change Height",
-          description: "Change the height of the box",
-        },
-        {
-          name: "Change Width",
-          description: "Change the width of the box",
-        },
-      ]
-    },
-    {
-      name: "Box",
-      actions: [
-        {
-          name: "Change Height",
-          description: "Change the height of the box",
-        },
-        {
-          name: "Change Width",
-          description: "Change the width of the box",
-        },
-      ]
-    },
-  ]
+  React.useEffect(() => {
+
+    console.log("invokables: ", invokables)
+
+    const holder = {};
+    invokables.forEach((invokable) => {
+
+      const stringSchema = invokable.description.match(/\[(.*?)\]/);
+
+      if (stringSchema === null) {
+        holder[invokable.name] = { actions: [], description: invokable.description };
+      } else {
+
+        const description = invokable.description.substring(0, invokable.description.indexOf("["));
+        const splitSchmea = stringSchema[1].split(",");
+
+        if (holder[splitSchmea[1]] === undefined && splitSchmea[1] !== "global") {
+          holder[splitSchmea[1]] = { actions: [], description: "" };
+        }
+
+        if (splitSchmea[1] !== "global") {
+          holder[splitSchmea[1]].actions.push({
+            name: invokable.name,
+            description: description,
+          });
+        } else {
+          holder[splitSchmea[0]] = { actions: [], description: description };
+        }
+      }
+
+    });
+
+    setToys(holder);
+
+  }, [invokables, activePlayground]);
+
+  const generateToys = () => {
+    return (<>{Object.keys(toys).map((key) => {
+      return (
+        <LayerAccordianPrimary>
+          <LayerAccordianSummaryPrimary>
+            <Typography variant="h3">{key}</Typography>
+          </LayerAccordianSummaryPrimary>
+
+          <AccordionDetails>
+            <Stack spacing={1}>
+              {toys[key].description !== "" ?
+                (<AccordionDetails>
+                  <Typography variant="body1">{toys[key].description}</Typography>
+                </AccordionDetails>) : (<></>)
+              }
+              {toys[key].actions.map((action) => {
+                return (
+                  <LayerAccordianSecondary>
+                    <LayerAccordianSummarySecondary>
+                      <Typography variant="h3">{action.name}</Typography>
+                    </LayerAccordianSummarySecondary>
+                    <AccordionDetails>
+                      <Typography variant="body1">{action.description}</Typography>
+                    </AccordionDetails>
+                  </LayerAccordianSecondary>
+                )
+              })
+
+              }
+            </Stack>
+          </AccordionDetails>
+        </LayerAccordianPrimary>
+      )
+    })}
+    </>
+    )
+  }
+
   return (
 
     <Box sx={{
@@ -163,31 +200,10 @@ function ToysBar() {
         <Typography pl={1} variant="h3">Toys</Typography>
       </Box>
       <Box pl={1} pr={1} sx={{ overflow: "auto" }}>
-        {toys.map((toy) => {
-          return (
-            <LayerAccordianPrimary>
-              <LayerAccordianSummaryPrimary>
-                <Typography variant="h3">{toy.name}</Typography>
-              </LayerAccordianSummaryPrimary>
-              <AccordionDetails>
-                <Stack spacing={1}>
-                  {toy.actions.map((action) => {
-                    return (
-                      <LayerAccordianSecondary>
-                        <LayerAccordianSummarySecondary>
-                          <Typography variant="h3">{action.name}</Typography>
-                        </LayerAccordianSummarySecondary>
-                        <AccordionDetails>
-                          <Typography variant="body1">{action.description}</Typography>
-                        </AccordionDetails>
-                      </LayerAccordianSecondary>
-                    )
-                  })}
-                </Stack>
-              </AccordionDetails>
-            </LayerAccordianPrimary>
-          )
-        })}
+        {/* {generateToys()} */}
+        <Typography variant="h2" pt={2}>Coming Soon!</Typography>
+        <Typography variant="body1" pt={2}>View all the toys you have access to while using a particular playground</Typography>
+
       </Box>
 
     </Box>
