@@ -14,7 +14,7 @@ import {
   RESET_PLAYGROUND,
 } from "./features/global/globalSlice";
 import { ThemeProvider } from "@mui/material/styles";
-import { CustomSwitch } from "./components/CustomSwitch";
+import { LayerSwitch } from "./components/LayerSwitch";
 import Park from "./features/park/park";
 import "./App.css";
 import { Widget, Invokable } from "@buildwithlayer/sdk";
@@ -91,9 +91,10 @@ function App() {
                 backgroundColor: "background.default",
                 boxShadow: 0,
                 padding: "16px",
+                backgroundImage: "none",
               }}
             >
-              <Toolbar disableGutters>
+              <Toolbar disableGutters >
                 <Icon
                   sx={{ height: "60px", width: "60px", paddingRight: "16px" }}
                 >
@@ -113,10 +114,12 @@ function App() {
                     Layer
                   </Box>{" "}
                   Park
-                  <Box fontSize={"20px"}>0.1.2</Box>{" "}
+                  <Box fontSize={"20px"}>
+                    0.2.0
+                  </Box>{" "}
                 </Typography>
 
-                <CustomSwitch
+                <LayerSwitch
                   onChange={() => {
                     dispatch(toggleTheme());
                   }}

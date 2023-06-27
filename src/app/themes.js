@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const sharedPalette = {
     primary: {
@@ -14,6 +15,19 @@ const sharedPalette = {
         light: "#eebeff",
     },
 };
+
+const componentThemes = {
+    MuiAccordionSummary: {
+        defaultProps: {
+            expandIcon: <ExpandMoreIcon />,
+        }
+    },
+    MuiAccordion: {
+        defaultProps: {
+            disableGutters: true,
+        }
+    }
+}
 
 const typeography = {
     htmlFontSize: 16,
@@ -41,12 +55,13 @@ const lightTheme = createTheme({
         },
     },
     typography: typeography,
+    components: componentThemes,
 });
 
 const darkTheme = createTheme({
     palette: {
         ...sharedPalette,
-        mode: "light",
+        mode: "dark",
         background: {
             default: "#333333",
             light: "#4f4f4f",
@@ -54,6 +69,9 @@ const darkTheme = createTheme({
         },
     },
     typography: typeography,
+    components: componentThemes,
 });
 
-export { lightTheme, darkTheme, typeography }
+
+
+export { lightTheme, darkTheme, typeography, componentThemes }
