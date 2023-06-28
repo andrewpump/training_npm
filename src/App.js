@@ -19,17 +19,24 @@ import Park from "./features/park/park";
 import "./App.css";
 import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
+import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPlaygroundInvokables";
+import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
+import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
+import { selectPlaygroundName } from "./features/park/parkSlice";
 import { useGlobalInvokables } from "./hooks";
 
 const welcomeMessage = `# Welcome to the Layer Park!
-**Version 0.2.0:**
+**Version ${process.env.REACT_APP_VERSION}:** 
 Hey great to see you again (or for the first time).  We've been hard at work
 adding new features and fixing bugs.  Here are some of the highlights:
-1. **New Playground:** Form Filler (Unstable) - This tool reads the DOM and can fill out
+1. **New Playground:** Custom Form Filler (Unstable) - This tool reads the DOM and can fill out
 forms for you.  It's still a little buggy but we are working on it!
 2. **Chained Actions:** You can now chain actions together with the "and" keyword.  For example:
 
       - "make bx1 30% height and change picture to tree"
+
+3. **Toys!:** Now you can see all the available invokables in the playground by looking at the
+toys tabs.
 
 **Limitations:**
 Since this is a beta version there are a few things we don't support now
@@ -47,20 +54,48 @@ function App() {
   const invokables = useGlobalInvokables();
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
+  const selectedPlayground = useSelector(selectPlaygroundName);
 
   const playgrounds = [
     "Box Layout",
-    "Kona Playground",
-    "Form Filler",
-    "Form Filling Manually Playground",
+    // "Kona Playground",
+    // "Form Filler",
+    "Custom Form Filler",
   ];
+
+  const playgroundsMap = {
+    "Box Layout": BasicPlaygroundInvokables.invokables,
+    // "Form Filler": FormFillerInvokables.invokables,
+    "Custom Form Filler": CustomFormFillerInvokables.invokables,
+  };
+
+  const activeInvokables = React.useMemo(() => {
+    console.log("selectedPlayground: ", selectedPlayground);
+    console.log(
+      "playgroundsMap[selectedPlayground]: ",
+      playgroundsMap[selectedPlayground]
+    );
+
+    const i = [
+      new Invokable({
+        name: "resetPlayground",
+        description: "Resets the playground user is currently viewing",
+        func: async () => dispatch({ type: RESET_PLAYGROUND }),
+        schema: z.object({}),
+      }),
+      ...playgroundsMap[selectedPlayground],
+    ];
+
+    console.log("i: ", i);
+    return i;
+  }, [selectedPlayground]);
 
   return (
     <Widget
       theme={themeMode}
       openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
       defaultMessage={welcomeMessage}
-      invokables={invokables}
+      invokables={activeInvokables}
       layerApiKey={""}
     >
       <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
@@ -109,7 +144,9 @@ function App() {
                     Layer
                   </Box>{" "}
                   Park
-                  <Box fontSize={"20px"}>0.2.0</Box>{" "}
+                  <Box fontSize={"20px"}>
+                    {process.env.REACT_APP_VERSION}
+                  </Box>{" "}
                 </Typography>
 
                 <LayerSwitch

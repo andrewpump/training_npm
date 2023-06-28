@@ -116,7 +116,7 @@ function ParkView({ playgrounds }) {
         {activePlayground === "Box Layout" && <BasicPlayground />}
         {activePlayground === "Kona Playground" && <KonaPlayground />}
         {activePlayground === "Form Filler" && <FormFillingPlayground />}
-        {activePlayground === "Form Filling Manually Playground" && (
+        {activePlayground === "Custom Form Filler" && (
           <FormFillingManuallyPlayground />
         )}
       </Box>
@@ -132,6 +132,7 @@ function ToysBar() {
   const [toys, setToys] = React.useState({});
 
   React.useEffect(() => {
+    console.log("invokables: ", invokables);
     const holder = {};
     invokables.forEach((invokable) => {
       const stringSchema = invokable.description.match(/\[(.*?)\]/);
@@ -242,14 +243,9 @@ function ToysBar() {
         </Typography>
       </Box>
       <Box pl={1} pr={1} sx={{ overflow: "auto" }}>
-        {/* {generateToys()} */}
-        <Typography variant="h2" pt={2}>
-          Coming Soon!
-        </Typography>
-        <Typography variant="body1" pt={2}>
-          View all the toys you have access to while using a particular
-          playground
-        </Typography>
+        {generateToys()}
+        {/* <Typography pt={2} variant="h2">Coming Soon!</Typography>
+        <Typography pt={1} variant="body1">We are working hard to bring you toys to play with (aka Invokables). Check back soon!</Typography> */}
       </Box>
     </Box>
   );

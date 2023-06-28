@@ -1,22 +1,14 @@
 // @ts-check
-import z from "zod";
-import { Invokable, useInvokables } from "@buildwithlayer/sdk";
 import * as React from "react";
-import { useEffect } from "react";
 import { Box, Typography, LinearProgress, styled } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectBox1Height,
   selectBox2Height,
-  setHeightPercentage,
   selectBox1BackgroundColor,
   selectBox2BackgroundColor,
   selectProgressValue,
-  setBox1BackgroundColor,
-  setBox2BackgroundColor,
-  setProgressValue,
   selectUnsplashResponse,
-  getUnsplashImage,
 } from "./basicPlaygroundSlice";
 
 const transition = "all 0.5s ease";
@@ -43,35 +35,8 @@ const BoxStyle = {
 };
 
 const Box1 = () => {
-  const dispatch = useDispatch();
-  const { addInvokable, removeInvokable } = useInvokables();
   const heightPercentage = useSelector(selectBox1Height);
   const backgroundColor = useSelector(selectBox1BackgroundColor);
-
-  useEffect(() => {
-    addInvokable([
-      new Invokable({
-        name: "changeBox1HeightPercentage",
-        description: "Change the height percentage of Box1 also known as Box 1 [changeBox1Height(),Box 1]",
-        func: async ({ height }) => dispatch(setHeightPercentage(height)),
-        schema: z.object({ height: z.number().min(0).max(100) }),
-      }),
-      new Invokable({
-        name: "changeBox1BackgroundColor",
-        description: "Change the background color of Box1 also known as Box 1 [changeBox1Color(),Box 1]",
-        func: async ({ color }) => dispatch(setBox1BackgroundColor(color)),
-        schema: z.object({ color: z.string() }),
-      }),
-    ]);
-
-    return () => {
-      removeInvokable([
-        "changeBox1HeightPercentage",
-        "changeBox1BackgroundColor",
-      ]);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Box sx={{ height: `${heightPercentage}%`, transition }}>
@@ -86,36 +51,8 @@ const Box1 = () => {
 };
 
 const Box2 = () => {
-  const dispatch = useDispatch();
-  const { addInvokable, removeInvokable } = useInvokables();
   const heightPercentage = useSelector(selectBox2Height);
   const backgroundColor = useSelector(selectBox2BackgroundColor);
-
-  useEffect(() => {
-    addInvokable([
-      new Invokable({
-        name: "changeBox2HeightPercentage",
-        description: "Change the height percentage of Box2 also known as Box 2 [changeBox2Height(),Box 2]",
-        func: async ({ height }) =>
-          dispatch(setHeightPercentage((1 - height / 100) * 100)),
-        schema: z.object({ height: z.number().min(0).max(100) }),
-      }),
-      new Invokable({
-        name: "changeBox2BackgroundColor",
-        description: "Change the background color of Box2 also known as Box 2 [changeBox2Color(),Box 2]",
-        func: async ({ color }) => dispatch(setBox2BackgroundColor(color)),
-        schema: z.object({ color: z.string() }),
-      }),
-    ]);
-
-    return () => {
-      removeInvokable([
-        "changeBox2HeightPercentage",
-        "changeBox2BackgroundColor",
-      ]);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Box sx={{ height: `${heightPercentage}%`, transition }}>
@@ -130,25 +67,7 @@ const Box2 = () => {
 };
 
 const ProgressBox = () => {
-  const dispatch = useDispatch();
-  const { addInvokable, removeInvokable } = useInvokables();
   const progressValue = useSelector(selectProgressValue);
-
-  useEffect(() => {
-    addInvokable(
-      new Invokable({
-        name: "changeProgressValue",
-        description: "Change the progress bar completion value [changeProgressValue(),Progress Bar]",
-        func: async ({ value }) => dispatch(setProgressValue(value)),
-        schema: z.object({ value: z.number().min(0).max(100) }),
-      })
-    );
-
-    return () => {
-      removeInvokable("changeProgressValue");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Box>
@@ -185,28 +104,7 @@ const ProgressBox = () => {
 };
 
 const UnsplashBox = () => {
-  const dispatch = useDispatch();
-  const { addInvokable, removeInvokable } = useInvokables();
   const response = useSelector(selectUnsplashResponse);
-
-  useEffect(() => {
-    addInvokable(
-      new Invokable({
-        name: "changeUnsplashQuery",
-        description:
-          "Change the image on screen to similar to query, the input of the function is an unsplash query so convert user information to it [changeUnsplashQuery(),Unsplash Image]",
-        func: async ({ query }) => dispatch(getUnsplashImage(query)),
-        schema: z.object({ query: z.string() }),
-      })
-    );
-
-    dispatch(getUnsplashImage("batman"));
-
-    return () => {
-      removeInvokable("changeUnsplashQuery");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Box sx={{ height: "100%", overflow: "hidden" }}>
