@@ -20,7 +20,7 @@ import "./App.css";
 import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
 import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPlaygroundInvokables";
-import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
+// import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
 import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
 import { selectPlaygroundName } from "./features/park/parkSlice";
 import { useGlobalInvokables } from "./hooks";
@@ -51,7 +51,6 @@ using our technology in your own app, please check us out at www.buildwithlayer.
 `;
 
 function App() {
-  const invokables = useGlobalInvokables();
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
   const selectedPlayground = useSelector(selectPlaygroundName);
@@ -88,6 +87,7 @@ function App() {
 
     console.log("i: ", i);
     return i;
+  // eslint-disable-next-line
   }, [selectedPlayground]);
 
   return (

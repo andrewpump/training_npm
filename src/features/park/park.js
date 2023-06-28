@@ -170,7 +170,6 @@ function ToysBar() {
     setToys(holder);
   }, [invokables, activePlayground]);
 
-  // eslint-disable-next-line
   const generateToys = () => {
     return (
       <>
