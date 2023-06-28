@@ -1,7 +1,6 @@
 // @ts-check
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useInvokables, FormFillingInvokable } from "@buildwithlayer/sdk";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   Box,
   TextField,
@@ -16,75 +15,39 @@ import {
   MenuItem,
 } from "@mui/material";
 
-import { selectForm, setForm } from "./formFillingPlaygroundSlice";
+import { selectForm } from "./formFillingPlaygroundSlice";
 
 // create a react component called BasicToy that has a square and field image
 export function FormFillingPlayground() {
-  const { invokables, addInvokable, reset } = useInvokables();
-  const dispatch = useDispatch();
   const state = useSelector(selectForm);
-  const setValues = useCallback(
-
-    
-    (val) => {console.log({ ...state, ...val }); dispatch(setForm({ ...state, ...val }))},
-    [dispatch, state]
-  );
-
-  useEffect(() => {
-    addInvokable(
-      new FormFillingInvokable({
-        onValues: async (values) => {
-          console.log("values", values);
-          setValues(values);
-          return "Changed form values successfully.";
-        },
-      })
-    );
-
-    return () => {
-      reset(
-        invokables.filter(
-          (invokable) => !(invokable instanceof FormFillingInvokable)
-        )
-      );
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Box
       component="form"
       noValidate
       autoComplete="off"
-      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, color:"background.contrastText" }}
+      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, color: "background.contrastText" }}
     >
       <TextField
         id="firstName"
         label="First Name"
         value={state.firstName}
-        onChange={(e) => setValues({ ...state, firstName: e.target.value })}
       />
       <TextField
         id="lastName"
         label="Last Name"
         value={state.lastName}
-        onChange={(e) => setValues({ ...state, lastName: e.target.value })}
       />
       <TextField
         id="email"
         label="Email"
         value={state.email}
-        onChange={(e) => setValues({ ...state, email: e.target.value })}
       />
       <FormControlLabel
         control={
           <Checkbox
             id="consented"
             checked={state.consented}
-            onChange={(event) =>
-              setValues({ ...state, consented: event.target.checked })
-            }
           />
         }
         label="Consent"
@@ -95,9 +58,7 @@ export function FormFillingPlayground() {
           aria-labelledby="status"
           name="status"
           id="status"
-          value={state.status}
-          onChange={(e) => setValues({ ...state, status: e.target.value })}
-        >
+          value={state.status}>
           <FormControlLabel
             value="available"
             control={<Radio />}
@@ -129,7 +90,6 @@ export function FormFillingPlayground() {
           labelId="demo-simple-select-label"
           value={state.age}
           label="Age"
-          onChange={(e) => setValues({ ...state, age: e.target.value })}
         >
           <MenuItem value={"18"}>Eighteen</MenuItem>
           <MenuItem value={"19"}>Nineteen</MenuItem>
@@ -139,7 +99,6 @@ export function FormFillingPlayground() {
       <select
         id="age"
         value={state.age}
-        onChange={(e) => setValues({ ...state, age: e.target.value })}
         hidden
       >
         <option value="18"></option>

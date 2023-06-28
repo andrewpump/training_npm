@@ -19,8 +19,8 @@ import { selectTheme } from "../global/globalSlice";
 import ToysIcon from '@mui/icons-material/Toys';
 // import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground";
 import { useInvokables } from "@buildwithlayer/sdk";
-import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
-// import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
+// import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
+import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
 
 function ParkView({ playgrounds }) {
   const dispatch = useDispatch();
@@ -99,12 +99,12 @@ function ParkView({ playgrounds }) {
       >
         {activePlayground === "Box Layout" && <BasicPlayground />}
         {/* {activePlayground === "Kona Playground" && <KonaPlayground />} */}
-        {activePlayground === "Form Filler" && (
+        {/* {activePlayground === "Form Filler" && (
           <FormFillingPlayground />
-        )}
-        {/* {activePlayground === "Form Filling Manually Playground" && (
-          <FormFillingManuallyPlayground />
         )} */}
+        {activePlayground === "Custom Form Filler" && (
+          <FormFillingManuallyPlayground />
+        )}
       </Box>
     </Box>
   );
@@ -212,11 +212,10 @@ function ToysBar() {
         <ToysIcon />
         <Typography pl={1} variant="h3">Toys</Typography>
       </Box>
-      <Box pl={1} pr={1} sx={{ overflow: "auto" }}>
+      <Box pl={1} pr={1} p={2} sx={{ overflow: "auto" }}>
         {/* {generateToys()} */}
-        <Typography variant="h2" pt={2}>Coming Soon!</Typography>
-        <Typography variant="body1" pt={2}>View all the toys you have access to while using a particular playground</Typography>
-
+        <Typography pt={2} variant="h2">Coming Soon!</Typography>
+        <Typography pt={1} variant="body1">We are working hard to bring you toys to play with (aka Invokables). Check back soon!</Typography>
       </Box>
 
     </Box>

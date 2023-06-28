@@ -19,6 +19,12 @@ import Park from "./features/park/park";
 import "./App.css";
 import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
+import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPlaygroundInvokables";
+import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
+import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
+import { selectPlaygroundName } from "./features/park/parkSlice";
+import { useInvokables } from "@buildwithlayer/sdk";
+
 
 const welcomeMessage = `# Welcome to the Layer Park!
 **Version 0.2.0:** 
@@ -45,27 +51,46 @@ using our technology in your own app, please check us out at www.buildwithlayer.
 function App() {
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
+  const selectedPlayground = useSelector(selectPlaygroundName);
 
   const playgrounds = [
     "Box Layout",
     // "Kona Playground",
-    "Form Filler",
-    // "Form Filling Manually Playground",
+    // "Form Filler",
+    "Custom Form Filler",
   ];
+
+  const playgroundsMap = {
+    "Box Layout": BasicPlaygroundInvokables.invokables,
+    "Form Filler": FormFillerInvokables.invokables,
+    "Custom Form Filler": CustomFormFillerInvokables.invokables,
+  };
+
+  const activeInvokables = React.useMemo(() => {
+
+    const i = [
+      new Invokable({
+        name: "resetPlayground",
+        description: "Resets the playground user is currently viewing",
+        func: async () => dispatch({ type: RESET_PLAYGROUND }),
+        schema: z.object({}),
+      }),
+      ...playgroundsMap[selectedPlayground],
+    ];
+
+    console.log("i: ", i)
+    return i;
+  }, [selectedPlayground])
+
+
+
 
   return (
     <Widget
       theme={themeMode}
       openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
       defaultMessage={welcomeMessage}
-      invokables={[
-        new Invokable({
-          name: "resetPlayground",
-          description: "Resets the playground user is currently viewing",
-          func: async () => dispatch({ type: RESET_PLAYGROUND }),
-          schema: z.object({}),
-        }),
-      ]}
+      invokables={activeInvokables}
       layerApiKey={""}
     >
       <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
