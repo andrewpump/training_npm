@@ -31,7 +31,13 @@ export function FormFillingManuallyPlayground() {
       component="form"
       noValidate
       autoComplete="off"
-      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, color: "background.contrastText" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        p: 2,
+        color: "background.contrastText",
+      }}
     >
       <TextField
         id="firstName"

@@ -19,11 +19,9 @@ import { selectForm, setForm } from "./formFillingPlaygroundSlice";
 import { useGlobalInvokables } from "../../hooks";
 import { useInvokables, FormFillingInvokable } from "@buildwithlayer/sdk";
 
-
 // create a react component called BasicToy that has a square and field image
 export function FormFillingPlayground() {
   const state = useSelector(selectForm);
-
 
   return (
     <Box
@@ -38,28 +36,11 @@ export function FormFillingPlayground() {
         color: "background.contrastText",
       }}
     >
-      <TextField
-        id="firstName"
-        label="First Name"
-        value={state.firstName}
-      />
-      <TextField
-        id="lastName"
-        label="Last Name"
-        value={state.lastName}
-      />
-      <TextField
-        id="email"
-        label="Email"
-        value={state.email}
-      />
+      <TextField id="firstName" label="First Name" value={state.firstName} />
+      <TextField id="lastName" label="Last Name" value={state.lastName} />
+      <TextField id="email" label="Email" value={state.email} />
       <FormControlLabel
-        control={
-          <Checkbox
-            id="consented"
-            checked={state.consented}
-          />
-        }
+        control={<Checkbox id="consented" checked={state.consented} />}
         label="Consent"
       />
       <FormControl>
@@ -68,7 +49,8 @@ export function FormFillingPlayground() {
           aria-labelledby="status"
           name="status"
           id="status"
-          value={state.status}>
+          value={state.status}
+        >
           <FormControlLabel
             value="available"
             control={<Radio />}
@@ -106,11 +88,7 @@ export function FormFillingPlayground() {
           <MenuItem value={"20"}>Twenty</MenuItem>
         </Select>
       </FormControl>
-      <select
-        id="age"
-        value={state.age}
-        hidden
-      >
+      <select id="age" value={state.age} hidden>
         <option value="18"></option>
         <option value="19"></option>
         <option value="20"></option>

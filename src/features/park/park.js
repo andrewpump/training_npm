@@ -132,8 +132,7 @@ function ToysBar() {
   const [toys, setToys] = React.useState({});
 
   React.useEffect(() => {
-
-    console.log("invokables: ", invokables)
+    console.log("invokables: ", invokables);
     const holder = {};
     invokables.forEach((invokable) => {
       const stringSchema = invokable.description.match(/\[(.*?)\]/);
@@ -243,7 +242,7 @@ function ToysBar() {
           Toys
         </Typography>
       </Box>
-      <Box pl={1} pr={1} p={2} sx={{ overflow: "auto" }}>
+      <Box pl={1} pr={1} sx={{ overflow: "auto" }}>
         {generateToys()}
         {/* <Typography pt={2} variant="h2">Coming Soon!</Typography>
         <Typography pt={1} variant="body1">We are working hard to bring you toys to play with (aka Invokables). Check back soon!</Typography> */}
