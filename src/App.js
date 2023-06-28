@@ -21,24 +21,24 @@ import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
 
 const welcomeMessage = `# Welcome to the Layer Park!
-**Version 0.1.1:** 
-Our park is used as a testing bed for new features we are prototyping.  In this
-park there are several different playgrounds each with a set of toys.  Using
-the field down below, you can control toys in the playground using regular
-human words.  Here are some examples:
-- "make bx1 30% height"
-- "change picture to tree"
+**Version 0.2.0:** 
+Hey great to see you again (or for the first time).  We've been hard at work
+adding new features and fixing bugs.  Here are some of the highlights:
+1. **New Playground:** Form Filler (Unstable) - This tool reads the DOM and can fill out
+forms for you.  It's still a little buggy but we are working on it!
+2. **Chained Actions:** You can now chain actions together with the "and" keyword.  For example:
 
-**Current Limitations:**
+      - "make bx1 30% height and change picture to tree"
+
+**Limitations:**
 Since this is a beta version there are a few things we don't support now
 but are quickly adding we think are important to mention:
-- **Chaining:** At the moment the Layer Agent can only execute one action at a time.
 - **Manicured Responses**: The responses to actions are occasionally incoheret or make
 little sense because they are yet to be post-processed.
 
 **Final Word:**
 Have fun playing in our park and keep checking in as it grows! If you are interested in
-using our technology in your own app, please check us out at buildwithlayer.com!
+using our technology in your own app, please check us out at www.buildwithlayer.com!
 
 `;
 
