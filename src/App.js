@@ -23,7 +23,7 @@ import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPl
 import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
 import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
 import { selectPlaygroundName } from "./features/park/parkSlice";
-import { useInvokables } from "@buildwithlayer/sdk";
+import { useGlobalInvokables } from "./hooks";
 
 
 const welcomeMessage = `# Welcome to the Layer Park!
@@ -49,14 +49,15 @@ using our technology in your own app, please check us out at www.buildwithlayer.
 `;
 
 function App() {
+  const invokables = useGlobalInvokables();
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
   const selectedPlayground = useSelector(selectPlaygroundName);
 
   const playgrounds = [
     "Box Layout",
-    // "Kona Playground",
-    // "Form Filler",
+    "Kona Playground",
+    "Form Filler",
     "Custom Form Filler",
   ];
 
@@ -67,6 +68,9 @@ function App() {
   };
 
   const activeInvokables = React.useMemo(() => {
+
+    console.log("selectedPlayground: ", selectedPlayground)
+    console.log("playgroundsMap[selectedPlayground]: ", playgroundsMap[selectedPlayground])
 
     const i = [
       new Invokable({
@@ -119,7 +123,7 @@ function App() {
                 backgroundImage: "none",
               }}
             >
-              <Toolbar disableGutters >
+              <Toolbar disableGutters>
                 <Icon
                   sx={{ height: "60px", width: "60px", paddingRight: "16px" }}
                 >
