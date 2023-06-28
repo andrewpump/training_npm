@@ -4,7 +4,7 @@
   "version": "0.2.2",
   "private": true,
   "dependencies": {
-    "@buildwithlayer/sdk": "nightly",
+    "@buildwithlayer/sdk": "workspace:*",
     "@material-ui/core": "^4.12.4",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.14.1",

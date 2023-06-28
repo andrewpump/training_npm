@@ -20,12 +20,13 @@ import "./App.css";
 import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
 import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPlaygroundInvokables";
-// import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
+import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
+import { setForm } from "./playgrounds/formFillingPlayground/formFillingPlaygroundSlice";
 import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
 import { selectPlaygroundName } from "./features/park/parkSlice";
 
 const welcomeMessage = `# Welcome to the Layer Park!
-**Version 0.2.2:** 
+**Version ${process.env.REACT_APP_VERSION}:**
 Hey great to see you again (or for the first time).  We've been hard at work
 adding new features and fixing bugs.  Here are some of the highlights:
 1. **New Playground:** Custom Form Filler (Unstable) - This tool reads the DOM and can fill out
@@ -57,13 +58,13 @@ function App() {
   const playgrounds = [
     "Box Layout",
     // "Kona Playground",
-    // "Form Filler",
+    "Form Filler",
     "Custom Form Filler",
   ];
 
   const playgroundsMap = {
     "Box Layout": BasicPlaygroundInvokables.invokables,
-    // "Form Filler": FormFillerInvokables.invokables,
+    "Form Filler": FormFillerInvokables.invokables,
     "Custom Form Filler": CustomFormFillerInvokables.invokables,
   };
 
@@ -96,6 +97,14 @@ function App() {
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
       layerApiKey={""}
+      onReceiveFormValues={
+        selectedPlayground === "Form Filler"
+          ? async (formValues) => {
+              dispatch(setForm(formValues));
+              return "Done";
+            }
+          : undefined
+      }
     >
       <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
         <Box
@@ -143,9 +152,7 @@ function App() {
                     Layer
                   </Box>{" "}
                   Park
-                  <Box fontSize={"20px"}>
-                    0.2.2
-                  </Box>{" "}
+                  <Box fontSize={"20px"}>0.2.2</Box>{" "}
                 </Typography>
 
                 <LayerSwitch
