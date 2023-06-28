@@ -23,7 +23,6 @@ import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPl
 // import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
 import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
 import { selectPlaygroundName } from "./features/park/parkSlice";
-import { useGlobalInvokables } from "./hooks";
 
 const welcomeMessage = `# Welcome to the Layer Park!
 **Version ${process.env.REACT_APP_VERSION}:** 
