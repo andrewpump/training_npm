@@ -21,12 +21,12 @@ import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
 import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPlaygroundInvokables";
 import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
+import { setForm } from "./playgrounds/formFillingPlayground/formFillingPlaygroundSlice";
 import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
 import { selectPlaygroundName } from "./features/park/parkSlice";
-import { useGlobalInvokables } from "./hooks";
 
 const welcomeMessage = `# Welcome to the Layer Park!
-**Version ${process.env.REACT_APP_VERSION}:** 
+**Version ${process.env.REACT_APP_VERSION}:**
 Hey great to see you again (or for the first time).  We've been hard at work
 adding new features and fixing bugs.  Here are some of the highlights:
 1. **New Playground:** Custom Form Filler (Unstable) - This tool reads the DOM and can fill out
@@ -51,7 +51,6 @@ using our technology in your own app, please check us out at www.buildwithlayer.
 `;
 
 function App() {
-  const invokables = useGlobalInvokables();
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
   const selectedPlayground = useSelector(selectPlaygroundName);
@@ -59,13 +58,13 @@ function App() {
   const playgrounds = [
     "Box Layout",
     // "Kona Playground",
-    // "Form Filler",
+    "Form Filler",
     "Custom Form Filler",
   ];
 
   const playgroundsMap = {
     "Box Layout": BasicPlaygroundInvokables.invokables,
-    // "Form Filler": FormFillerInvokables.invokables,
+    "Form Filler": FormFillerInvokables.invokables,
     "Custom Form Filler": CustomFormFillerInvokables.invokables,
   };
 
@@ -97,6 +96,14 @@ function App() {
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
       layerApiKey={""}
+      onReceiveFormValues={
+        selectedPlayground === "Form Filler"
+          ? async (formValues) => {
+              dispatch(setForm(formValues));
+              return "Done";
+            }
+          : undefined
+      }
     >
       <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
         <Box
