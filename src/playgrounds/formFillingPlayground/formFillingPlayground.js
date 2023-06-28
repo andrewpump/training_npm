@@ -1,7 +1,6 @@
 // @ts-check
 import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useInvokables, FormFillingInvokable } from "@buildwithlayer/sdk";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
   TextField,
@@ -18,36 +17,11 @@ import {
 
 import { selectForm, setForm } from "./formFillingPlaygroundSlice";
 import { useGlobalInvokables } from "../../hooks";
+import { useInvokables, FormFillingInvokable } from "@buildwithlayer/sdk";
 
 // create a react component called BasicToy that has a square and field image
 export function FormFillingPlayground() {
-  const invokables = useGlobalInvokables();
-  const { addInvokable, reset } = useInvokables();
-  const dispatch = useDispatch();
   const state = useSelector(selectForm);
-  const setValues = useCallback(
-    (val) => {
-      dispatch(setForm({ ...state, ...val }));
-    },
-    [dispatch, state]
-  );
-
-  useEffect(() => {
-    addInvokable(
-      new FormFillingInvokable({
-        onValues: async (values) => {
-          setValues(values);
-          return "Changed form values successfully.";
-        },
-      })
-    );
-
-    return () => {
-      reset(invokables);
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Box
@@ -62,34 +36,11 @@ export function FormFillingPlayground() {
         color: "background.contrastText",
       }}
     >
-      <TextField
-        id="firstName"
-        label="First Name"
-        value={state.firstName}
-        onChange={(e) => setValues({ ...state, firstName: e.target.value })}
-      />
-      <TextField
-        id="lastName"
-        label="Last Name"
-        value={state.lastName}
-        onChange={(e) => setValues({ ...state, lastName: e.target.value })}
-      />
-      <TextField
-        id="email"
-        label="Email"
-        value={state.email}
-        onChange={(e) => setValues({ ...state, email: e.target.value })}
-      />
+      <TextField id="firstName" label="First Name" value={state.firstName} />
+      <TextField id="lastName" label="Last Name" value={state.lastName} />
+      <TextField id="email" label="Email" value={state.email} />
       <FormControlLabel
-        control={
-          <Checkbox
-            id="consented"
-            checked={state.consented}
-            onChange={(event) =>
-              setValues({ ...state, consented: event.target.checked })
-            }
-          />
-        }
+        control={<Checkbox id="consented" checked={state.consented} />}
         label="Consent"
       />
       <FormControl>
@@ -99,7 +50,6 @@ export function FormFillingPlayground() {
           name="status"
           id="status"
           value={state.status}
-          onChange={(e) => setValues({ ...state, status: e.target.value })}
         >
           <FormControlLabel
             value="available"
@@ -132,19 +82,13 @@ export function FormFillingPlayground() {
           labelId="demo-simple-select-label"
           value={state.age}
           label="Age"
-          onChange={(e) => setValues({ ...state, age: e.target.value })}
         >
           <MenuItem value={"18"}>Eighteen</MenuItem>
           <MenuItem value={"19"}>Nineteen</MenuItem>
           <MenuItem value={"20"}>Twenty</MenuItem>
         </Select>
       </FormControl>
-      <select
-        id="age"
-        value={state.age}
-        onChange={(e) => setValues({ ...state, age: e.target.value })}
-        hidden
-      >
+      <select id="age" value={state.age} hidden>
         <option value="18"></option>
         <option value="19"></option>
         <option value="20"></option>
