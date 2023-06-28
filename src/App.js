@@ -19,9 +19,10 @@ import Park from "./features/park/park";
 import "./App.css";
 import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
+import { useGlobalInvokables } from "./hooks";
 
 const welcomeMessage = `# Welcome to the Layer Park!
-**Version 0.2.0:** 
+**Version 0.2.0:**
 Hey great to see you again (or for the first time).  We've been hard at work
 adding new features and fixing bugs.  Here are some of the highlights:
 1. **New Playground:** Form Filler (Unstable) - This tool reads the DOM and can fill out
@@ -43,14 +44,15 @@ using our technology in your own app, please check us out at www.buildwithlayer.
 `;
 
 function App() {
+  const invokables = useGlobalInvokables();
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
 
   const playgrounds = [
     "Box Layout",
-    // "Kona Playground",
+    "Kona Playground",
     "Form Filler",
-    // "Form Filling Manually Playground",
+    "Form Filling Manually Playground",
   ];
 
   return (
@@ -58,14 +60,7 @@ function App() {
       theme={themeMode}
       openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
       defaultMessage={welcomeMessage}
-      invokables={[
-        new Invokable({
-          name: "resetPlayground",
-          description: "Resets the playground user is currently viewing",
-          func: async () => dispatch({ type: RESET_PLAYGROUND }),
-          schema: z.object({}),
-        }),
-      ]}
+      invokables={invokables}
       layerApiKey={""}
     >
       <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
@@ -94,7 +89,7 @@ function App() {
                 backgroundImage: "none",
               }}
             >
-              <Toolbar disableGutters >
+              <Toolbar disableGutters>
                 <Icon
                   sx={{ height: "60px", width: "60px", paddingRight: "16px" }}
                 >
@@ -114,9 +109,7 @@ function App() {
                     Layer
                   </Box>{" "}
                   Park
-                  <Box fontSize={"20px"}>
-                    0.2.0
-                  </Box>{" "}
+                  <Box fontSize={"20px"}>0.2.0</Box>{" "}
                 </Typography>
 
                 <LayerSwitch

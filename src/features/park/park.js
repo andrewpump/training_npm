@@ -14,13 +14,18 @@ import { setSelectedPlayground, selectPlaygroundName } from "./parkSlice";
 import { RESET_PLAYGROUND } from "../global/globalSlice";
 import { BasicPlayground } from "../../playgrounds/basicPlayground/basicPlayground";
 import { LayerSelect } from "../../components/LayerSelect";
-import { LayerAccordianPrimary, LayerAccordianSummaryPrimary, LayerAccordianSecondary, LayerAccordianSummarySecondary } from "../../components/LayerAccordians";
+import {
+  LayerAccordianPrimary,
+  LayerAccordianSummaryPrimary,
+  LayerAccordianSecondary,
+  LayerAccordianSummarySecondary,
+} from "../../components/LayerAccordians";
 import { selectTheme } from "../global/globalSlice";
-import ToysIcon from '@mui/icons-material/Toys';
-// import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground";
+import ToysIcon from "@mui/icons-material/Toys";
+import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground";
 import { useInvokables } from "@buildwithlayer/sdk";
 import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
-// import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
+import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
 
 function ParkView({ playgrounds }) {
   const dispatch = useDispatch();
@@ -42,24 +47,29 @@ function ParkView({ playgrounds }) {
       p={3}
     >
       <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "stretch",
-                    minWidth: "100%",
-                    minHeight: "64px",
-                    height: "10%",
-                }}
-            >
-        <Box sx={{ width: "100%", }} xs={9} pr={1}>
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "stretch",
+          minWidth: "100%",
+          minHeight: "64px",
+          height: "10%",
+        }}
+      >
+        <Box sx={{ width: "100%" }} xs={9} pr={1}>
           <FormControl sx={{ width: "100%" }}>
-            <InputLabel sx={{
-              backgroundColor: "background.default",
-              color: "background.contrastText",
-              paddingLeft: "2px",
-              paddingRight: "2px",
-              borderRadius: "4px"
-            }} id="playground-select-label">Playground</InputLabel>
+            <InputLabel
+              sx={{
+                backgroundColor: "background.default",
+                color: "background.contrastText",
+                paddingLeft: "2px",
+                paddingRight: "2px",
+                borderRadius: "4px",
+              }}
+              id="playground-select-label"
+            >
+              Playground
+            </InputLabel>
             <LayerSelect
               labelId="playground-select-label"
               id="playground-select"
@@ -78,7 +88,13 @@ function ParkView({ playgrounds }) {
         <Box xs={3} sx={{ gridArea: "1 / 5 / 2 / 6" }}>
           <Button
             variant="contained"
-            sx={{ padding: "16px", fontWeight: "600", textTransform: "none", letterSpacing: "1px", whiteSpace: "nowrap" }}
+            sx={{
+              padding: "16px",
+              fontWeight: "600",
+              textTransform: "none",
+              letterSpacing: "1px",
+              whiteSpace: "nowrap",
+            }}
             onClick={() => dispatch({ type: RESET_PLAYGROUND })}
           >
             Reset Playground
@@ -98,43 +114,44 @@ function ParkView({ playgrounds }) {
         }}
       >
         {activePlayground === "Box Layout" && <BasicPlayground />}
-        {/* {activePlayground === "Kona Playground" && <KonaPlayground />} */}
-        {activePlayground === "Form Filler" && (
-          <FormFillingPlayground />
-        )}
-        {/* {activePlayground === "Form Filling Manually Playground" && (
+        {activePlayground === "Kona Playground" && <KonaPlayground />}
+        {activePlayground === "Form Filler" && <FormFillingPlayground />}
+        {activePlayground === "Form Filling Manually Playground" && (
           <FormFillingManuallyPlayground />
-        )} */}
+        )}
       </Box>
     </Box>
   );
 }
-
 
 function ToysBar() {
   const themeMode = useSelector(selectTheme);
   const { invokables } = useInvokables();
   const activePlayground = useSelector(selectPlaygroundName);
 
-  const [toys, setToys] = React.useState({})
+  const [toys, setToys] = React.useState({});
 
   React.useEffect(() => {
-
-    console.log("invokables: ", invokables)
-
     const holder = {};
     invokables.forEach((invokable) => {
-
       const stringSchema = invokable.description.match(/\[(.*?)\]/);
 
       if (stringSchema === null) {
-        holder[invokable.name] = { actions: [], description: invokable.description };
+        holder[invokable.name] = {
+          actions: [],
+          description: invokable.description,
+        };
       } else {
-
-        const description = invokable.description.substring(0, invokable.description.indexOf("["));
+        const description = invokable.description.substring(
+          0,
+          invokable.description.indexOf("[")
+        );
         const splitSchmea = stringSchema[1].split(",");
 
-        if (holder[splitSchmea[1]] === undefined && splitSchmea[1] !== "global") {
+        if (
+          holder[splitSchmea[1]] === undefined &&
+          splitSchmea[1] !== "global"
+        ) {
           holder[splitSchmea[1]] = { actions: [], description: "" };
         }
 
@@ -147,78 +164,93 @@ function ToysBar() {
           holder[splitSchmea[0]] = { actions: [], description: description };
         }
       }
-
     });
 
     setToys(holder);
-
   }, [invokables, activePlayground]);
 
-   // eslint-disable-next-line
+  // eslint-disable-next-line
   const generateToys = () => {
-    return (<>{Object.keys(toys).map((key) => {
-      return (
-        <LayerAccordianPrimary>
-          <LayerAccordianSummaryPrimary>
-            <Typography variant="h3">{key}</Typography>
-          </LayerAccordianSummaryPrimary>
+    return (
+      <>
+        {Object.keys(toys).map((key) => {
+          return (
+            <LayerAccordianPrimary>
+              <LayerAccordianSummaryPrimary>
+                <Typography variant="h3">{key}</Typography>
+              </LayerAccordianSummaryPrimary>
 
-          <AccordionDetails>
-            <Stack spacing={1}>
-              {toys[key].description !== "" ?
-                (<AccordionDetails>
-                  <Typography variant="body1">{toys[key].description}</Typography>
-                </AccordionDetails>) : (<></>)
-              }
-              {toys[key].actions.map((action) => {
-                return (
-                  <LayerAccordianSecondary>
-                    <LayerAccordianSummarySecondary>
-                      <Typography variant="h3">{action.name}</Typography>
-                    </LayerAccordianSummarySecondary>
+              <AccordionDetails>
+                <Stack spacing={1}>
+                  {toys[key].description !== "" ? (
                     <AccordionDetails>
-                      <Typography variant="body1">{action.description}</Typography>
+                      <Typography variant="body1">
+                        {toys[key].description}
+                      </Typography>
                     </AccordionDetails>
-                  </LayerAccordianSecondary>
-                )
-              })
-
-              }
-            </Stack>
-          </AccordionDetails>
-        </LayerAccordianPrimary>
-      )
-    })}
-    </>
-    )
-  }
+                  ) : (
+                    <></>
+                  )}
+                  {toys[key].actions.map((action) => {
+                    return (
+                      <LayerAccordianSecondary>
+                        <LayerAccordianSummarySecondary>
+                          <Typography variant="h3">{action.name}</Typography>
+                        </LayerAccordianSummarySecondary>
+                        <AccordionDetails>
+                          <Typography variant="body1">
+                            {action.description}
+                          </Typography>
+                        </AccordionDetails>
+                      </LayerAccordianSecondary>
+                    );
+                  })}
+                </Stack>
+              </AccordionDetails>
+            </LayerAccordianPrimary>
+          );
+        })}
+      </>
+    );
+  };
 
   return (
-
-    <Box sx={{
-      height: "100%",
-      width: "100%",
-      backgroundColor: themeMode === "light" ? "primary.light" : "background.light",
-      color: "background.contrastText",
-      borderRadius: "8px"
-    }}>
-      <Box pl={2} sx={{
-        display: "flex",
-        height: "60px",
-        alignItems: "center",
-        backgroundColor: themeMode === "light" ? "background.light" : "background.light",
-        borderRadius: "8px 8px 0px 0px"
-      }}>
+    <Box
+      sx={{
+        height: "100%",
+        width: "100%",
+        backgroundColor:
+          themeMode === "light" ? "primary.light" : "background.light",
+        color: "background.contrastText",
+        borderRadius: "8px",
+      }}
+    >
+      <Box
+        pl={2}
+        sx={{
+          display: "flex",
+          height: "60px",
+          alignItems: "center",
+          backgroundColor:
+            themeMode === "light" ? "background.light" : "background.light",
+          borderRadius: "8px 8px 0px 0px",
+        }}
+      >
         <ToysIcon />
-        <Typography pl={1} variant="h3">Toys</Typography>
+        <Typography pl={1} variant="h3">
+          Toys
+        </Typography>
       </Box>
       <Box pl={1} pr={1} sx={{ overflow: "auto" }}>
         {/* {generateToys()} */}
-        <Typography variant="h2" pt={2}>Coming Soon!</Typography>
-        <Typography variant="body1" pt={2}>View all the toys you have access to while using a particular playground</Typography>
-
+        <Typography variant="h2" pt={2}>
+          Coming Soon!
+        </Typography>
+        <Typography variant="body1" pt={2}>
+          View all the toys you have access to while using a particular
+          playground
+        </Typography>
       </Box>
-
     </Box>
   );
 }

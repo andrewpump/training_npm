@@ -17,16 +17,18 @@ import {
 } from "@mui/material";
 
 import { selectForm, setForm } from "./formFillingPlaygroundSlice";
+import { useGlobalInvokables } from "../../hooks";
 
 // create a react component called BasicToy that has a square and field image
 export function FormFillingPlayground() {
-  const { invokables, addInvokable, reset } = useInvokables();
+  const invokables = useGlobalInvokables();
+  const { addInvokable, reset } = useInvokables();
   const dispatch = useDispatch();
   const state = useSelector(selectForm);
   const setValues = useCallback(
-
-    
-    (val) => {console.log({ ...state, ...val }); dispatch(setForm({ ...state, ...val }))},
+    (val) => {
+      dispatch(setForm({ ...state, ...val }));
+    },
     [dispatch, state]
   );
 
@@ -34,7 +36,6 @@ export function FormFillingPlayground() {
     addInvokable(
       new FormFillingInvokable({
         onValues: async (values) => {
-          console.log("values", values);
           setValues(values);
           return "Changed form values successfully.";
         },
@@ -42,11 +43,7 @@ export function FormFillingPlayground() {
     );
 
     return () => {
-      reset(
-        invokables.filter(
-          (invokable) => !(invokable instanceof FormFillingInvokable)
-        )
-      );
+      reset(invokables);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +54,13 @@ export function FormFillingPlayground() {
       component="form"
       noValidate
       autoComplete="off"
-      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, color:"background.contrastText" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        p: 2,
+        color: "background.contrastText",
+      }}
     >
       <TextField
         id="firstName"
