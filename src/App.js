@@ -25,7 +25,7 @@ import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPla
 import { selectPlaygroundName } from "./features/park/parkSlice";
 
 const welcomeMessage = `# Welcome to the Layer Park!
-**Version ${process.env.REACT_APP_VERSION}:** 
+**Version 0.2.2:** 
 Hey great to see you again (or for the first time).  We've been hard at work
 adding new features and fixing bugs.  Here are some of the highlights:
 1. **New Playground:** Custom Form Filler (Unstable) - This tool reads the DOM and can fill out
@@ -86,7 +86,7 @@ function App() {
 
     console.log("i: ", i);
     return i;
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [selectedPlayground]);
 
   return (
@@ -144,7 +144,7 @@ function App() {
                   </Box>{" "}
                   Park
                   <Box fontSize={"20px"}>
-                    {process.env.REACT_APP_VERSION}
+                    0.2.2
                   </Box>{" "}
                 </Typography>
 
