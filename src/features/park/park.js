@@ -42,15 +42,15 @@ function ParkView({ playgrounds }) {
       p={3}
     >
       <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "stretch",
-                    minWidth: "100%",
-                    minHeight: "64px",
-                    height: "10%",
-                }}
-            >
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "stretch",
+          minWidth: "100%",
+          minHeight: "64px",
+          height: "10%",
+        }}
+      >
         <Box sx={{ width: "100%", }} xs={9} pr={1}>
           <FormControl sx={{ width: "100%" }}>
             <InputLabel sx={{
@@ -154,7 +154,7 @@ function ToysBar() {
 
   }, [invokables, activePlayground]);
 
-   // eslint-disable-next-line
+  // eslint-disable-next-line
   const generateToys = () => {
     return (<>{Object.keys(toys).map((key) => {
       return (
@@ -213,9 +213,9 @@ function ToysBar() {
         <Typography pl={1} variant="h3">Toys</Typography>
       </Box>
       <Box pl={1} pr={1} p={2} sx={{ overflow: "auto" }}>
-        {/* {generateToys()} */}
-        <Typography pt={2} variant="h2">Coming Soon!</Typography>
-        <Typography pt={1} variant="body1">We are working hard to bring you toys to play with (aka Invokables). Check back soon!</Typography>
+        {generateToys()}
+        {/* <Typography pt={2} variant="h2">Coming Soon!</Typography>
+        <Typography pt={1} variant="body1">We are working hard to bring you toys to play with (aka Invokables). Check back soon!</Typography> */}
       </Box>
 
     </Box>

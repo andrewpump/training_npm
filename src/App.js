@@ -27,7 +27,7 @@ import { useInvokables } from "@buildwithlayer/sdk";
 
 
 const welcomeMessage = `# Welcome to the Layer Park!
-**Version 0.2.0:** 
+**Version ${process.env.REACT_APP_VERSION}:** 
 Hey great to see you again (or for the first time).  We've been hard at work
 adding new features and fixing bugs.  Here are some of the highlights:
 1. **New Playground:** Form Filler (Unstable) - This tool reads the DOM and can fill out
@@ -140,7 +140,7 @@ function App() {
                   </Box>{" "}
                   Park
                   <Box fontSize={"20px"}>
-                    0.2.0
+                    {process.env.REACT_APP_VERSION}
                   </Box>{" "}
                 </Typography>
 
