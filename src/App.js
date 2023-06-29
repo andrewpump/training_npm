@@ -97,14 +97,6 @@ function App() {
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
       layerApiKey={""}
-      onReceiveFormValues={
-        selectedPlayground === "Form Filler"
-          ? async (formValues) => {
-              dispatch(setForm(formValues));
-              return "Done";
-            }
-          : undefined
-      }
     >
       <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
         <Box
