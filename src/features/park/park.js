@@ -177,7 +177,7 @@ function ToysBar() {
           return (
             <LayerAccordianPrimary>
               <LayerAccordianSummaryPrimary>
-                <Typography variant="h3">{key}</Typography>
+                <Typography variant="h3" sx={{hyphens: "auto"}}>{key}</Typography>
               </LayerAccordianSummaryPrimary>
 
               <AccordionDetails>
@@ -195,7 +195,7 @@ function ToysBar() {
                     return (
                       <LayerAccordianSecondary>
                         <LayerAccordianSummarySecondary>
-                          <Typography variant="h3">{action.name}</Typography>
+                          <Typography variant="h3" sx={{hyphens: "auto"}}>{action.name}</Typography>
                         </LayerAccordianSummarySecondary>
                         <AccordionDetails>
                           <Typography variant="body1">
@@ -223,6 +223,8 @@ function ToysBar() {
           themeMode === "light" ? "primary.light" : "background.light",
         color: "background.contrastText",
         borderRadius: "8px",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Box
@@ -241,7 +243,7 @@ function ToysBar() {
           Toys
         </Typography>
       </Box>
-      <Box pl={1} pr={1} sx={{ overflow: "auto" }}>
+      <Box pl={1} pr={1} sx={{ overflow: "auto", height: "100%" }}>
         {generateToys()}
         {/* <Typography pt={2} variant="h2">Coming Soon!</Typography>
         <Typography pt={1} variant="body1">We are working hard to bring you toys to play with (aka Invokables). Check back soon!</Typography> */}
