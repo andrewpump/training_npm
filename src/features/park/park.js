@@ -26,6 +26,7 @@ import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground"
 import { useInvokables } from "@buildwithlayer/sdk";
 import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
 import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
+import { ApiPlayground } from "../../playgrounds/apiPlayground/apiPlayground";
 
 function ParkView({ playgrounds }) {
   const dispatch = useDispatch();
@@ -119,6 +120,7 @@ function ParkView({ playgrounds }) {
         {activePlayground === "Custom Form Filler" && (
           <FormFillingManuallyPlayground />
         )}
+        {activePlayground === "API Playground" && <ApiPlayground />}
       </Box>
     </Box>
   );

@@ -21,8 +21,8 @@ import { Widget, Invokable } from "@buildwithlayer/sdk";
 import { lightTheme, darkTheme } from "./app/themes";
 import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPlaygroundInvokables";
 import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
-import { setForm } from "./playgrounds/formFillingPlayground/formFillingPlaygroundSlice";
 import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
+import { ApiPlaygroundInvokables } from "./playgrounds/apiPlayground/apiPlaygroundInvokables";
 import { selectPlaygroundName } from "./features/park/parkSlice";
 
 const welcomeMessage = `# Welcome to the Layer Park!
@@ -60,12 +60,14 @@ function App() {
     // "Kona Playground",
     "Form Filler",
     "Custom Form Filler",
+    "API Playground",
   ];
 
   const playgroundsMap = {
     "Box Layout": BasicPlaygroundInvokables.invokables,
     "Form Filler": FormFillerInvokables.invokables,
     "Custom Form Filler": CustomFormFillerInvokables.invokables,
+    "API Playground": ApiPlaygroundInvokables.invokables,
   };
 
   const activeInvokables = React.useMemo(() => {

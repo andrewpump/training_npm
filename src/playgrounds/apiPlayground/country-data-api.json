@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.4.2",
+    "title": "Country Data API - Free",
+    "description": " Provides accurate country data, including codes, currencies, languages, flag images, emojis, random facts, and much more. \n\n**Additional Features:** \n\n If you need any of the following features: \n\n* Commercial license\n* All the facts for a country\n* JSON Geo data\n* 1001 or more requests per month\n\n Please take a look at the licensed version: \n\n<https://portal.thatapicompany.com/catalog/prd%5F5935z7x7rj9upjmm> \n\n**Example response:** \n\n```\n{\n    \"name\": \"New Zealand\",\n    \"code\": \"NZ\",\n    \"flag_urls\": {\n        \"svg\": \"http://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg\",\n        \"png\": \"https://countryflagsapi.com/png/NZ\"\n    },\n    \"official_name\": \"\",\n    \"currency\": {\n        \"code\": \"NZD\",\n        \"name\": \"New Zealand dollar\"\n    },\n    \"emoji\": {\n        \"slack_emoji\": \":flag-NZ:\",\n        \"discord_emoji\": \":flag_nz:\",\n        \"symbol\": \"🇳🇿\"\n    },\n    \"tourism_slogan\": \"100% Pure\"\n}\n```"
+  },
+  "servers": [
+    {
+      "url": "https://apis.thatapicompany.com/9diyyzzwr4w8bf4r",
+      "description": "Blobr API Gateway"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "x-blobr-key",
+        "in": "header"
+      }
+    },
+    "schemas": {}
+  },
+  "paths": {
+    "/countries/{country_code}/facts/random": {
+      "get": {
+        "operationId": "getCountriesByCountryCodeFactsRandom",
+        "responses": {
+          "200": {
+            "description": "Default response"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "country_code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/countries": {
+      "get": {
+        "operationId": "getCountries",
+        "responses": {
+          "200": {
+            "description": "Default response"
+          }
+        }
+      }
+    },
+    "/countries/{country_code}": {
+      "get": {
+        "operationId": "getCountriesByCountryCode",
+        "responses": {
+          "200": {
+            "description": "Default response"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "country_code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/countries/random": {
+      "get": {
+        "operationId": "getCountriesRandom",
+        "responses": {
+          "200": {
+            "description": "Default response"
+          }
+        }
+      }
+    }
+  }
+}
