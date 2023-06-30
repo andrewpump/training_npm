@@ -24,6 +24,7 @@ import { selectTheme } from "../global/globalSlice";
 import ToysIcon from "@mui/icons-material/Toys";
 import { KonaPlayground } from "../../playgrounds/konaPlayground/konaPlayground";
 import { useInvokables } from "@buildwithlayer/sdk";
+import { FilteringPlayground } from "../../playgrounds/filteringPlayground/filteringPlayground";
 import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
 import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
 import { ApiPlayground } from "../../playgrounds/apiPlayground/apiPlayground";
@@ -121,6 +122,7 @@ function ParkView({ playgrounds }) {
           <FormFillingManuallyPlayground />
         )}
         {activePlayground === "API Playground" && <ApiPlayground />}
+        {activePlayground === "Filtering Playground" && <FilteringPlayground />}
       </Box>
     </Box>
   );

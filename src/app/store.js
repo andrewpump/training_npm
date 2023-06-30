@@ -6,6 +6,7 @@ import konaPlaygroundSlice from "../playgrounds/konaPlayground/konaPlaygroundSli
 import formFillingPlaygroundSlice from "../playgrounds/formFillingPlayground/formFillingPlaygroundSlice";
 import formFillingManuallyPlaygroundSlice from "../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlaygroundSlice";
 import apiPlaygroundSlice from "../playgrounds/apiPlayground/apiPlaygroundSlice";
+import filteringPlaygroundSlice from "../playgrounds/filteringPlayground/filteringPlaygroundSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     formFillingPlayground: formFillingPlaygroundSlice,
     formFillingManuallyPlaygroundSlice: formFillingManuallyPlaygroundSlice,
     apiPlayground: apiPlaygroundSlice,
+    filteringPlayground: filteringPlaygroundSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

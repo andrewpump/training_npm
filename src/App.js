@@ -23,6 +23,7 @@ import { BasicPlaygroundInvokables } from "./playgrounds/basicPlayground/basicPl
 import { FormFillerInvokables } from "./playgrounds/formFillingPlayground/formFillingInvokables";
 import { CustomFormFillerInvokables } from "./playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js";
 import { ApiPlaygroundInvokables } from "./playgrounds/apiPlayground/apiPlaygroundInvokables";
+import { FilteringPlaygroundInvokables } from "./playgrounds/filteringPlayground/filteringPlaygroundInvokables";
 import { selectPlaygroundName } from "./features/park/parkSlice";
 
 const welcomeMessage = `# Welcome to the Layer Park!
@@ -61,6 +62,7 @@ function App() {
     "Form Filler",
     "Custom Form Filler",
     "API Playground",
+    "Filtering Playground",
   ];
 
   const playgroundsMap = {
@@ -68,6 +70,7 @@ function App() {
     "Form Filler": FormFillerInvokables.invokables,
     "Custom Form Filler": CustomFormFillerInvokables.invokables,
     "API Playground": ApiPlaygroundInvokables.invokables,
+    "Filtering Playground": FilteringPlaygroundInvokables.invokables,
   };
 
   const activeInvokables = React.useMemo(() => {
