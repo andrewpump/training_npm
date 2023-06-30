@@ -1,5 +1,5 @@
 // @ts-check
-import { OpenApiInvokable } from "@buildwithlayer/sdk";
+import { UnstableOpenApiInvokable } from "@buildwithlayer/sdk";
 
 import store from "../../app/store";
 import { setResponse } from "./apiPlaygroundSlice";
@@ -9,7 +9,7 @@ import countryDataApiSpec from "./country-data-api.json";
 const ApiPlaygroundInvokables = {
   name: "Api Playground",
   invokables: [
-    new OpenApiInvokable({
+    new UnstableOpenApiInvokable({
       name: "countriesApi",
       description:
         "useful for when human wants to know anything about countries",
@@ -20,7 +20,7 @@ const ApiPlaygroundInvokables = {
       // },
       headers: {
         "Content-Type": "application/json",
-        "X-BLOBR-KEY": process.env.REACT_APP_X_BLOBR_KEY,
+        "X-BLOBR-KEY": `${process.env.REACT_APP_X_BLOBR_KEY}`,
       },
     }),
   ],
