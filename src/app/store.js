@@ -7,6 +7,7 @@ import formFillingPlaygroundSlice from "../playgrounds/formFillingPlayground/for
 import formFillingManuallyPlaygroundSlice from "../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlaygroundSlice";
 import apiPlaygroundSlice from "../playgrounds/apiPlayground/apiPlaygroundSlice";
 import filteringPlaygroundSlice from "../playgrounds/filteringPlayground/filteringPlaygroundSlice";
+import navigationPlaygroundSlice from "../playgrounds/navigationPlayground/navigationPlaygroundSlice";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     formFillingManuallyPlaygroundSlice: formFillingManuallyPlaygroundSlice,
     apiPlayground: apiPlaygroundSlice,
     filteringPlayground: filteringPlaygroundSlice,
+    navigationPlayground: navigationPlaygroundSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

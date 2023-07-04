@@ -28,6 +28,7 @@ import { FilteringPlayground } from "../../playgrounds/filteringPlayground/filte
 import { FormFillingPlayground } from "../../playgrounds/formFillingPlayground/formFillingPlayground";
 import { FormFillingManuallyPlayground } from "../../playgrounds/formFillingManuallyPlayground/formFillingManuallyPlayground";
 import { ApiPlayground } from "../../playgrounds/apiPlayground/apiPlayground";
+import { NavigationPlayground } from "../../playgrounds/navigationPlayground/navigationPlayground";
 
 function ParkView({ playgrounds }) {
   const dispatch = useDispatch();
@@ -123,6 +124,9 @@ function ParkView({ playgrounds }) {
         )}
         {activePlayground === "API Playground" && <ApiPlayground />}
         {activePlayground === "Filtering Playground" && <FilteringPlayground />}
+        {activePlayground === "Navigation Playground" && (
+          <NavigationPlayground />
+        )}
       </Box>
     </Box>
   );
