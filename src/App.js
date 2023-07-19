@@ -77,12 +77,6 @@ function App() {
   };
 
   const activeInvokables = React.useMemo(() => {
-    console.log("selectedPlayground: ", selectedPlayground);
-    console.log(
-      "playgroundsMap[selectedPlayground]: ",
-      playgroundsMap[selectedPlayground]
-    );
-
     const i = [
       new Invokable({
         name: "resetPlayground",
@@ -93,7 +87,6 @@ function App() {
       ...playgroundsMap[selectedPlayground],
     ];
 
-    console.log("i: ", i);
     return i;
     // eslint-disable-next-line
   }, [selectedPlayground]);
@@ -104,6 +97,7 @@ function App() {
       openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ""}
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
+      primingPrompt="You are an AI Assistant for a inventory managment company called Bops which gives recommendations to its clients on what products to promote, buy, and more."
       layerApiKey={""}
     >
       <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>

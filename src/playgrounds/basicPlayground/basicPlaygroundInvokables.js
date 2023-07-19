@@ -40,6 +40,7 @@ const BasicPlaygroundInvokables = {
       func: async ({ height }) =>
         store.dispatch(setHeightPercentage((1 - height / 100) * 100)),
       schema: z.object({ height: z.number().min(0).max(100) }),
+      isCritical: true,
     }),
     new Invokable({
       name: "changeBox2BackgroundColor",

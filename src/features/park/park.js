@@ -36,7 +36,6 @@ function ParkView({ playgrounds }) {
 
   return (
     <Box
-      container
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -82,8 +81,12 @@ function ParkView({ playgrounds }) {
                 dispatch(setSelectedPlayground(v.target.value));
               }}
             >
-              {playgrounds.map((name) => {
-                return <MenuItem value={name}>{name}</MenuItem>;
+              {playgrounds.map((name, index) => {
+                return (
+                  <MenuItem key={index} value={name}>
+                    {name}
+                  </MenuItem>
+                );
               })}
             </LayerSelect>
           </FormControl>
@@ -140,7 +143,6 @@ function ToysBar() {
   const [toys, setToys] = React.useState({});
 
   React.useEffect(() => {
-    console.log("invokables: ", invokables);
     const holder = {};
     invokables.forEach((invokable) => {
       const stringSchema = invokable.description.match(/\[(.*?)\]/);
@@ -183,7 +185,7 @@ function ToysBar() {
       <>
         {Object.keys(toys).map((key) => {
           return (
-            <LayerAccordianPrimary>
+            <LayerAccordianPrimary key={key}>
               <LayerAccordianSummaryPrimary>
                 <Typography variant="h3">{key}</Typography>
               </LayerAccordianSummaryPrimary>
@@ -199,9 +201,9 @@ function ToysBar() {
                   ) : (
                     <></>
                   )}
-                  {toys[key].actions.map((action) => {
+                  {toys[key].actions.map((action, index) => {
                     return (
-                      <LayerAccordianSecondary>
+                      <LayerAccordianSecondary key={index}>
                         <LayerAccordianSummarySecondary>
                           <Typography variant="h3">{action.name}</Typography>
                         </LayerAccordianSummarySecondary>
