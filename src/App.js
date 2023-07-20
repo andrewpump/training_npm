@@ -17,7 +17,6 @@ import { Widget, Invokable } from '@buildwithlayer/sdk';
 import { lightTheme, darkTheme } from './app/themes';
 import { BasicPlaygroundInvokables } from './playgrounds/basicPlayground/basicPlaygroundInvokables';
 import { FormFillerInvokables } from './playgrounds/formFillingPlayground/formFillingInvokables';
-import { CustomFormFillerInvokables } from './playgrounds/formFillingManuallyPlayground/formFillingManuallyInvokables.js';
 import { ApiPlaygroundInvokables } from './playgrounds/apiPlayground/apiPlaygroundInvokables';
 import { FilteringPlaygroundInvokables } from './playgrounds/filteringPlayground/filteringPlaygroundInvokables';
 import { NavigationPlaygroundInvokables } from './playgrounds/navigationPlayground/navigationPlaygroundInvokables';
@@ -55,9 +54,7 @@ function App() {
 
     const playgrounds = [
         'Box Layout',
-        // "Kona Playground",
         'Form Filler',
-        'Custom Form Filler',
         'API Playground',
         'Filtering Playground',
         'Navigation Playground',
@@ -66,7 +63,6 @@ function App() {
     const playgroundsMap = {
         'Box Layout': BasicPlaygroundInvokables.invokables,
         'Form Filler': FormFillerInvokables.invokables,
-        'Custom Form Filler': CustomFormFillerInvokables.invokables,
         'API Playground': ApiPlaygroundInvokables.invokables,
         'Filtering Playground': FilteringPlaygroundInvokables.invokables,
         'Navigation Playground': NavigationPlaygroundInvokables.invokables,
