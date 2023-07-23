@@ -8,6 +8,7 @@ import {
 } from "./basicPlaygroundSlice";
 import { z } from "zod";
 import { Invokable } from "@buildwithlayer/sdk";
+import { FilteringInvokable } from "@buildwithlayer/sdk";
 
 const BasicPlaygroundInvokables = {
   name: "Basic Playground",
@@ -19,6 +20,27 @@ const BasicPlaygroundInvokables = {
       func: async ({ query }) => store.dispatch(getUnsplashImage(query)),
       schema: z.object({ query: z.string() }),
     }),
+
+    new FilteringInvokable({
+      entityName: "transactions",
+      onFilter: async (filters) => {
+        store.dispatch(setFilters(filters));
+        return "Filtered transactions successfully. Don't forget to navigate to the transactions screen.";
+      },
+      defaultFilters: {
+        startDate: new Date(),
+        endDate: new Date(),
+        category: "",
+        amount: 0,
+      },
+      schema: z.object({
+        startDate: z.any().optional(),
+        endDate: z.any().optional(),
+        category: z.any().optional(),
+        amount: z.any().optional(),
+      }),
+    }), 
+    
     new Invokable({
       name: "changeBox1HeightPercentage",
       description:
