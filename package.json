@@ -1,52 +1,53 @@
 {
-  "homepage": "https://buildwithlayer.github.io/training_npm/",
-  "name": "@buildwithlayer/park",
-  "version": "0.2.2",
-  "private": true,
-  "dependencies": {
-    "@buildwithlayer/sdk": "workspace:*",
-    "@material-ui/core": "^4.12.4",
-    "@reduxjs/toolkit": "^1.9.5",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "dotenv": "^16.1.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.1.0",
-    "react-scripts": "5.0.1",
-    "redux-thunk": "^2.4.2",
-    "unsplash-js": "^7.0.18",
-    "web-vitals": "^2.1.0"
-  },
-  "scripts": {
-    "setup:dev": "./scripts/setup-local-dev.sh",
-    "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "gh-pages": "^5.0.0"
-  }
+    "homepage": "https://buildwithlayer.github.io/park/",
+    "name": "@buildwithlayer/park",
+    "version": "0.2.2",
+    "private": true,
+    "dependencies": {
+        "@buildwithlayer/sdk": "workspace:*",
+        "@material-ui/core": "^4.12.4",
+        "@reduxjs/toolkit": "^1.9.5",
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^13.0.0",
+        "@testing-library/user-event": "^13.2.1",
+        "dotenv": "^16.1.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-json-tree": "0.18.0",
+        "react-redux": "^8.1.0",
+        "react-scripts": "5.0.1",
+        "redux-thunk": "^2.4.2",
+        "unsplash-js": "^7.0.18",
+        "web-vitals": "^2.1.0"
+    },
+    "scripts": {
+        "setup:dev": "./scripts/setup-local-dev.sh",
+        "start": "react-scripts start",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "gh-pages": "^5.0.0"
+    }
 }

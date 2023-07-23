@@ -1,33 +1,33 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v1
 
-      - name: Build
-        run: |
-          yarn add @buildwithlayer/sdk@nightly
-          npm run-script build
-        env:
-          REACT_APP_OPEN_AI_API_KEY: ${{ secrets.REACT_APP_OPEN_AI_API_KEY }}
-          REACT_APP_UNSPLASH_ACCESS_KEY: ${{ secrets.REACT_APP_UNSPLASH_ACCESS_KEY }}
-          REACT_APP_VERSION: ${{ secrets.REACT_APP_VERSION }}
+            - name: Build
+              run: |
+                  yarn add @buildwithlayer/sdk@nightly
+                  npm run-script build
+              env:
+                  REACT_APP_OPEN_AI_API_KEY: ${{ secrets.REACT_APP_OPEN_AI_API_KEY }}
+                  REACT_APP_UNSPLASH_ACCESS_KEY: ${{ secrets.REACT_APP_UNSPLASH_ACCESS_KEY }}
+                  REACT_APP_VERSION: ${{ secrets.REACT_APP_VERSION }}
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  token: ${{ secrets.PARK_REPOSITORY_TOKEN }}
+                  folder: build
+                  repository-name: buildwithlayer/park
