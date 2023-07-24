@@ -20,6 +20,7 @@ import { FormFillerInvokables } from './playgrounds/formFillingPlayground/formFi
 import { ApiPlaygroundInvokables } from './playgrounds/apiPlayground/apiPlaygroundInvokables';
 import { FilteringPlaygroundInvokables } from './playgrounds/filteringPlayground/filteringPlaygroundInvokables';
 import { NavigationPlaygroundInvokables } from './playgrounds/navigationPlayground/navigationPlaygroundInvokables';
+import { ProductSearchPlaygroundInvokables } from './playgrounds/productSearchPlayground/productSearchInvokables.js';
 import { selectPlaygroundName } from './features/park/parkSlice';
 
 const welcomeMessage = `# Welcome to the Layer Park!
@@ -58,6 +59,7 @@ function App() {
         'API Playground',
         'Filtering Playground',
         'Navigation Playground',
+        'Product Search Playground',
     ];
 
     const playgroundsMap = {
@@ -66,6 +68,7 @@ function App() {
         'API Playground': ApiPlaygroundInvokables.invokables,
         'Filtering Playground': FilteringPlaygroundInvokables.invokables,
         'Navigation Playground': NavigationPlaygroundInvokables.invokables,
+        'Product Search Playground': ProductSearchPlaygroundInvokables.invokables,
     };
 
     const activeInvokables = React.useMemo(() => {

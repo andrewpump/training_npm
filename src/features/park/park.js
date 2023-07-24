@@ -1,3 +1,5 @@
+// ts-check
+
 import * as React from 'react';
 import {
     Stack,
@@ -24,10 +26,13 @@ import { selectTheme } from '../global/globalSlice';
 import ToysIcon from '@mui/icons-material/Toys';
 import { KonaPlayground } from '../../playgrounds/konaPlayground/konaPlayground';
 import { useInvokables } from '@buildwithlayer/sdk';
+
 import { FilteringPlayground } from '../../playgrounds/filteringPlayground/filteringPlayground';
 import { FormFillingPlayground } from '../../playgrounds/formFillingPlayground/formFillingPlayground';
 import { ApiPlayground } from '../../playgrounds/apiPlayground/apiPlayground';
 import { NavigationPlayground } from '../../playgrounds/navigationPlayground/navigationPlayground';
+import { ProductSearchPlayground } from '../../playgrounds/productSearchPlayground/productSearchPlayground';
+
 
 function ParkView({ playgrounds }) {
     const dispatch = useDispatch();
@@ -116,6 +121,7 @@ function ParkView({ playgrounds }) {
                     marginTop: '16px',
                     backgroundColor: 'background.light',
                     borderRadius: '8px',
+                    overflow: 'auto',
                 }}
             >
                 {activePlayground === 'Box Layout' && <BasicPlayground />}
@@ -124,6 +130,7 @@ function ParkView({ playgrounds }) {
                 {activePlayground === 'API Playground' && <ApiPlayground />}
                 {activePlayground === 'Filtering Playground' && <FilteringPlayground />}
                 {activePlayground === 'Navigation Playground' && <NavigationPlayground />}
+                {activePlayground === 'Product Search Playground' && <ProductSearchPlayground />}
             </Box>
         </Box>
     );
