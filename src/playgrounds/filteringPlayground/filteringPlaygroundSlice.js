@@ -1,28 +1,27 @@
 // @ts-check
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { resetPlayground } from "../../features/global/globalSlice";
+import { resetPlayground } from '../../features/global/globalSlice';
 
 export const initialState = {
-  filters: {
-    startDate: new Date(),
-    endDate: new Date(),
-    category: "",
-    amount: 0,
-  },
+    filters: {
+        textFilter: undefined,
+        numberFilter: undefined,
+        dateFilter: undefined,
+    },
 };
 
 export const FilteringPlaygroundSlice = createSlice({
-  name: "filteringPlayground",
-  initialState,
-  reducers: {
-    setFilters: (state, { payload }) => {
-      state.filters = payload;
+    name: 'filteringPlayground',
+    initialState,
+    reducers: {
+        setFilters: (state, { payload }) => {
+            state.filters = payload;
+        },
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(resetPlayground, () => initialState);
-  },
+    extraReducers: (builder) => {
+        builder.addCase(resetPlayground, () => initialState);
+    },
 });
 
 // Action creators
