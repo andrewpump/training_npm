@@ -1,24 +1,24 @@
 // @ts-check
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { resetPlayground } from "../../features/global/globalSlice";
+import { resetPlayground } from '../../features/global/globalSlice';
 
 export const initialState = {
   filters: {
     startDate: new Date(),
     endDate: new Date(),
-    category: "",
+    category: '',
     amount: 0,
   },
   tabIndex: 0,
 };
 
 export const KonaPlaygroundSlice = createSlice({
-  name: "konaPlayground",
+  name: 'konaPlayground',
   initialState,
   reducers: {
     setFilters: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
+      Object.keys(payload).forEach(key => {
         if (payload[key] !== undefined) return;
         delete payload[key];
       });
@@ -28,7 +28,7 @@ export const KonaPlaygroundSlice = createSlice({
       state.tabIndex = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addCase(resetPlayground, () => initialState);
   },
 });
@@ -37,7 +37,7 @@ export const KonaPlaygroundSlice = createSlice({
 export const { setFilters, setTabIndex } = KonaPlaygroundSlice.actions;
 
 // Selectors
-export const selectFilters = (state) => state.konaPlayground.filters;
-export const selectTabIndex = (state) => state.konaPlayground.tabIndex;
+export const selectFilters = state => state.konaPlayground.filters;
+export const selectTabIndex = state => state.konaPlayground.tabIndex;
 
 export default KonaPlaygroundSlice.reducer;

@@ -1,16 +1,16 @@
-import { createSlice, createAction } from "@reduxjs/toolkit";
+import { createSlice, createAction } from '@reduxjs/toolkit';
 
-export const RESET_PLAYGROUND = "RESET_PLAYGROUND";
+export const RESET_PLAYGROUND = 'RESET_PLAYGROUND';
 export const resetPlayground = createAction(RESET_PLAYGROUND);
 
 export const globalSlice = createSlice({
-  name: "global",
+  name: 'global',
   initialState: {
-    theme: "light",
+    theme: 'light',
   },
   reducers: {
-    toggleTheme: (state) => {
-      state.theme = state.theme === "light" ? "dark" : "light";
+    toggleTheme: state => {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
     },
   },
 });
@@ -19,6 +19,6 @@ export const globalSlice = createSlice({
 export const { toggleTheme } = globalSlice.actions;
 
 // Selectors
-export const selectTheme = (state) => state.global.theme;
+export const selectTheme = state => state.global.theme;
 
 export default globalSlice.reducer;

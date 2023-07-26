@@ -1,36 +1,36 @@
 // @ts-check
-import { NavigationInvokable } from "@buildwithlayer/sdk";
+import { NavigationInvokable } from '@buildwithlayer/sdk';
 
-import store from "../../app/store";
-import { setTabIndex } from "./navigationPlaygroundSlice";
+import store from '../../app/store';
+import { setTabIndex } from './navigationPlaygroundSlice';
 
 const NavigationPlaygroundInvokables = {
-  name: "Navigation Playground",
+  name: 'Navigation Playground',
   invokables: [
     new NavigationInvokable({
       screens: {
         dashboard: {
-          name: "Dashboard for HR",
+          name: 'Dashboard for HR',
           slug: 0,
         },
         transactions: {
-          name: "Transactions for Fraud",
+          name: 'Transactions for Fraud',
           slug: 1,
         },
         reports: {
-          name: "Reports for Finance",
+          name: 'Reports for Finance',
           slug: 2,
         },
         notifications: {
-          name: "Notifications for Compliance",
+          name: 'Notifications for Compliance',
           slug: 3,
         },
         help: {
-          name: "Help for Support",
+          name: 'Help for Support',
           slug: 4,
         },
       },
-      onNavigate: async (screenName) => {
+      onNavigate: async screenName => {
         console.log(screenName);
         store.dispatch(setTabIndex(screenName.slug));
         return `Navigated to ${screenName} successfully.`;

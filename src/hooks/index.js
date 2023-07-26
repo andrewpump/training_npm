@@ -1,1 +1,1 @@
-export * from "./useGlobalInvokables";
+export * from './useGlobalInvokables';

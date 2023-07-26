@@ -8,10 +8,10 @@ import { selectFilters } from './filteringPlaygroundSlice';
 
 // create a react component called BasicToy that has a square and field image
 export function FilteringPlayground() {
-    const filters = useSelector(selectFilters);
-    return (
-        <Box sx={{ width: '100%', height: '100%', '& ul': { height: '100%' } }}>
-            <JSONTree data={filters} />
-        </Box>
-    );
+  const filters = useSelector(selectFilters);
+  return (
+    <Box sx={{ width: '100%', height: '100%', '& ul': { height: '100%' } }}>
+      <JSONTree data={filters} />
+    </Box>
+  );
 }

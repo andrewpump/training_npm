@@ -1,26 +1,26 @@
 // @ts-check
-import { UnstableOpenApiInvokable } from "@buildwithlayer/sdk";
+import { UnstableOpenApiInvokable } from '@buildwithlayer/sdk';
 
-import store from "../../app/store";
-import { setResponse } from "./apiPlaygroundSlice";
+import store from '../../app/store';
+import { setResponse } from './apiPlaygroundSlice';
 
-import countryDataApiSpec from "./country-data-api.json";
+import countryDataApiSpec from './country-data-api.json';
 
 const ApiPlaygroundInvokables = {
-  name: "Api Playground",
+  name: 'Api Playground',
   invokables: [
     new UnstableOpenApiInvokable({
-      name: "countriesApi",
+      name: 'countriesApi',
       description:
-        "useful for when human wants to know anything about countries",
+        'useful for when human wants to know anything about countries',
       spec: countryDataApiSpec,
-      onResponse: async (response) => {
+      onResponse: async response => {
         store.dispatch(setResponse(response));
-        return "Response set!";
+        return 'Response set!';
       },
       headers: {
-        "Content-Type": "application/json",
-        "X-BLOBR-KEY": `${process.env.REACT_APP_X_BLOBR_KEY}`,
+        'Content-Type': 'application/json',
+        'X-BLOBR-KEY': `${process.env.REACT_APP_X_BLOBR_KEY}`,
       },
     }),
   ],

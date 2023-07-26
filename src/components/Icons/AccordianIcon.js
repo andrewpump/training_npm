@@ -1,19 +1,19 @@
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { Box } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Box } from '@mui/material';
 
 const AccordianIcon = () => {
   return (
     <Box
       sx={{
-        ".Mui-expanded & > .collapsIconWrapper": {
-          display: "none",
+        '.Mui-expanded & > .collapsIconWrapper': {
+          display: 'none',
         },
-        ".expandIconWrapper": {
-          display: "none",
+        '.expandIconWrapper': {
+          display: 'none',
         },
-        ".Mui-expanded & > .expandIconWrapper": {
-          display: "block",
+        '.Mui-expanded & > .expandIconWrapper': {
+          display: 'block',
         },
       }}
     >

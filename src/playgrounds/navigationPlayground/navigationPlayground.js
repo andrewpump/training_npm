@@ -1,9 +1,9 @@
 // @ts-check
-import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Box, Typography, Tab, Tabs } from "@mui/material";
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Box, Typography, Tab, Tabs } from '@mui/material';
 
-import { selectTabIndex, setTabIndex } from "./navigationPlaygroundSlice";
+import { selectTabIndex, setTabIndex } from './navigationPlaygroundSlice';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -113,8 +113,8 @@ export function NavigationPlayground() {
   const dispatch = useDispatch();
   const value = useSelector(selectTabIndex);
   const setValue = useCallback(
-    (index) => dispatch(setTabIndex(index)),
-    [dispatch]
+    index => dispatch(setTabIndex(index)),
+    [dispatch],
   );
 
   const handleChange = (_, newValue) => {
@@ -122,8 +122,8 @@ export function NavigationPlayground() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange}>
           {Object.entries(screens).map(([key]) => (
             <Tab key={key} label={key} />

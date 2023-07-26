@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const parkSlice = createSlice({
-  name: "park",
+  name: 'park',
   initialState: {
-    playgroundName: "Box Layout",
+    playgroundName: 'Box Layout',
   },
   reducers: {
     setSelectedPlayground: (state, action) => {
@@ -16,6 +16,6 @@ export const parkSlice = createSlice({
 export const { setSelectedPlayground } = parkSlice.actions;
 
 // Selectors
-export const selectPlaygroundName = (state) => state.park.playgroundName;
+export const selectPlaygroundName = state => state.park.playgroundName;
 
 export default parkSlice.reducer;
