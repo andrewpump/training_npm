@@ -1,5 +1,5 @@
 // ts-check
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import data from './assets/sample.json';
 import './assets/productSearchPlayground.css';
 import { List, ListItem, ListItemText, Box, Typography, Grid, Button } from '@mui/material';
@@ -31,20 +31,6 @@ export function ProductSearchPlayground() {
     const dispatch = useDispatch();
     const theme = useSelector(selectTheme);
     const listItems = useSelector(selectTopRecs);
-
-    const getInsightFromSKU = (payload) => {
-        var item = data.find((item) => {
-            if (item.product_code === payload.product_code) {
-                return (
-                    'Justify the policy_action for this product: ' +
-                    item.product_code_description +
-                    ' using data while remaining concise and clear'
-                );
-            }
-        });
-
-        return 'Item not found';
-    };
 
     // function that runs on
     return (
