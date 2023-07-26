@@ -48,8 +48,7 @@ export function ProductSearchPlayground() {
           color: 'background.contrastText',
           borderRadius: 1,
         }}
-        m={2}
-      >
+        m={2}>
         <Box p={2}>
           <Grid container justifyContent="space-between" alignItems="center">
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
@@ -60,8 +59,7 @@ export function ProductSearchPlayground() {
               color="primary"
               onClick={() => {
                 dispatch(generateTopRecs());
-              }}
-            >
+              }}>
               Regenerate
             </Button>
           </Grid>
@@ -80,8 +78,7 @@ export function ProductSearchPlayground() {
           color: 'background.contrastText',
           borderRadius: 1,
         }}
-        m={2}
-      >
+        m={2}>
         <Box p={2}>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
             Selected Item
