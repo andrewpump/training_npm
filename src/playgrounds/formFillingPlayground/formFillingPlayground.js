@@ -1,6 +1,6 @@
 // @ts-check
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   Box,
   TextField,
@@ -13,9 +13,9 @@ import {
   InputLabel,
   Select,
   MenuItem,
-} from "@mui/material";
+} from '@mui/material';
 
-import { selectForm } from "./formFillingPlaygroundSlice";
+import { selectForm } from './formFillingPlaygroundSlice';
 
 // create a react component called BasicToy that has a square and field image
 export function FormFillingPlayground() {
@@ -27,11 +27,11 @@ export function FormFillingPlayground() {
       noValidate
       autoComplete="off"
       sx={{
-        display: "flex",
-        flexDirection: "column",
+        display: 'flex',
+        flexDirection: 'column',
         gap: 2,
         p: 2,
-        color: "background.contrastText",
+        color: 'background.contrastText',
       }}
     >
       <TextField id="firstName" label="First Name" value={state.firstName} />
@@ -81,9 +81,9 @@ export function FormFillingPlayground() {
           value={state.age}
           label="Age"
         >
-          <MenuItem value={"18"}>Eighteen</MenuItem>
-          <MenuItem value={"19"}>Nineteen</MenuItem>
-          <MenuItem value={"20"}>Twenty</MenuItem>
+          <MenuItem value={'18'}>Eighteen</MenuItem>
+          <MenuItem value={'19'}>Nineteen</MenuItem>
+          <MenuItem value={'20'}>Twenty</MenuItem>
         </Select>
       </FormControl>
       <select id="age" value={state.age} hidden>

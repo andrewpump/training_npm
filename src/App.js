@@ -8,7 +8,11 @@ import LayerLogo from './LayerLogo.svg';
 import LayerLogoWhite from './LayerLogoWhite.svg';
 import { Box, Icon, Container } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleTheme, selectTheme, RESET_PLAYGROUND } from './features/global/globalSlice';
+import {
+  toggleTheme,
+  selectTheme,
+  RESET_PLAYGROUND,
+} from './features/global/globalSlice';
 import { ThemeProvider } from '@mui/material/styles';
 import { LayerSwitch } from './components/LayerSwitch';
 import Park from './features/park/park';
@@ -49,123 +53,125 @@ using our technology in your own app, please check us out at www.buildwithlayer.
 `;
 
 function App() {
-    const dispatch = useDispatch();
-    const themeMode = useSelector(selectTheme);
-    const selectedPlayground = useSelector(selectPlaygroundName);
+  const dispatch = useDispatch();
+  const themeMode = useSelector(selectTheme);
+  const selectedPlayground = useSelector(selectPlaygroundName);
 
-    const playgrounds = [
-        'Box Layout',
-        'Form Filler',
-        'API Playground',
-        'Filtering Playground',
-        'Navigation Playground',
-        'Product Search Playground',
+  const playgrounds = [
+    'Box Layout',
+    'Form Filler',
+    'API Playground',
+    'Filtering Playground',
+    'Navigation Playground',
+    'Product Search Playground',
+  ];
+
+  const playgroundsMap = {
+    'Box Layout': BasicPlaygroundInvokables.invokables,
+    'Form Filler': FormFillerInvokables.invokables,
+    'API Playground': ApiPlaygroundInvokables.invokables,
+    'Filtering Playground': FilteringPlaygroundInvokables.invokables,
+    'Navigation Playground': NavigationPlaygroundInvokables.invokables,
+    'Product Search Playground': ProductSearchPlaygroundInvokables.invokables,
+  };
+
+  const activeInvokables = React.useMemo(() => {
+    const i = [
+      new Invokable({
+        name: 'resetPlayground',
+        description: 'Resets the playground user is currently viewing',
+        func: async () => dispatch({ type: RESET_PLAYGROUND }),
+        schema: z.object({}),
+      }),
+      ...playgroundsMap[selectedPlayground],
     ];
 
-    const playgroundsMap = {
-        'Box Layout': BasicPlaygroundInvokables.invokables,
-        'Form Filler': FormFillerInvokables.invokables,
-        'API Playground': ApiPlaygroundInvokables.invokables,
-        'Filtering Playground': FilteringPlaygroundInvokables.invokables,
-        'Navigation Playground': NavigationPlaygroundInvokables.invokables,
-        'Product Search Playground': ProductSearchPlaygroundInvokables.invokables,
-    };
+    return i;
+    // eslint-disable-next-line
+  }, [selectedPlayground]);
 
-    const activeInvokables = React.useMemo(() => {
-        const i = [
-            new Invokable({
-                name: 'resetPlayground',
-                description: 'Resets the playground user is currently viewing',
-                func: async () => dispatch({ type: RESET_PLAYGROUND }),
-                schema: z.object({}),
-            }),
-            ...playgroundsMap[selectedPlayground],
-        ];
-
-        return i;
-        // eslint-disable-next-line
-    }, [selectedPlayground]);
-
-    return (
-        <Widget
-            theme={themeMode}
-            openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ''}
-            defaultMessage={welcomeMessage}
-            invokables={activeInvokables}
-            layerApiKey={''}
-            copilot='basic'
+  return (
+    <Widget
+      theme={themeMode}
+      openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ''}
+      defaultMessage={welcomeMessage}
+      invokables={activeInvokables}
+      layerApiKey={''}
+      copilot="basic"
+    >
+      <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
+        <Box
+          sx={{
+            height: '100%',
+            maxHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: 'background.default',
+          }}
         >
-            <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
-                <Box
-                    sx={{
-                        height: '100%',
-                        maxHeight: '100vh',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        backgroundColor: 'background.default',
-                    }}
+          <Container
+            maxWidth="xl"
+            sx={{
+              maxHeight: '84px',
+              backgroundColor: 'background.default',
+            }}
+          >
+            <AppBar
+              position="static"
+              sx={{
+                backgroundColor: 'background.default',
+                boxShadow: 0,
+                padding: '16px',
+                backgroundImage: 'none',
+              }}
+            >
+              <Toolbar disableGutters>
+                <Icon
+                  sx={{ height: '60px', width: '60px', paddingRight: '16px' }}
                 >
-                    <Container
-                        maxWidth='xl'
-                        sx={{
-                            maxHeight: '84px',
-                            backgroundColor: 'background.default',
-                        }}
-                    >
-                        <AppBar
-                            position='static'
-                            sx={{
-                                backgroundColor: 'background.default',
-                                boxShadow: 0,
-                                padding: '16px',
-                                backgroundImage: 'none',
-                            }}
-                        >
-                            <Toolbar disableGutters>
-                                <Icon sx={{ height: '60px', width: '60px', paddingRight: '16px' }}>
-                                    <img
-                                        src={themeMode === 'light' ? LayerLogo : LayerLogoWhite}
-                                        alt='Layer Logo'
-                                    />
-                                </Icon>
-                                <Typography
-                                    component='div'
-                                    variant='h1'
-                                    color={'background.contrastText'}
-                                    fontSize={'24px'}
-                                    sx={{ flexGrow: 1 }}
-                                >
-                                    <Box fontWeight='700' display='inline'>
-                                        Layer
-                                    </Box>{' '}
-                                    Park
-                                    <Box fontSize={'20px'}>0.2.2</Box>{' '}
-                                </Typography>
+                  <img
+                    src={themeMode === 'light' ? LayerLogo : LayerLogoWhite}
+                    alt="Layer Logo"
+                  />
+                </Icon>
+                <Typography
+                  component="div"
+                  variant="h1"
+                  color={'background.contrastText'}
+                  fontSize={'24px'}
+                  sx={{ flexGrow: 1 }}
+                >
+                  <Box fontWeight="700" display="inline">
+                    Layer
+                  </Box>{' '}
+                  Park
+                  <Box fontSize={'20px'}>0.2.2</Box>{' '}
+                </Typography>
 
-                                <LayerSwitch
-                                    onChange={() => {
-                                        dispatch(toggleTheme());
-                                    }}
-                                />
-                            </Toolbar>
-                        </AppBar>
-                    </Container>
+                <LayerSwitch
+                  onChange={() => {
+                    dispatch(toggleTheme());
+                  }}
+                />
+              </Toolbar>
+            </AppBar>
+          </Container>
 
-                    <Container
-                        maxWidth='xl'
-                        sx={{
-                            display: 'flex',
-                            flexFlow: 'column',
-                            flex: '1 1 auto',
-                            maxHeight: '85vh',
-                        }}
-                    >
-                        <Park playgrounds={playgrounds} />
-                    </Container>
-                </Box>
-            </ThemeProvider>
-        </Widget>
-    );
+          <Container
+            maxWidth="xl"
+            sx={{
+              display: 'flex',
+              flexFlow: 'column',
+              flex: '1 1 auto',
+              maxHeight: '85vh',
+            }}
+          >
+            <Park playgrounds={playgrounds} />
+          </Container>
+        </Box>
+      </ThemeProvider>
+    </Widget>
+  );
 }
 
 export default App;

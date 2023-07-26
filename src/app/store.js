@@ -10,21 +10,21 @@ import navigationPlaygroundSlice from '../playgrounds/navigationPlayground/navig
 import productSearchPlaygroundSlice from '../playgrounds/productSearchPlayground/productSearchPlaygroundSlice';
 
 const store = configureStore({
-    reducer: {
-        park: parkReducer,
-        global: globalReducer,
-        basicPlayground: basicPlaygroundSlice,
-        konaPlayground: konaPlaygroundSlice,
-        formFillingPlayground: formFillingPlaygroundSlice,
-        apiPlayground: apiPlaygroundSlice,
-        filteringPlayground: filteringPlaygroundSlice,
-        navigationPlayground: navigationPlaygroundSlice,
-        productSearchPlayground: productSearchPlaygroundSlice,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            thunk: {},
-        }),
+  reducer: {
+    park: parkReducer,
+    global: globalReducer,
+    basicPlayground: basicPlaygroundSlice,
+    konaPlayground: konaPlaygroundSlice,
+    formFillingPlayground: formFillingPlaygroundSlice,
+    apiPlayground: apiPlaygroundSlice,
+    filteringPlayground: filteringPlaygroundSlice,
+    navigationPlayground: navigationPlaygroundSlice,
+    productSearchPlayground: productSearchPlaygroundSlice,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      thunk: {},
+    }),
 });
 
 export default store;

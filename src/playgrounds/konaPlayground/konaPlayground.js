@@ -1,16 +1,16 @@
 // @ts-check
-import z from "zod";
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Invokable, useInvokables } from "@buildwithlayer/sdk";
-import { Box, Typography, Tab, Tabs } from "@mui/material";
+import z from 'zod';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Invokable, useInvokables } from '@buildwithlayer/sdk';
+import { Box, Typography, Tab, Tabs } from '@mui/material';
 
 import {
   selectFilters,
   selectTabIndex,
   setFilters,
   setTabIndex,
-} from "./konaPlaygroundSlice";
+} from './konaPlaygroundSlice';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -74,12 +74,12 @@ export function KonaPlayground() {
   const dispatch = useDispatch();
   const value = useSelector(selectTabIndex);
   const updateFilters = useCallback(
-    (val) => dispatch(setFilters(val)),
-    [dispatch]
+    val => dispatch(setFilters(val)),
+    [dispatch],
   );
   const setValue = useCallback(
-    (index) => dispatch(setTabIndex(index)),
-    [dispatch]
+    index => dispatch(setTabIndex(index)),
+    [dispatch],
   );
 
   const handleChange = (_, newValue) => {
@@ -89,19 +89,19 @@ export function KonaPlayground() {
   useEffect(() => {
     addInvokable([
       new Invokable({
-        name: "changeScreen",
+        name: 'changeScreen',
         description:
           "Navigate to a different screen, the input of the function is the name of the screen such as 'dashboard' or 'transactions'",
         func: async ({ name }) => {
           setValue(Object.keys(screens).indexOf(name));
-          return "Changed screen successfully.";
+          return 'Changed screen successfully.';
         },
         schema: z.object({ name: z.string().optional() }),
       }),
       new Invokable({
-        name: "filterTransactions",
+        name: 'filterTransactions',
         description:
-          "Filter transactions by start date, end date, category, and amount.",
+          'Filter transactions by start date, end date, category, and amount.',
         func: async ({ startDate, endDate, category, amount }) => {
           updateFilters({ startDate, endDate, category, amount });
           return "Filtered transactions successfully. Don't forget to navigate to the transactions screen.";
@@ -116,14 +116,14 @@ export function KonaPlayground() {
     ]);
 
     return () => {
-      removeInvokable(["changeScreen", "filterTransactions"]);
+      removeInvokable(['changeScreen', 'filterTransactions']);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange}>
           {Object.entries(screens).map(([key]) => (
             <Tab key={key} label={key} />

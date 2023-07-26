@@ -1,21 +1,21 @@
 // @ts-check
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { resetPlayground } from "../../features/global/globalSlice";
+import { resetPlayground } from '../../features/global/globalSlice';
 
 export const initialState = {
   tabIndex: 0,
 };
 
 export const NavigationPlaygroundSlice = createSlice({
-  name: "navigationPlayground",
+  name: 'navigationPlayground',
   initialState,
   reducers: {
     setTabIndex: (state, action) => {
       state.tabIndex = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addCase(resetPlayground, () => initialState);
   },
 });
@@ -24,6 +24,6 @@ export const NavigationPlaygroundSlice = createSlice({
 export const { setTabIndex } = NavigationPlaygroundSlice.actions;
 
 // Selectors
-export const selectTabIndex = (state) => state.navigationPlayground.tabIndex;
+export const selectTabIndex = state => state.navigationPlayground.tabIndex;
 
 export default NavigationPlaygroundSlice.reducer;

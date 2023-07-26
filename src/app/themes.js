@@ -1,18 +1,18 @@
-import { createTheme } from "@mui/material/styles";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { createTheme } from '@mui/material/styles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const sharedPalette = {
   primary: {
-    main: "#7b65ff",
-    dark: "#4e38d7",
-    contrastText: "#f2f2f2",
-    light: "#e9dfff",
+    main: '#7b65ff',
+    dark: '#4e38d7',
+    contrastText: '#f2f2f2',
+    light: '#e9dfff',
   },
   secondary: {
-    main: "#df85ff",
-    dark: "#c243ee",
-    contrastText: "#333333",
-    light: "#eebeff",
+    main: '#df85ff',
+    dark: '#c243ee',
+    contrastText: '#333333',
+    light: '#eebeff',
   },
 };
 
@@ -31,27 +31,27 @@ const componentThemes = {
 
 const typeography = {
   htmlFontSize: 16,
-  fontFamily: ["Manrope"],
+  fontFamily: ['Manrope'],
   fontSize: 14,
   fontWeightLight: 300,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
   fontWeightBold: 700,
-  h1: { fontSize: "2.5rem" },
-  h2: { fontSize: "1.5rem" },
-  h3: { fontSize: "16px", fontWeight: 700 },
-  body1: { fontSize: "1rem" },
-  body2: { fontSize: "0.75rem" },
+  h1: { fontSize: '2.5rem' },
+  h2: { fontSize: '1.5rem' },
+  h3: { fontSize: '16px', fontWeight: 700 },
+  body1: { fontSize: '1rem' },
+  body2: { fontSize: '0.75rem' },
 };
 
 const lightTheme = createTheme({
   palette: {
     ...sharedPalette,
-    mode: "light",
+    mode: 'light',
     background: {
-      default: "#ffffff",
-      light: "#f2f2f2",
-      contrastText: "#333333",
+      default: '#ffffff',
+      light: '#f2f2f2',
+      contrastText: '#333333',
     },
   },
   typography: typeography,
@@ -61,11 +61,11 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   palette: {
     ...sharedPalette,
-    mode: "dark",
+    mode: 'dark',
     background: {
-      default: "#333333",
-      light: "#4f4f4f",
-      contrastText: "#f2f2f2",
+      default: '#333333',
+      light: '#4f4f4f',
+      contrastText: '#f2f2f2',
     },
   },
   typography: typeography,

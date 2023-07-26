@@ -1,66 +1,66 @@
-import { styled } from "@mui/material/styles";
-import Accordion from "@mui/material/Accordion";
-import { AccordionSummary } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import Accordion from '@mui/material/Accordion';
+import { AccordionSummary } from '@mui/material';
 
 export const LayerAccordianPrimary = styled(Accordion)(({ theme }) => ({
   backgroundColor:
-    theme.palette.mode === "light"
+    theme.palette.mode === 'light'
       ? theme.palette.primary.light
       : theme.palette.background.light,
-  boxShadow: "none",
-  "& .MuiTypography-root": {
-    paddingTop: "10px",
-    paddingBottom: "10px",
+  boxShadow: 'none',
+  '& .MuiTypography-root': {
+    paddingTop: '10px',
+    paddingBottom: '10px',
   },
 }));
 
 export const LayerAccordianSummaryPrimary = styled(AccordionSummary)(
   ({ theme }) => ({
-    "& .MuiAccordionSummary-root": {
+    '& .MuiAccordionSummary-root': {
       backgroundColor:
-        theme.palette.mode === "light"
+        theme.palette.mode === 'light'
           ? theme.palette.primary.light
           : theme.palette.background.light,
     },
-  })
+  }),
 );
 
 export const LayerAccordianSecondary = styled(Accordion)(({ theme }) => ({
   backgroundColor:
-    theme.palette.mode === "light"
+    theme.palette.mode === 'light'
       ? theme.palette.background.light
       : theme.palette.background.contrastText,
-  boxShadow: "none",
-  borderRadius: "4px",
-  border: "none",
+  boxShadow: 'none',
+  borderRadius: '4px',
+  border: 'none',
 
   color:
-    theme.palette.mode === "light"
+    theme.palette.mode === 'light'
       ? theme.palette.background.contrastText
       : theme.palette.background.default,
-  "& .MuiTypography-root": {
-    paddingTop: "10px",
-    paddingBottom: "10px",
+  '& .MuiTypography-root': {
+    paddingTop: '10px',
+    paddingBottom: '10px',
   },
-  "&:before": {
-    display: "none",
+  '&:before': {
+    display: 'none',
   },
 }));
 
 export const LayerAccordianSummarySecondary = styled(AccordionSummary)(
   ({ theme }) => ({
-    "& .MuiAccordionSummary-root": {
+    '& .MuiAccordionSummary-root': {
       backgroundColor:
-        theme.palette.mode === "light"
+        theme.palette.mode === 'light'
           ? theme.palette.primary.light
           : theme.palette.background.light,
-      borderRadius: "8px",
+      borderRadius: '8px',
     },
-    "& .MuiAccordionSummary-expandIconWrapper": {
+    '& .MuiAccordionSummary-expandIconWrapper': {
       color:
-        theme.palette.mode === "light"
+        theme.palette.mode === 'light'
           ? theme.palette.background.contrastText
           : theme.palette.background.default,
     },
-  })
+  }),
 );

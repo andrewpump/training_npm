@@ -1,28 +1,28 @@
 // @ts-check
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { resetPlayground } from "../../features/global/globalSlice";
+import { resetPlayground } from '../../features/global/globalSlice';
 
 export const initialState = {
   form: {
-    firstName: "",
-    lastName: "",
-    email: "",
+    firstName: '',
+    lastName: '',
+    email: '',
     consented: false,
-    status: "available",
-    age: "18",
+    status: 'available',
+    age: '18',
   },
 };
 
 export const FormFillingPlaygroundSlice = createSlice({
-  name: "formFillingPlayground",
+  name: 'formFillingPlayground',
   initialState,
   reducers: {
     setForm: (state, action) => {
       state.form = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addCase(resetPlayground, () => initialState);
   },
 });
@@ -31,6 +31,6 @@ export const FormFillingPlaygroundSlice = createSlice({
 export const { setForm } = FormFillingPlaygroundSlice.actions;
 
 // Selectors
-export const selectForm = (state) => state.formFillingPlayground.form;
+export const selectForm = state => state.formFillingPlayground.form;
 
 export default FormFillingPlaygroundSlice.reducer;

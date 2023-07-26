@@ -1,21 +1,21 @@
 // @ts-check
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { resetPlayground } from "../../features/global/globalSlice";
+import { resetPlayground } from '../../features/global/globalSlice';
 
 export const initialState = {
   response: {},
 };
 
 export const ApiPlaygroundSlice = createSlice({
-  name: "apiPlayground",
+  name: 'apiPlayground',
   initialState,
   reducers: {
     setResponse: (state, { payload }) => {
       state.response = payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addCase(resetPlayground, () => initialState);
   },
 });
@@ -24,6 +24,6 @@ export const ApiPlaygroundSlice = createSlice({
 export const { setResponse } = ApiPlaygroundSlice.actions;
 
 // Selectors
-export const selectResponse = (state) => state.apiPlayground.response;
+export const selectResponse = state => state.apiPlayground.response;
 
 export default ApiPlaygroundSlice.reducer;
