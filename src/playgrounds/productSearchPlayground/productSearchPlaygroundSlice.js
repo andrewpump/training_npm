@@ -41,7 +41,19 @@ export const getInsightFromSKU = async (payload) => {
         return item.product_code === payload.sku;
     });
 
-    const justification = 'The policy action is justified because ' + item.policy_detail + '.';
+    const d = {
+        ...item,
+    };
+
+    delete d['policy_detail'];
+    delete d['policy_action'];
+
+    const justification = `Provide a concise and data-based two sentence justification for 
+    the policy_action: ${
+        item.policy_action
+    }, from the following JSON data provided about the product.  Product data: ${JSON.stringify(
+        d
+    )}`;
 
     return item ? justification : 'Item not found';
 };
@@ -53,7 +65,12 @@ export const getInsightFromProductName = async (payload) => {
             .includes(payload.product_name.toLowerCase());
     });
 
-    const justification = 'The policy action is justified because ' + item.policy_detail + '.';
+    delete item['policy_detail'];
+
+    const justification = `Provide a concise and data-based two sentence justification for 
+    the policy_action, ${
+        item.policy_action
+    }, from the JSON data provided about the product.  Product data: ${JSON.stringify(item)}`;
 
     return item ? justification : 'Item not found';
 };
