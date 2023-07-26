@@ -1,7 +1,7 @@
 // ts-check
 import React, { useEffect, useState } from 'react';
 import data from './assets/sample.json';
-import "./assets/productSearchPlayground.css"
+import './assets/productSearchPlayground.css';
 import { List, ListItem, ListItemText, Box, Typography, Grid, Button } from '@mui/material';
 import ReactJson from 'react-json-view';
 import { selectTheme } from '../../features/global/globalSlice';
@@ -27,7 +27,6 @@ const jsonViewerTheme = {
     base0F: '#CC6633',
 };
 
-
 export function ProductSearchPlayground() {
     const dispatch = useDispatch();
     const theme = useSelector(selectTheme);
@@ -36,13 +35,16 @@ export function ProductSearchPlayground() {
     const getInsightFromSKU = (payload) => {
         var item = data.find((item) => {
             if (item.product_code === payload.product_code) {
-                return "Justify the policy_action for this product: " + item.product_code_description + " using data while remaining concise and clear";
+                return (
+                    'Justify the policy_action for this product: ' +
+                    item.product_code_description +
+                    ' using data while remaining concise and clear'
+                );
             }
         });
 
-        return "Item not found"
-    }
-
+        return 'Item not found';
+    };
 
     // function that runs on
     return (
@@ -56,11 +58,19 @@ export function ProductSearchPlayground() {
                 m={2}
             >
                 <Box p={2}>
-                    <Grid container justifyContent="space-between" alignItems="center">
-                        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+                    <Grid container justifyContent='space-between' alignItems='center'>
+                        <Typography variant='h4' component='div' sx={{ flexGrow: 1 }}>
                             Top Reccomendations
                         </Typography>
-                        <Button variant="outlined" color="primary" onClick={() => { dispatch(generateTopRecs()) }}>Regenerate</Button>
+                        <Button
+                            variant='outlined'
+                            color='primary'
+                            onClick={() => {
+                                dispatch(generateTopRecs());
+                            }}
+                        >
+                            Regenerate
+                        </Button>
                     </Grid>
                     <List>
                         {listItems.map((item, index) => (
@@ -70,7 +80,6 @@ export function ProductSearchPlayground() {
                         ))}
                     </List>
                 </Box>
-
             </Box>
             <Box
                 sx={{
@@ -81,15 +90,15 @@ export function ProductSearchPlayground() {
                 m={2}
             >
                 <Box p={2}>
-                    <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant='h4' component='div' sx={{ flexGrow: 1 }}>
                         Selected Item
                     </Typography>
-                    <ReactJson src={listItems.length !== 0 ? listItems[0].raw : {}} theme={theme === "light" ? "light" : jsonViewerTheme} />
+                    <ReactJson
+                        src={listItems.length !== 0 ? listItems[0].raw : {}}
+                        theme={theme === 'light' ? 'light' : jsonViewerTheme}
+                    />
                 </Box>
-
             </Box>
-
         </>
-
     );
 }

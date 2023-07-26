@@ -33,7 +33,6 @@ import { ApiPlayground } from '../../playgrounds/apiPlayground/apiPlayground';
 import { NavigationPlayground } from '../../playgrounds/navigationPlayground/navigationPlayground';
 import { ProductSearchPlayground } from '../../playgrounds/productSearchPlayground/productSearchPlayground';
 
-
 function ParkView({ playgrounds }) {
     const dispatch = useDispatch();
     const activePlayground = useSelector(selectPlaygroundName);
