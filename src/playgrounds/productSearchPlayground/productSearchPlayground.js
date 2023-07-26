@@ -1,6 +1,5 @@
 // ts-check
 import React from 'react';
-import data from './assets/sample.json';
 import './assets/productSearchPlayground.css';
 import { List, ListItem, ListItemText, Box, Typography, Grid, Button } from '@mui/material';
 import ReactJson from 'react-json-view';
