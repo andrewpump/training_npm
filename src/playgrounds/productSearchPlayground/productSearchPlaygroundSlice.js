@@ -1,5 +1,6 @@
 // @ts-check
 import { createSlice } from '@reduxjs/toolkit';
+import { ChatOpenAI, LLMChain, PromptTemplate } from '@buildwithlayer/sdk';
 
 import { resetPlayground } from '../../features/global/globalSlice';
 import data from './assets/sample.json';
@@ -58,7 +59,19 @@ export const getInsightFromSKU = async payload => {
     d,
   )}`;
 
-  return item ? justification : 'Item not found';
+  const model = new ChatOpenAI({
+    temperature: 0,
+    openAIApiKey: process.env.REACT_APP_OPEN_AI_API_KEY,
+  });
+
+  const output = await model.predict(justification);
+
+  // const prompt = PromptTemplate.fromTemplate(justification);
+  // const chain = new LLMChain({ llm: model, prompt });
+
+  // const output = await chain.call({});
+
+  return item ? `Respond with: ${output}` : 'Respond with: Item not found';
 };
 
 export const getInsightFromProductName = async payload => {
