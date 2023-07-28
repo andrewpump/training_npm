@@ -52,26 +52,23 @@ export const getInsightFromSKU = async payload => {
   delete d['policy_detail'];
   delete d['policy_action'];
 
-  const justification = `Provide a concise and data-based two sentence justification for 
-    the policy_action: ${
-      item.policy_action
-    }, from the following JSON data provided about the product.  Product data: ${JSON.stringify(
-    d,
-  )}`;
+  const prompt =
+    PromptTemplate.fromTemplate(`Provide a concise and data-based two sentence justification for 
+  the policy_action: {policy_action}, from the following JSON data provided about the product. Product data: {product_data}`);
 
   const model = new ChatOpenAI({
     temperature: 0,
     openAIApiKey: process.env.REACT_APP_OPEN_AI_API_KEY,
   });
 
-  const output = await model.predict(justification);
+  const chain = new LLMChain({ llm: model, prompt });
 
-  // const prompt = PromptTemplate.fromTemplate(justification);
-  // const chain = new LLMChain({ llm: model, prompt });
+  const output = await chain.call({
+    policy_action: item.policy_action,
+    product_data: JSON.stringify(d),
+  });
 
-  // const output = await chain.call({});
-
-  return item ? `Respond with: ${output}` : 'Respond with: Item not found';
+  return item ? `Respond with: ${output.text}` : 'Respond with: Item not found';
 };
 
 export const getInsightFromProductName = async payload => {
@@ -87,8 +84,8 @@ export const getInsightFromProductName = async payload => {
     the policy_action, ${
       item.policy_action
     }, from the JSON data provided about the product.  Product data: ${JSON.stringify(
-    item,
-  )}`;
+      item,
+    )}`;
 
   return item ? justification : 'Item not found';
 };
