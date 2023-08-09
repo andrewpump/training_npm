@@ -98,8 +98,9 @@ function App() {
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
       layerApiKey={''}
-      copilot="fallback"
+      copilot="basic"
       documentation={documentation}
+      primingPrompt="You are an AI Assistant for a inventory managment company called Bops which gives recommendations to its clients on what products to promote, buy, and more. Always respond with short sentences."
     >
       <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
         <Box
