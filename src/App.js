@@ -97,8 +97,7 @@ function App() {
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
       layerApiKey={''}
-      copilot="basic"
-    >
+      copilot="basic">
       <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
         <Box
           sx={{
@@ -107,15 +106,13 @@ function App() {
             display: 'flex',
             flexDirection: 'column',
             backgroundColor: 'background.default',
-          }}
-        >
+          }}>
           <Container
             maxWidth="xl"
             sx={{
               maxHeight: '84px',
               backgroundColor: 'background.default',
-            }}
-          >
+            }}>
             <AppBar
               position="static"
               sx={{
@@ -123,12 +120,10 @@ function App() {
                 boxShadow: 0,
                 padding: '16px',
                 backgroundImage: 'none',
-              }}
-            >
+              }}>
               <Toolbar disableGutters>
                 <Icon
-                  sx={{ height: '60px', width: '60px', paddingRight: '16px' }}
-                >
+                  sx={{ height: '60px', width: '60px', paddingRight: '16px' }}>
                   <img
                     src={themeMode === 'light' ? LayerLogo : LayerLogoWhite}
                     alt="Layer Logo"
@@ -139,8 +134,7 @@ function App() {
                   variant="h1"
                   color={'background.contrastText'}
                   fontSize={'24px'}
-                  sx={{ flexGrow: 1 }}
-                >
+                  sx={{ flexGrow: 1 }}>
                   <Box fontWeight="700" display="inline">
                     Layer
                   </Box>{' '}
@@ -164,8 +158,7 @@ function App() {
               flexFlow: 'column',
               flex: '1 1 auto',
               maxHeight: '85vh',
-            }}
-          >
+            }}>
             <Park playgrounds={playgrounds} />
           </Container>
         </Box>
