@@ -26,7 +26,6 @@ import { FilteringPlaygroundInvokables } from './playgrounds/filteringPlayground
 import { NavigationPlaygroundInvokables } from './playgrounds/navigationPlayground/navigationPlaygroundInvokables';
 import { ProductSearchPlaygroundInvokables } from './playgrounds/productSearchPlayground/productSearchInvokables.js';
 import { selectPlaygroundName } from './features/park/parkSlice';
-import { documentation } from './investerdocs';
 
 const welcomeMessage = `# Welcome to the Layer Park!
 **Version ${process.env.REACT_APP_VERSION}:**
