@@ -97,8 +97,7 @@ function App() {
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
       layerApiKey={''}
-      copilot="basic"
-      documentation={documentation}>
+      copilot="basic">
       <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
         <Box
           sx={{
