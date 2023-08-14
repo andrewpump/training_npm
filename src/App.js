@@ -17,6 +17,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { LayerSwitch } from './components/LayerSwitch';
 import Park from './features/park/park';
 import './App.css';
+import { builderConfig } from './builderConfig';
 import { Widget, Invokable } from '@buildwithlayer/sdk';
 import { lightTheme, darkTheme } from './app/themes';
 import { BasicPlaygroundInvokables } from './playgrounds/basicPlayground/basicPlaygroundInvokables';
@@ -97,6 +98,8 @@ function App() {
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
       layerApiKey={''}
+      builderConfig={builderConfig}
+      builderMode
       copilot="basic">
       <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
         <Box
