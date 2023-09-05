@@ -97,10 +97,10 @@ function App() {
       openAiApiKey={process.env.REACT_APP_OPEN_AI_API_KEY || ''}
       defaultMessage={welcomeMessage}
       invokables={activeInvokables}
-      layerApiKey={''}
+      layerApiKey={'10dd6918b73a46aead0853a74b1d70b1'}
       builderConfig={builderConfig}
       builderMode
-      copilot="basic"
+      copilot="question-answer"
     >
       <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
         <Box
